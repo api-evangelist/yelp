@@ -25,6 +25,8 @@ apis:
     properties:
       - type: Documentation
         url: ' https://docs.developer.yelp.com/'
+      - type: OpenAPI
+        url: openapi/yelp-openapi.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -1,0 +1,364 @@
+openapi: 3.1.0
+info:
+  title: Yelp Fusion API
+  description: |
+    Yelp Fusion API provides programmatic access to Yelp's database of local
+    businesses, reviews, events, categories, and home services. This minimal
+    OpenAPI definition documents the public REST endpoints listed in the Yelp
+    Developer reference.
+  version: "3.0"
+  contact:
+    name: Yelp Developer
+    url: https://docs.developer.yelp.com/
+servers:
+  - url: https://api.yelp.com
+    description: Yelp Fusion API base URL
+x-generated-from: https://docs.developer.yelp.com/reference
+x-generated-by: claude-crawl-2026-05-08
+tags:
+  - name: Businesses
+  - name: Reviews
+  - name: Events
+  - name: Categories
+  - name: Home Services
+  - name: AI
+  - name: Misc
+paths:
+  /ai/chat/v2:
+    post:
+      tags: [AI]
+      summary: Yelp AI Chat
+      description: Yelp AI API for search and chat interactions.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/businesses/search:
+    get:
+      tags: [Businesses]
+      summary: Business Search
+      description: Search for businesses based on provided criteria.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/businesses/search/phone:
+    get:
+      tags: [Businesses]
+      summary: Phone Search
+      description: Search for businesses by phone number.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/businesses/matches:
+    get:
+      tags: [Businesses]
+      summary: Business Match
+      description: Match business data against Yelp's database.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/businesses/{id}:
+    get:
+      tags: [Businesses]
+      summary: Business Details
+      description: Retrieve detailed information about a business.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/transactions/{transaction_type}/search:
+    get:
+      tags: [Businesses]
+      summary: Transaction Search
+      description: Search for businesses supporting a transaction type (e.g. food delivery).
+      parameters:
+        - name: transaction_type
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/businesses/{id}/engagement_metrics:
+    get:
+      tags: [Businesses]
+      summary: Engagement Metrics
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/businesses/{id}/service_offerings:
+    get:
+      tags: [Businesses]
+      summary: Service Offerings
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/businesses/{id}/rapc_enabledness:
+    post:
+      tags: [Businesses]
+      summary: Toggle Request a Phone Call
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/businesses/{id}/insights:
+    get:
+      tags: [Businesses]
+      summary: Business Insights
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/businesses/{id}/food_and_drinks_insights:
+    get:
+      tags: [Businesses]
+      summary: Food and Drinks Insights
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/businesses/{id}/risk_signals_insights:
+    get:
+      tags: [Businesses]
+      summary: Risk Signal Insights
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/businesses/{id}/reviews:
+    get:
+      tags: [Reviews]
+      summary: Business Reviews
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/businesses/{id}/review_highlights:
+    get:
+      tags: [Reviews]
+      summary: Review Highlights
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/events:
+    get:
+      tags: [Events]
+      summary: Event Search
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/events/{id}:
+    get:
+      tags: [Events]
+      summary: Event Details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/featured_event:
+    get:
+      tags: [Events]
+      summary: Featured Event
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/categories:
+    get:
+      tags: [Categories]
+      summary: All Categories
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/categories/{alias}:
+    get:
+      tags: [Categories]
+      summary: Category Details
+      parameters:
+        - name: alias
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/home_services/jobs:
+    post:
+      tags: [Home Services]
+      summary: Get Jobs
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/home_services/job_survey:
+    get:
+      tags: [Home Services]
+      summary: Get Job Survey
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/home_services/requests_for_quote:
+    post:
+      tags: [Home Services]
+      summary: Request a Quote
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/autocomplete:
+    get:
+      tags: [Misc]
+      summary: Autocomplete
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []
