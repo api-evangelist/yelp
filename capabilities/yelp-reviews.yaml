@@ -1,0 +1,120 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Yelp Fusion API — Reviews
+  description: 'Yelp Fusion API — Reviews. 2 operations. Lead operation: Review Highlights. Self-contained Naftiko capability
+    covering one Yelp business surface.'
+  tags:
+  - Yelp
+  - Reviews
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    YELP_API_KEY: YELP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: yelp-reviews
+    baseUri: https://api.yelp.com
+    description: Yelp Fusion API — Reviews business capability. Self-contained, no shared references.
+    resources:
+    - name: v3-businesses-id-review_highlights
+      path: /v3/businesses/{id}/review_highlights
+      operations:
+      - name: get
+        method: GET
+        description: Review Highlights
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: v3-businesses-id-reviews
+      path: /v3/businesses/{id}/reviews
+      operations:
+      - name: get
+        method: GET
+        description: Business Reviews
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.YELP_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: yelp-reviews-rest
+    port: 8080
+    description: REST adapter for Yelp Fusion API — Reviews. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v3/businesses/{id}/review-highlights
+      name: v3-businesses-id-review-highlights
+      description: REST surface for v3-businesses-id-review_highlights.
+      operations:
+      - method: GET
+        name: get
+        description: Review Highlights
+        call: yelp-reviews.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/businesses/{id}/reviews
+      name: v3-businesses-id-reviews
+      description: REST surface for v3-businesses-id-reviews.
+      operations:
+      - method: GET
+        name: get
+        description: Business Reviews
+        call: yelp-reviews.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: yelp-reviews-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Yelp Fusion API — Reviews. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: review-highlights
+      description: Review Highlights
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-reviews.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: business-reviews
+      description: Business Reviews
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-reviews.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

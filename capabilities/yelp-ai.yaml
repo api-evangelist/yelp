@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Yelp Fusion API — AI
+  description: 'Yelp Fusion API — AI. 1 operations. Lead operation: Yelp AI Chat. Self-contained Naftiko capability covering
+    one Yelp business surface.'
+  tags:
+  - Yelp
+  - AI
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    YELP_API_KEY: YELP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: yelp-ai
+    baseUri: https://api.yelp.com
+    description: Yelp Fusion API — AI business capability. Self-contained, no shared references.
+    resources:
+    - name: ai-chat-v2
+      path: /ai/chat/v2
+      operations:
+      - name: post
+        method: POST
+        description: Yelp AI Chat
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.YELP_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: yelp-ai-rest
+    port: 8080
+    description: REST adapter for Yelp Fusion API — AI. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/ai/chat/v2
+      name: ai-chat-v2
+      description: REST surface for ai-chat-v2.
+      operations:
+      - method: POST
+        name: post
+        description: Yelp AI Chat
+        call: yelp-ai.post
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: yelp-ai-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Yelp Fusion API — AI. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: yelp-ai-chat
+      description: Yelp AI Chat
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: yelp-ai.post
+      outputParameters:
+      - type: object
+        mapping: $.

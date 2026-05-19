@@ -1,0 +1,111 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Yelp Fusion API — Categories
+  description: 'Yelp Fusion API — Categories. 2 operations. Lead operation: All Categories. Self-contained Naftiko capability
+    covering one Yelp business surface.'
+  tags:
+  - Yelp
+  - Categories
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    YELP_API_KEY: YELP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: yelp-categories
+    baseUri: https://api.yelp.com
+    description: Yelp Fusion API — Categories business capability. Self-contained, no shared references.
+    resources:
+    - name: v3-categories
+      path: /v3/categories
+      operations:
+      - name: get
+        method: GET
+        description: All Categories
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v3-categories-alias
+      path: /v3/categories/{alias}
+      operations:
+      - name: get
+        method: GET
+        description: Category Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alias
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.YELP_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: yelp-categories-rest
+    port: 8080
+    description: REST adapter for Yelp Fusion API — Categories. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v3/categories
+      name: v3-categories
+      description: REST surface for v3-categories.
+      operations:
+      - method: GET
+        name: get
+        description: All Categories
+        call: yelp-categories.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/categories/{alias}
+      name: v3-categories-alias
+      description: REST surface for v3-categories-alias.
+      operations:
+      - method: GET
+        name: get
+        description: Category Details
+        call: yelp-categories.get
+        with:
+          alias: rest.alias
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: yelp-categories-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Yelp Fusion API — Categories. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: all-categories
+      description: All Categories
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-categories.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: category-details
+      description: Category Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-categories.get
+      with:
+        alias: tools.alias
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,462 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Yelp Fusion API — Businesses
+  description: 'Yelp Fusion API — Businesses. 11 operations. Lead operation: Business Match. Self-contained Naftiko capability
+    covering one Yelp business surface.'
+  tags:
+  - Yelp
+  - Businesses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    YELP_API_KEY: YELP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: yelp-businesses
+    baseUri: https://api.yelp.com
+    description: Yelp Fusion API — Businesses business capability. Self-contained, no shared references.
+    resources:
+    - name: v3-businesses-matches
+      path: /v3/businesses/matches
+      operations:
+      - name: get
+        method: GET
+        description: Business Match
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v3-businesses-search
+      path: /v3/businesses/search
+      operations:
+      - name: get
+        method: GET
+        description: Business Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v3-businesses-search-phone
+      path: /v3/businesses/search/phone
+      operations:
+      - name: get
+        method: GET
+        description: Phone Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v3-businesses-id
+      path: /v3/businesses/{id}
+      operations:
+      - name: get
+        method: GET
+        description: Business Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: v3-businesses-id-engagement_metrics
+      path: /v3/businesses/{id}/engagement_metrics
+      operations:
+      - name: get
+        method: GET
+        description: Engagement Metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: v3-businesses-id-food_and_drinks_insights
+      path: /v3/businesses/{id}/food_and_drinks_insights
+      operations:
+      - name: get
+        method: GET
+        description: Food and Drinks Insights
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: v3-businesses-id-insights
+      path: /v3/businesses/{id}/insights
+      operations:
+      - name: get
+        method: GET
+        description: Business Insights
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: v3-businesses-id-rapc_enabledness
+      path: /v3/businesses/{id}/rapc_enabledness
+      operations:
+      - name: post
+        method: POST
+        description: Toggle Request a Phone Call
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: v3-businesses-id-risk_signals_insights
+      path: /v3/businesses/{id}/risk_signals_insights
+      operations:
+      - name: get
+        method: GET
+        description: Risk Signal Insights
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: v3-businesses-id-service_offerings
+      path: /v3/businesses/{id}/service_offerings
+      operations:
+      - name: get
+        method: GET
+        description: Service Offerings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: v3-transactions-transaction_type-search
+      path: /v3/transactions/{transaction_type}/search
+      operations:
+      - name: get
+        method: GET
+        description: Transaction Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transaction_type
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.YELP_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: yelp-businesses-rest
+    port: 8080
+    description: REST adapter for Yelp Fusion API — Businesses. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v3/businesses/matches
+      name: v3-businesses-matches
+      description: REST surface for v3-businesses-matches.
+      operations:
+      - method: GET
+        name: get
+        description: Business Match
+        call: yelp-businesses.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/businesses/search
+      name: v3-businesses-search
+      description: REST surface for v3-businesses-search.
+      operations:
+      - method: GET
+        name: get
+        description: Business Search
+        call: yelp-businesses.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/businesses/search/phone
+      name: v3-businesses-search-phone
+      description: REST surface for v3-businesses-search-phone.
+      operations:
+      - method: GET
+        name: get
+        description: Phone Search
+        call: yelp-businesses.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/businesses/{id}
+      name: v3-businesses-id
+      description: REST surface for v3-businesses-id.
+      operations:
+      - method: GET
+        name: get
+        description: Business Details
+        call: yelp-businesses.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/businesses/{id}/engagement-metrics
+      name: v3-businesses-id-engagement-metrics
+      description: REST surface for v3-businesses-id-engagement_metrics.
+      operations:
+      - method: GET
+        name: get
+        description: Engagement Metrics
+        call: yelp-businesses.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/businesses/{id}/food-and-drinks-insights
+      name: v3-businesses-id-food-and-drinks-insights
+      description: REST surface for v3-businesses-id-food_and_drinks_insights.
+      operations:
+      - method: GET
+        name: get
+        description: Food and Drinks Insights
+        call: yelp-businesses.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/businesses/{id}/insights
+      name: v3-businesses-id-insights
+      description: REST surface for v3-businesses-id-insights.
+      operations:
+      - method: GET
+        name: get
+        description: Business Insights
+        call: yelp-businesses.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/businesses/{id}/rapc-enabledness
+      name: v3-businesses-id-rapc-enabledness
+      description: REST surface for v3-businesses-id-rapc_enabledness.
+      operations:
+      - method: POST
+        name: post
+        description: Toggle Request a Phone Call
+        call: yelp-businesses.post
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/businesses/{id}/risk-signals-insights
+      name: v3-businesses-id-risk-signals-insights
+      description: REST surface for v3-businesses-id-risk_signals_insights.
+      operations:
+      - method: GET
+        name: get
+        description: Risk Signal Insights
+        call: yelp-businesses.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/businesses/{id}/service-offerings
+      name: v3-businesses-id-service-offerings
+      description: REST surface for v3-businesses-id-service_offerings.
+      operations:
+      - method: GET
+        name: get
+        description: Service Offerings
+        call: yelp-businesses.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/transactions/{transaction-type}/search
+      name: v3-transactions-transaction-type-search
+      description: REST surface for v3-transactions-transaction_type-search.
+      operations:
+      - method: GET
+        name: get
+        description: Transaction Search
+        call: yelp-businesses.get
+        with:
+          transaction_type: rest.transaction_type
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: yelp-businesses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Yelp Fusion API — Businesses. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: business-match
+      description: Business Match
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: business-search
+      description: Business Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: phone-search
+      description: Phone Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: business-details
+      description: Business Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: engagement-metrics
+      description: Engagement Metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: food-and-drinks-insights
+      description: Food and Drinks Insights
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: business-insights
+      description: Business Insights
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: toggle-request-phone-call
+      description: Toggle Request a Phone Call
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: yelp-businesses.post
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: risk-signal-insights
+      description: Risk Signal Insights
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: service-offerings
+      description: Service Offerings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: transaction-search
+      description: Transaction Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.get
+      with:
+        transaction_type: tools.transaction_type
+      outputParameters:
+      - type: object
+        mapping: $.

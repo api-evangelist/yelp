@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Yelp Fusion API — Misc
+  description: 'Yelp Fusion API — Misc. 1 operations. Lead operation: Autocomplete. Self-contained Naftiko capability covering
+    one Yelp business surface.'
+  tags:
+  - Yelp
+  - Misc
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    YELP_API_KEY: YELP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: yelp-misc
+    baseUri: https://api.yelp.com
+    description: Yelp Fusion API — Misc business capability. Self-contained, no shared references.
+    resources:
+    - name: v3-autocomplete
+      path: /v3/autocomplete
+      operations:
+      - name: get
+        method: GET
+        description: Autocomplete
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.YELP_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: yelp-misc-rest
+    port: 8080
+    description: REST adapter for Yelp Fusion API — Misc. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v3/autocomplete
+      name: v3-autocomplete
+      description: REST surface for v3-autocomplete.
+      operations:
+      - method: GET
+        name: get
+        description: Autocomplete
+        call: yelp-misc.get
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: yelp-misc-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Yelp Fusion API — Misc. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: autocomplete
+      description: Autocomplete
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-misc.get
+      outputParameters:
+      - type: object
+        mapping: $.
