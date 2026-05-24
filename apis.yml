@@ -16,6 +16,8 @@ common:
     url: https://github.com/Yelp
   - type: LinkedIn
     url: https://www.linkedin.com/company/yelp-com
+  - type: LLMsTxt
+    url: https://docs.developer.yelp.com/llms.txt
 apis:
 - aid: yelp:yelp
   name: Yelp
