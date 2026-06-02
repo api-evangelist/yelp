@@ -6,9 +6,10 @@ type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags: []
+tags:
+  - Restaurant
 created: '2025-02-08'
-modified: '2026-05-19'
+modified: '2026-06-02'
 url: https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 common:
