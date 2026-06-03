@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/json-structure/yelp-ai-chat-response-structure.json",
+  "name": "AiChatResponse",
+  "description": "AiChatResponse schema from Yelp Fusion API",
+  "type": "object",
+  "properties": {
+    "chat_id": {
+      "type": "string",
+      "description": "Conversation id",
+      "persists across turns.": null,
+      "example": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "AI-generated natural language answer."
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "business_search",
+          "business_question",
+          "clarification",
+          "unsupported",
+          "confirmation"
+        ]
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "request_a_quote_survey": {
+      "type": "object",
+      "additionalProperties": true,
+      "example": {}
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/json-structure/yelp-ai-chat-request-structure.json",
+  "name": "AiChatRequest",
+  "description": "AiChatRequest schema from Yelp Fusion API",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Natural language query.",
+      "example": "find the best tacos in the Bay Area"
+    },
+    "chat_id": {
+      "type": "string",
+      "description": "Conversation id to continue a multi-turn session.",
+      "example": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+    },
+    "user_context": {
+      "type": "object",
+      "description": "Location context for geo-specific results.",
+      "properties": {
+        "latitude": {
+          "type": "double"
+        },
+        "longitude": {
+          "type": "double"
+        }
+      }
+    },
+    "request_context": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Processing settings such as skip_text_generation."
+    }
+  },
+  "required": [
+    "query"
+  ]
+}

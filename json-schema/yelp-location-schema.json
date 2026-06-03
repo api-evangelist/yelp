@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/json-schema/yelp-location-schema.json",
+  "title": "Location",
+  "description": "Location schema from Yelp Fusion API",
+  "type": "object",
+  "properties": {
+    "address1": {
+      "type": "string",
+      "example": "350 Mission St"
+    },
+    "address2": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "example": ""
+    },
+    "address3": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "example": ""
+    },
+    "city": {
+      "type": "string",
+      "example": "San Francisco"
+    },
+    "state": {
+      "type": "string",
+      "example": "CA"
+    },
+    "zip_code": {
+      "type": "string",
+      "example": "94105"
+    },
+    "country": {
+      "type": "string",
+      "example": "US"
+    },
+    "display_address": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cross_streets": {
+      "type": "string",
+      "example": "example"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "id": "gR9DTbKCON2g1Z23bWcEpQ",
+  "alias": "rickys-tacos-san-francisco",
+  "name": "Ricky's Tacos",
+  "image_url": "https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/rickys-tacos-san-francisco",
+  "review_count": 1289,
+  "categories": [
+    {
+      "alias": "rickys-tacos-san-francisco",
+      "title": "Tacos",
+      "parent_aliases": [
+        "example"
+      ],
+      "country_whitelist": [
+        "example"
+      ],
+      "country_blacklist": [
+        "example"
+      ]
+    }
+  ],
+  "rating": 4.5,
+  "coordinates": {
+    "latitude": 37.7867,
+    "longitude": -122.4112
+  },
+  "transactions": [
+    "delivery"
+  ],
+  "price": "$$",
+  "location": {
+    "address1": "350 Mission St",
+    "address2": "",
+    "address3": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "zip_code": "94105",
+    "country": "US",
+    "display_address": [
+      "example"
+    ],
+    "cross_streets": "example"
+  },
+  "phone": "+14159083801",
+  "display_phone": "(415) 908-3801",
+  "distance": 1503.4,
+  "attributes": {}
+}

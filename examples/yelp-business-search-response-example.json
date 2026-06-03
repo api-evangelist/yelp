@@ -1,0 +1,34 @@
+{
+  "total": 240,
+  "businesses": [
+    {
+      "id": "gR9DTbKCON2g1Z23bWcEpQ",
+      "alias": "rickys-tacos-san-francisco",
+      "name": "Ricky's Tacos",
+      "image_url": "https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg",
+      "is_closed": false,
+      "url": "https://www.yelp.com/biz/rickys-tacos-san-francisco",
+      "review_count": 1289,
+      "categories": [
+        {}
+      ],
+      "rating": 4.5,
+      "coordinates": {},
+      "transactions": [
+        "restaurant_reservation"
+      ],
+      "price": "$$",
+      "location": {},
+      "phone": "+14159083801",
+      "display_phone": "(415) 908-3801",
+      "distance": 1503.4,
+      "attributes": {}
+    }
+  ],
+  "region": {
+    "center": {
+      "latitude": 37.7867,
+      "longitude": -122.4112
+    }
+  }
+}

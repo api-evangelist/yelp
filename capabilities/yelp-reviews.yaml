@@ -1,0 +1,106 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "Yelp Fusion API \u2014 Reviews"
+  description: "Reviews \u2014 Reviews. 1 operation(s). Lead operation: Get Business Reviews. Self-contained Naftiko capability covering one Yelp business surface."
+  tags:
+  - Yelp
+  - Restaurant
+  - Reviews
+  created: '2026-06-03'
+  modified: '2026-06-03'
+binds:
+- namespace: env
+  keys:
+    YELP_API_KEY: YELP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: yelp-reviews
+    baseUri: https://api.yelp.com
+    description: "Yelp Fusion API \u2014 Reviews business capability. Self-contained, no shared references."
+    authentication:
+      type: bearer
+      token: '{{env.YELP_API_KEY}}'
+    resources:
+    - name: v3-businesses-business-id-or-alias-reviews
+      path: /v3/businesses/{business_id_or_alias}/reviews
+      operations:
+      - name: getBusinessReviews
+        method: GET
+        description: Get Business Reviews
+        inputParameters:
+        - name: business_id_or_alias
+          in: path
+          type: string
+          required: true
+          description: A 22-character Yelp business id or a business alias.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Number of reviews to return.
+        - name: offset
+          in: query
+          type: integer
+          required: false
+          description: Offset into the list of returned reviews.
+        - name: sort_by
+          in: query
+          type: string
+          required: false
+          description: Sort mode for reviews.
+        - name: locale
+          in: query
+          type: string
+          required: false
+          description: Locale in the form {language}_{country}, e.g. en_US.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: yelp-reviews-rest
+    port: 8080
+    description: "REST adapter for Yelp Fusion API \u2014 Reviews. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+    resources:
+    - path: /v1/businesses/{business_id_or_alias}/reviews
+      name: v3-businesses-business-id-or-alias-reviews
+      description: REST surface for v3-businesses-business-id-or-alias-reviews.
+      operations:
+      - method: GET
+        name: getBusinessReviews
+        description: Get Business Reviews
+        call: yelp-reviews.getBusinessReviews
+        with:
+          business_id_or_alias: rest.business_id_or_alias
+          limit: rest.limit
+          offset: rest.offset
+          sort_by: rest.sort_by
+          locale: rest.locale
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: yelp-reviews-mcp
+    port: 9090
+    transport: http
+    description: "MCP adapter for Yelp Fusion API \u2014 Reviews. One tool per consumed operation, routed inline through this capability's consumes block."
+    tools:
+    - name: get-business-reviews
+      description: Get Business Reviews
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-reviews.getBusinessReviews
+      with:
+        business_id_or_alias: tools.business_id_or_alias
+        limit: tools.limit
+        offset: tools.offset
+        sort_by: tools.sort_by
+        locale: tools.locale
+      outputParameters:
+      - type: object
+        mapping: $.

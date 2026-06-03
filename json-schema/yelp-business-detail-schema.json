@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/json-schema/yelp-business-detail-schema.json",
+  "title": "BusinessDetail",
+  "description": "BusinessDetail schema from Yelp Fusion API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/Business"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "is_claimed": {
+          "type": "boolean"
+        },
+        "photos": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "hours": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/BusinessHours"
+          }
+        },
+        "special_hours": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "messaging": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "yelp_menu_url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    }
+  ]
+}

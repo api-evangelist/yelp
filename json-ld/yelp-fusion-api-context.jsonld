@@ -1,0 +1,350 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "yelp": "https://docs.developer.yelp.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Category": "yelp:Category",
+    "alias": {
+      "@id": "yelp:alias",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "yelp:title",
+      "@type": "xsd:string"
+    },
+    "parentAliases": {
+      "@id": "yelp:parent_aliases",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "countryWhitelist": {
+      "@id": "yelp:country_whitelist",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "countryBlacklist": {
+      "@id": "yelp:country_blacklist",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "Coordinates": "yelp:Coordinates",
+    "latitude": {
+      "@id": "schema:latitude",
+      "@type": "xsd:double"
+    },
+    "longitude": {
+      "@id": "schema:longitude",
+      "@type": "xsd:double"
+    },
+    "Location": "yelp:Location",
+    "address1": {
+      "@id": "schema:streetAddress",
+      "@type": "xsd:string"
+    },
+    "address2": {
+      "@id": "yelp:address2",
+      "@type": "xsd:string"
+    },
+    "address3": {
+      "@id": "yelp:address3",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "schema:addressLocality",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "schema:addressRegion",
+      "@type": "xsd:string"
+    },
+    "zipCode": {
+      "@id": "schema:postalCode",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    "displayAddress": {
+      "@id": "yelp:display_address",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "crossStreets": {
+      "@id": "yelp:cross_streets",
+      "@type": "xsd:string"
+    },
+    "Business": "yelp:Business",
+    "id": {
+      "@id": "yelp:id",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "imageUrl": {
+      "@id": "schema:image",
+      "@type": "@id"
+    },
+    "isClosed": {
+      "@id": "yelp:is_closed",
+      "@type": "xsd:boolean"
+    },
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "reviewCount": {
+      "@id": "schema:reviewCount",
+      "@type": "xsd:integer"
+    },
+    "categories": {
+      "@id": "yelp:categories",
+      "@container": "@set"
+    },
+    "rating": {
+      "@id": "schema:ratingValue",
+      "@type": "xsd:float"
+    },
+    "coordinates": {
+      "@id": "yelp:coordinates",
+      "@type": "@id"
+    },
+    "transactions": {
+      "@id": "yelp:transactions",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "price": {
+      "@id": "schema:priceRange",
+      "@type": "xsd:string"
+    },
+    "location": {
+      "@id": "yelp:location",
+      "@type": "@id"
+    },
+    "phone": {
+      "@id": "schema:telephone",
+      "@type": "xsd:string"
+    },
+    "displayPhone": {
+      "@id": "yelp:display_phone",
+      "@type": "xsd:string"
+    },
+    "distance": {
+      "@id": "yelp:distance",
+      "@type": "xsd:double"
+    },
+    "attributes": {
+      "@id": "yelp:attributes",
+      "@type": "@id"
+    },
+    "BusinessSearchResponse": "yelp:BusinessSearchResponse",
+    "total": {
+      "@id": "yelp:total",
+      "@type": "xsd:integer"
+    },
+    "businesses": {
+      "@id": "yelp:businesses",
+      "@container": "@set"
+    },
+    "region": {
+      "@id": "yelp:region",
+      "@type": "@id"
+    },
+    "center": {
+      "@id": "yelp:center",
+      "@type": "@id"
+    },
+    "BusinessHours": "yelp:BusinessHours",
+    "hourType": {
+      "@id": "yelp:hour_type",
+      "@type": "xsd:string"
+    },
+    "open": {
+      "@id": "yelp:open",
+      "@container": "@set"
+    },
+    "day": {
+      "@id": "yelp:day",
+      "@type": "xsd:integer"
+    },
+    "start": {
+      "@id": "yelp:start",
+      "@type": "xsd:string"
+    },
+    "end": {
+      "@id": "yelp:end",
+      "@type": "xsd:string"
+    },
+    "isOvernight": {
+      "@id": "yelp:is_overnight",
+      "@type": "xsd:boolean"
+    },
+    "isOpenNow": {
+      "@id": "yelp:is_open_now",
+      "@type": "xsd:boolean"
+    },
+    "isClaimed": {
+      "@id": "yelp:is_claimed",
+      "@type": "xsd:boolean"
+    },
+    "photos": {
+      "@id": "yelp:photos",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "hours": {
+      "@id": "yelp:hours",
+      "@container": "@set"
+    },
+    "specialHours": {
+      "@id": "yelp:special_hours",
+      "@container": "@set"
+    },
+    "messaging": {
+      "@id": "yelp:messaging",
+      "@type": "@id"
+    },
+    "yelpMenuUrl": {
+      "@id": "yelp:yelp_menu_url",
+      "@type": "@id"
+    },
+    "Review": "yelp:Review",
+    "text": {
+      "@id": "yelp:text",
+      "@type": "xsd:string"
+    },
+    "timeCreated": {
+      "@id": "yelp:time_created",
+      "@type": "xsd:string"
+    },
+    "user": {
+      "@id": "yelp:user",
+      "@type": "@id"
+    },
+    "profileUrl": {
+      "@id": "yelp:profile_url",
+      "@type": "@id"
+    },
+    "ReviewsResponse": "yelp:ReviewsResponse",
+    "possibleLanguages": {
+      "@id": "yelp:possible_languages",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "reviews": {
+      "@id": "yelp:reviews",
+      "@container": "@set"
+    },
+    "AutocompleteResponse": "yelp:AutocompleteResponse",
+    "terms": {
+      "@id": "yelp:terms",
+      "@container": "@set"
+    },
+    "Event": "yelp:Event",
+    "category": {
+      "@id": "yelp:category",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "timeStart": {
+      "@id": "yelp:time_start",
+      "@type": "xsd:string"
+    },
+    "timeEnd": {
+      "@id": "yelp:time_end",
+      "@type": "xsd:string"
+    },
+    "eventSiteUrl": {
+      "@id": "yelp:event_site_url",
+      "@type": "@id"
+    },
+    "isFree": {
+      "@id": "yelp:is_free",
+      "@type": "xsd:boolean"
+    },
+    "isCanceled": {
+      "@id": "yelp:is_canceled",
+      "@type": "xsd:boolean"
+    },
+    "isOfficial": {
+      "@id": "yelp:is_official",
+      "@type": "xsd:boolean"
+    },
+    "attendingCount": {
+      "@id": "yelp:attending_count",
+      "@type": "xsd:integer"
+    },
+    "interestedCount": {
+      "@id": "yelp:interested_count",
+      "@type": "xsd:integer"
+    },
+    "cost": {
+      "@id": "yelp:cost",
+      "@type": "xsd:float"
+    },
+    "costMax": {
+      "@id": "yelp:cost_max",
+      "@type": "xsd:float"
+    },
+    "ticketsUrl": {
+      "@id": "yelp:tickets_url",
+      "@type": "@id"
+    },
+    "businessId": {
+      "@id": "yelp:business_id",
+      "@type": "xsd:string"
+    },
+    "EventSearchResponse": "yelp:EventSearchResponse",
+    "events": {
+      "@id": "yelp:events",
+      "@container": "@set"
+    },
+    "AiChatRequest": "yelp:AiChatRequest",
+    "query": {
+      "@id": "yelp:query",
+      "@type": "xsd:string"
+    },
+    "chatId": {
+      "@id": "yelp:chat_id",
+      "@type": "xsd:string"
+    },
+    "userContext": {
+      "@id": "yelp:user_context",
+      "@type": "@id"
+    },
+    "requestContext": {
+      "@id": "yelp:request_context",
+      "@type": "@id"
+    },
+    "AiChatResponse": "yelp:AiChatResponse",
+    "response": {
+      "@id": "yelp:response",
+      "@type": "@id"
+    },
+    "tags": {
+      "@id": "yelp:tags",
+      "@type": "@id"
+    },
+    "types": {
+      "@id": "yelp:types",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "entities": {
+      "@id": "yelp:entities",
+      "@container": "@set"
+    },
+    "requestAQuoteSurvey": {
+      "@id": "yelp:request_a_quote_survey",
+      "@type": "@id"
+    }
+  }
+}

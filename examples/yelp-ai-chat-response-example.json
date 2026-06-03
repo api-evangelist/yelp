@@ -1,0 +1,14 @@
+{
+  "chat_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+  "response": {
+    "text": "Best tacos in the Bay Area, the al pastor is incredible.",
+    "tags": {}
+  },
+  "types": [
+    "business_question"
+  ],
+  "entities": [
+    {}
+  ],
+  "request_a_quote_survey": {}
+}

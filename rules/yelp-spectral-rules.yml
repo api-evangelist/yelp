@@ -1,0 +1,278 @@
+# Spectral ruleset for the Yelp Fusion API
+# Enforces the conventions observed across the Yelp Fusion OpenAPI definition:
+# snake_case query parameters, /v3 (and /ai) versioned paths, Title Case tags,
+# bearer authentication, camelCase operationIds with verb prefixes, and
+# snake_case schema properties.
+rules:
+
+  # ── INFO / METADATA ──────────────────────────────────────────────
+  info-title-yelp:
+    description: API title should identify Yelp.
+    severity: warn
+    given: $.info
+    then:
+      field: title
+      function: pattern
+      functionOptions:
+        match: "^Yelp"
+  info-description-required:
+    description: API must have a description of reasonable length.
+    severity: warn
+    given: $.info
+    then:
+      field: description
+      function: truthy
+  info-contact-required:
+    description: API should declare a contact.
+    severity: info
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  info-version-required:
+    description: API must declare a version.
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+
+  # ── OPENAPI VERSION ──────────────────────────────────────────────
+  openapi-3-1:
+    description: Specs should target OpenAPI 3.1.x.
+    severity: warn
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\.1\\."
+
+  # ── SERVERS ──────────────────────────────────────────────────────
+  servers-defined:
+    description: At least one server must be defined.
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+  servers-https:
+    description: Server URLs must use HTTPS.
+    severity: error
+    given: $.servers[*]
+    then:
+      field: url
+      function: pattern
+      functionOptions:
+        match: "^https://"
+  server-is-yelp-host:
+    description: Production server should be api.yelp.com.
+    severity: info
+    given: $.servers[*]
+    then:
+      field: url
+      function: pattern
+      functionOptions:
+        match: "api\\.yelp\\.com"
+
+  # ── PATHS ────────────────────────────────────────────────────────
+  paths-versioned:
+    description: Paths should be versioned under /v3 or /ai.
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/(v3|ai)/"
+  paths-no-trailing-slash:
+    description: Paths must not end with a trailing slash.
+    severity: error
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".+/$"
+  paths-snake-or-kebab-segments:
+    description: Static path segments use lowercase letters, digits, underscores or hyphens.
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/(\\{[a-z_]+\\}|[a-z0-9_-]+))+$"
+
+  # ── OPERATIONS ───────────────────────────────────────────────────
+  operation-operationId-required:
+    description: Every operation must have an operationId.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+  operation-operationId-camelcase-verb:
+    description: operationId should be camelCase starting with a verb (get, list, search, create, update, delete, match, autocomplete, ai).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: pattern
+      functionOptions:
+        match: "^(get|list|search|create|update|delete|match|autocomplete|ai)[A-Za-z0-9]*$"
+  operation-summary-required:
+    description: Every operation must have a summary.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+  operation-summary-title-case:
+    description: Operation summaries should be Title Case.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9]*( [A-Za-z0-9/+-]+)*$"
+  operation-description-required:
+    description: Every operation should have a description.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+  operation-tags-required:
+    description: Every operation must be tagged.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+
+  # ── TAGS ─────────────────────────────────────────────────────────
+  global-tags-defined:
+    description: A global tags array should be present.
+    severity: info
+    given: $
+    then:
+      field: tags
+      function: truthy
+  tag-title-case:
+    description: Tag names should be Title Case.
+    severity: warn
+    given: $.tags[*]
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9]*( [A-Z][A-Za-z0-9]*)*$"
+
+  # ── PARAMETERS ───────────────────────────────────────────────────
+  parameter-description-required:
+    description: Parameters should have a description.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
+    then:
+      field: description
+      function: truthy
+  parameter-snake-case:
+    description: Parameter names should be snake_case (Yelp convention).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+  parameter-pagination-offset-limit:
+    description: Pagination should use offset and limit (Yelp convention), not page/size.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        notMatch: "^(page|page_size|per_page)$"
+
+  # ── REQUEST BODIES ───────────────────────────────────────────────
+  request-body-json:
+    description: Request bodies should offer application/json content.
+    severity: warn
+    given: $.paths[*][post,put,patch].requestBody.content
+    then:
+      field: application/json
+      function: truthy
+
+  # ── RESPONSES ────────────────────────────────────────────────────
+  response-200-present:
+    description: Read operations should define a 200 response.
+    severity: warn
+    given: $.paths[*][get].responses
+    then:
+      field: "200"
+      function: truthy
+  response-401-present:
+    description: Operations should document a 401 unauthorized response.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: "401"
+      function: truthy
+  response-429-present:
+    description: Operations should document a 429 rate-limit response.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: "429"
+      function: truthy
+  response-description-required:
+    description: Every response must have a description.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses[*]
+    then:
+      field: description
+      function: truthy
+
+  # ── SCHEMAS ──────────────────────────────────────────────────────
+  schema-property-snake-case:
+    description: Schema properties should be snake_case (Yelp convention).
+    severity: warn
+    given: $.components.schemas[*].properties[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+  schema-error-has-code:
+    description: The Error schema should expose an error object with a code/description.
+    severity: info
+    given: $.components.schemas.Error.properties
+    then:
+      field: error
+      function: truthy
+
+  # ── SECURITY ─────────────────────────────────────────────────────
+  global-security-defined:
+    description: A global security requirement should be declared.
+    severity: warn
+    given: $
+    then:
+      field: security
+      function: truthy
+  security-scheme-bearer:
+    description: A bearer security scheme should be defined (Yelp API key as bearer token).
+    severity: warn
+    given: $.components.securitySchemes[*]
+    then:
+      field: scheme
+      function: pattern
+      functionOptions:
+        match: "^bearer$"
+
+  # ── HTTP METHOD CONVENTIONS ──────────────────────────────────────
+  get-no-request-body:
+    description: GET operations must not declare a request body.
+    severity: error
+    given: $.paths[*].get
+    then:
+      field: requestBody
+      function: falsy

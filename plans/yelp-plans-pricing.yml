@@ -4,103 +4,196 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Yelp
 providerId: yelp
 created: '2026-05-04'
-modified: '2026-05-04'
-tags: []
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+modified: '2026-06-03'
+tags:
+  - Restaurant
+description: >-
+  Machine-readable plans and pricing for the Yelp Fusion / Places API. Yelp
+  offers tiered access (Base, Enhanced, Premium) that controls the number of
+  business attributes, photos, and review excerpts returned, plus a Starter
+  entry point with a 300 call/day cap. Higher volumes above 150,000 monthly
+  calls are negotiated with sales. Tier attribute counts are from the published
+  plans page; per-call pricing is not publicly listed and is marked accordingly.
+documentation:
+  - https://docs.developer.yelp.com/docs/plans
+  - https://docs.developer.yelp.com/docs/places-intro
 plans:
-  - id: yelp-free
-    name: Free
+  - id: yelp-starter
+    name: Starter
     type: freemium
-    description: Free entry tier for the Yelp API surface. Intended for evaluation, prototyping, and low-volume
-      integrations. Real limits and pricing must be reconciled with the provider's published plan documentation.
+    description: >-
+      Free entry point for evaluating the Yelp Fusion API. Capped at 300 API
+      calls per 24-hour window. Includes Base attributes. Intended for
+      prototyping and trial.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
+      - label: Daily Call Cap
+        description: Maximum API calls per rolling 24-hour window, resetting at midnight UTC
+        name: daily_calls
         type: quota
         metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
+        limit: 300
+        timeFrame: day
         geo: global
         domains: []
         unit: 1
         price: '0.00'
         userMultiplied: false
     elements:
+      - name: Base Attributes (15)
       - name: Public Documentation
       - name: Community Support
-      - name: Sandbox Access
-      - name: Yelp
-  - id: yelp-pro
-    name: Professional
+      - name: Business Search and Details
+      - name: Yelp Fusion API
+  - id: yelp-base
+    name: Base
     type: paid
-    description: Production tier for Yelp. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
+    description: >-
+      Base data tier returning 15 business attributes and base search filters.
+      No review excerpts or photos. Per-call and subscription pricing is not
+      publicly published.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
+      - label: Business Attributes
+        description: Number of business attributes returned per business
+        name: attributes
+        type: feature
+        metric: attributes
+        limit: 15
+        timeFrame: request
         geo: global
         domains: []
         unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1000
         price: TBD
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Yelp
+      - name: Base Attributes (15)
+      - name: Base Search Filters
+      - name: No Review Excerpts
+      - name: No Photo Access
+      - name: Yelp Fusion API
+  - id: yelp-enhanced
+    name: Enhanced
+    type: paid
+    description: >-
+      Enhanced data tier returning 23 business attributes, up to 3 photos and up
+      to 3 review excerpts per business. Pricing is not publicly published.
+    entries:
+      - label: Business Attributes
+        description: Number of business attributes returned per business
+        name: attributes
+        type: feature
+        metric: attributes
+        limit: 23
+        timeFrame: request
+        geo: global
+        domains: []
+        unit: 1
+        price: TBD
+        userMultiplied: false
+      - label: Photos Per Business
+        description: Maximum photos returned per business
+        name: photos
+        type: feature
+        metric: photos
+        limit: 3
+        timeFrame: request
+        geo: global
+        domains: []
+        unit: 1
+        price: TBD
+        userMultiplied: false
+      - label: Review Excerpts
+        description: Maximum review excerpts returned per business
+        name: review_excerpts
+        type: feature
+        metric: reviews
+        limit: 3
+        timeFrame: request
+        geo: global
+        domains: []
+        unit: 1
+        price: TBD
+        userMultiplied: false
+    elements:
+      - name: Enhanced Attributes (23)
+      - name: Up to 3 Photos
+      - name: Up to 3 Review Excerpts
+      - name: No Review Highlights
+      - name: Yelp Fusion API
+  - id: yelp-premium
+    name: Premium
+    type: paid
+    description: >-
+      Premium data tier returning 66 business attributes, up to 12 photos, up to
+      7 review excerpts, access to the Review Highlights endpoint, and early
+      access to the Yelp AI API (20 daily calls). Pricing is not publicly
+      published.
+    entries:
+      - label: Business Attributes
+        description: Number of business attributes returned per business
+        name: attributes
+        type: feature
+        metric: attributes
+        limit: 66
+        timeFrame: request
+        geo: global
+        domains: []
+        unit: 1
+        price: TBD
+        userMultiplied: false
+      - label: Photos Per Business
+        description: Maximum photos returned per business
+        name: photos
+        type: feature
+        metric: photos
+        limit: 12
+        timeFrame: request
+        geo: global
+        domains: []
+        unit: 1
+        price: TBD
+        userMultiplied: false
+      - label: Review Excerpts
+        description: Maximum review excerpts returned per business
+        name: review_excerpts
+        type: feature
+        metric: reviews
+        limit: 7
+        timeFrame: request
+        geo: global
+        domains: []
+        unit: 1
+        price: TBD
+        userMultiplied: false
+      - label: AI API Daily Calls
+        description: Early-access daily calls to the Yelp AI API
+        name: ai_daily_calls
+        type: quota
+        metric: requests
+        limit: 20
+        timeFrame: day
+        geo: global
+        domains: []
+        unit: 1
+        price: TBD
+        userMultiplied: false
+    elements:
+      - name: Premium Attributes (66)
+      - name: Up to 12 Photos
+      - name: Up to 7 Review Excerpts
+      - name: Review Highlights Endpoint
+      - name: Early Access Yelp AI API
+      - name: Yelp Fusion API
   - id: yelp-enterprise
     name: Enterprise
     type: enterprise
-    description: Custom-negotiated tier for Yelp. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+    description: >-
+      Custom-negotiated tier for volumes above 150,000 monthly API calls.
+      Includes negotiated capacity and direct engagement with the Yelp sales
+      team. Contact Yelp to scope volume and terms.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
+      - label: Monthly Call Volume
+        description: Negotiated monthly request volume above the 150,000-call threshold
+        name: monthly_calls
         type: quota
         metric: requests
         limit: -1
@@ -110,26 +203,11 @@ plans:
         unit: 1
         price: custom
         userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
-        userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Yelp
+      - name: Negotiated Volume (150K+ monthly)
+      - name: Sales-Assisted Onboarding
+      - name: Premium Data Access
+      - name: Yelp Fusion API
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

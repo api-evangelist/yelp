@@ -1,0 +1,12 @@
+{
+  "hour_type": "REGULAR",
+  "open": [
+    {
+      "day": 941,
+      "start": "example",
+      "end": "example",
+      "is_overnight": true
+    }
+  ],
+  "is_open_now": true
+}

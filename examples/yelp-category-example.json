@@ -1,0 +1,13 @@
+{
+  "alias": "rickys-tacos-san-francisco",
+  "title": "Tacos",
+  "parent_aliases": [
+    "example"
+  ],
+  "country_whitelist": [
+    "example"
+  ],
+  "country_blacklist": [
+    "example"
+  ]
+}

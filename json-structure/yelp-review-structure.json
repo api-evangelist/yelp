@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/json-structure/yelp-review-structure.json",
+  "name": "Review",
+  "description": "Review schema from Yelp Fusion API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "gR9DTbKCON2g1Z23bWcEpQ"
+    },
+    "url": {
+      "type": "uri",
+      "example": "https://www.yelp.com/biz/rickys-tacos-san-francisco"
+    },
+    "text": {
+      "type": "string",
+      "description": "Review excerpt.",
+      "example": "Best tacos in the Bay Area. The al pastor is incredible and the salsa bar is unmatched."
+    },
+    "rating": {
+      "type": "float",
+      "example": 4.5
+    },
+    "time_created": {
+      "type": "string",
+      "description": "Review creation time in PST.",
+      "example": "2026-04-18 19:32:11"
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "profile_url": {
+          "type": "uri"
+        },
+        "image_url": {
+          "type": "uri"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

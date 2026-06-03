@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/json-structure/yelp-business-structure.json",
+  "name": "Business",
+  "description": "Business schema from Yelp Fusion API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique Yelp business id.",
+      "example": "gR9DTbKCON2g1Z23bWcEpQ"
+    },
+    "alias": {
+      "type": "string",
+      "description": "Unique Yelp business alias.",
+      "example": "rickys-tacos-san-francisco"
+    },
+    "name": {
+      "type": "string",
+      "example": "Ricky's Tacos"
+    },
+    "image_url": {
+      "type": "uri",
+      "example": "https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg"
+    },
+    "is_closed": {
+      "type": "boolean",
+      "description": "Whether the business is permanently closed.",
+      "example": false
+    },
+    "url": {
+      "type": "uri",
+      "description": "Yelp page URL for the business.",
+      "example": "https://www.yelp.com/biz/rickys-tacos-san-francisco"
+    },
+    "review_count": {
+      "type": "int32",
+      "example": 1289
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Category"
+      }
+    },
+    "rating": {
+      "type": "float",
+      "description": "Average star rating",
+      "1.0 to 5.0.": null,
+      "example": 4.5
+    },
+    "coordinates": {
+      "$ref": "#/components/schemas/Coordinates"
+    },
+    "transactions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "pickup",
+          "delivery",
+          "restaurant_reservation"
+        ]
+      }
+    },
+    "price": {
+      "type": "string",
+      "description": "Price level from $ to $$$$.",
+      "example": "$$"
+    },
+    "location": {
+      "$ref": "#/components/schemas/Location"
+    },
+    "phone": {
+      "type": "string",
+      "example": "+14159083801"
+    },
+    "display_phone": {
+      "type": "string",
+      "example": "(415) 908-3801"
+    },
+    "distance": {
+      "type": "double",
+      "description": "Distance from the search center in meters.",
+      "example": 1503.4
+    },
+    "attributes": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/json-schema/yelp-event-schema.json",
+  "title": "Event",
+  "description": "Event schema from Yelp Fusion API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "gR9DTbKCON2g1Z23bWcEpQ"
+    },
+    "name": {
+      "type": "string",
+      "example": "Ricky's Tacos"
+    },
+    "category": {
+      "type": "string",
+      "example": "music"
+    },
+    "description": {
+      "type": "string",
+      "example": "Live music in the heart of the Mission District."
+    },
+    "time_start": {
+      "type": "string",
+      "example": "2026-07-04T19:00:00-07:00"
+    },
+    "time_end": {
+      "type": "string",
+      "example": "2026-07-04T23:00:00-07:00"
+    },
+    "location": {
+      "$ref": "#/components/schemas/Location"
+    },
+    "latitude": {
+      "type": "number",
+      "format": "double",
+      "example": 37.7867
+    },
+    "longitude": {
+      "type": "number",
+      "format": "double",
+      "example": -122.4112
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "example": "https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg"
+    },
+    "event_site_url": {
+      "type": "string",
+      "format": "uri",
+      "example": "https://www.yelp.com/events/san-francisco-summer-music-festival"
+    },
+    "is_free": {
+      "type": "boolean",
+      "example": true
+    },
+    "is_canceled": {
+      "type": "boolean",
+      "example": false
+    },
+    "is_official": {
+      "type": "boolean",
+      "example": true
+    },
+    "attending_count": {
+      "type": "integer",
+      "example": 312
+    },
+    "interested_count": {
+      "type": "integer",
+      "example": 1024
+    },
+    "cost": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "format": "float",
+      "example": 0
+    },
+    "cost_max": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "format": "float",
+      "example": 0
+    },
+    "tickets_url": {
+      "type": "string",
+      "format": "uri",
+      "example": "https://www.yelp.com/events/tickets/abc123"
+    },
+    "business_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "example": "gR9DTbKCON2g1Z23bWcEpQ"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "total": 240,
+  "possible_languages": [
+    "example"
+  ],
+  "reviews": [
+    {
+      "id": "gR9DTbKCON2g1Z23bWcEpQ",
+      "url": "https://www.yelp.com/biz/rickys-tacos-san-francisco",
+      "text": "Best tacos in the Bay Area. The al pastor is incredible and the salsa bar is unmatched.",
+      "rating": 4.5,
+      "time_created": "2026-04-18 19:32:11",
+      "user": {
+        "id": "gR9DTbKCON2g1Z23bWcEpQ",
+        "profile_url": "https://www.yelp.com/biz/rickys-tacos-san-francisco",
+        "image_url": "https://www.yelp.com/biz/rickys-tacos-san-francisco",
+        "name": "Ricky's Tacos"
+      }
+    }
+  ]
+}

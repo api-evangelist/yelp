@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/json-structure/yelp-coordinates-structure.json",
+  "name": "Coordinates",
+  "description": "Coordinates schema from Yelp Fusion API",
+  "type": "object",
+  "properties": {
+    "latitude": {
+      "type": "double",
+      "example": 37.7867
+    },
+    "longitude": {
+      "type": "double",
+      "example": -122.4112
+    }
+  }
+}

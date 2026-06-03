@@ -1,0 +1,28 @@
+{
+  "terms": [
+    {
+      "text": "Best tacos in the Bay Area, the al pastor is incredible."
+    }
+  ],
+  "businesses": [
+    {
+      "id": "gR9DTbKCON2g1Z23bWcEpQ",
+      "name": "Ricky's Tacos"
+    }
+  ],
+  "categories": [
+    {
+      "alias": "rickys-tacos-san-francisco",
+      "title": "Tacos",
+      "parent_aliases": [
+        "example"
+      ],
+      "country_whitelist": [
+        "example"
+      ],
+      "country_blacklist": [
+        "example"
+      ]
+    }
+  ]
+}

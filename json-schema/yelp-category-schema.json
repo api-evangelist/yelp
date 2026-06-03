@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/json-schema/yelp-category-schema.json",
+  "title": "Category",
+  "description": "Category schema from Yelp Fusion API",
+  "type": "object",
+  "properties": {
+    "alias": {
+      "type": "string",
+      "description": "Unique category identifier.",
+      "example": "rickys-tacos-san-francisco"
+    },
+    "title": {
+      "type": "string",
+      "description": "Localized category title.",
+      "example": "Tacos"
+    },
+    "parent_aliases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Aliases of parent categories."
+    },
+    "country_whitelist": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Countries where this category is available."
+    },
+    "country_blacklist": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Countries where this category is restricted."
+    }
+  }
+}

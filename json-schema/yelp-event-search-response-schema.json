@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/json-schema/yelp-event-search-response-schema.json",
+  "title": "EventSearchResponse",
+  "description": "EventSearchResponse schema from Yelp Fusion API",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "example": 240
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Event"
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "gR9DTbKCON2g1Z23bWcEpQ",
+  "name": "Ricky's Tacos",
+  "category": "music",
+  "description": "Live music in the heart of the Mission District.",
+  "time_start": "2026-07-04T19:00:00-07:00",
+  "time_end": "2026-07-04T23:00:00-07:00",
+  "location": {
+    "address1": "350 Mission St",
+    "address2": "",
+    "address3": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "zip_code": "94105",
+    "country": "US",
+    "display_address": [
+      "example"
+    ],
+    "cross_streets": "example"
+  },
+  "latitude": 37.7867,
+  "longitude": -122.4112,
+  "image_url": "https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg",
+  "event_site_url": "https://www.yelp.com/events/san-francisco-summer-music-festival",
+  "is_free": true,
+  "is_canceled": false,
+  "is_official": true,
+  "attending_count": 312,
+  "interested_count": 1024,
+  "cost": 0,
+  "cost_max": 0,
+  "tickets_url": "https://www.yelp.com/events/tickets/abc123",
+  "business_id": "gR9DTbKCON2g1Z23bWcEpQ"
+}

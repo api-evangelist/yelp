@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/json-structure/yelp-reviews-response-structure.json",
+  "name": "ReviewsResponse",
+  "description": "ReviewsResponse schema from Yelp Fusion API",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "int32",
+      "example": 240
+    },
+    "possible_languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reviews": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Review"
+      }
+    }
+  }
+}

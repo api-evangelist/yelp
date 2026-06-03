@@ -11,11 +11,12 @@ providerId: yelp
 publisherName: Yelp
 serviceCategory: API
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-06-03'
 tags:
   - FinOps
   - Cost Management
   - FOCUS
+  - Restaurant
 description: FinOps framework definition for the Yelp API surface. Provides a FOCUS-aligned mapping for
   cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
 principles:
@@ -107,10 +108,11 @@ meters:
       - endpoint
       - tier
 apis:
-  - name: Yelp
-    baseURL: ''
-    tags: []
-    serviceName: Yelp
+  - name: Yelp Fusion API
+    baseURL: 'https://api.yelp.com'
+    tags:
+      - Restaurant
+    serviceName: Yelp Fusion API
     serviceCategory: API
 unitEconomics:
   - name: Cost per 1K Requests

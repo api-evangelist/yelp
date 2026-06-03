@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/json-schema/yelp-business-search-response-schema.json",
+  "title": "BusinessSearchResponse",
+  "description": "BusinessSearchResponse schema from Yelp Fusion API",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "Total number of businesses Yelp found.",
+      "example": 240
+    },
+    "businesses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Business"
+      }
+    },
+    "region": {
+      "type": "object",
+      "properties": {
+        "center": {
+          "$ref": "#/components/schemas/Coordinates"
+        }
+      }
+    }
+  }
+}

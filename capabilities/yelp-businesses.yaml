@@ -1,0 +1,463 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "Yelp Fusion API \u2014 Business Discovery"
+  description: "Business Discovery \u2014 Businesses. 5 operation(s). Lead operation: Search Businesses. Self-contained Naftiko capability covering one Yelp business surface."
+  tags:
+  - Yelp
+  - Restaurant
+  - Businesses
+  created: '2026-06-03'
+  modified: '2026-06-03'
+binds:
+- namespace: env
+  keys:
+    YELP_API_KEY: YELP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: yelp-businesses
+    baseUri: https://api.yelp.com
+    description: "Yelp Fusion API \u2014 Businesses business capability. Self-contained, no shared references."
+    authentication:
+      type: bearer
+      token: '{{env.YELP_API_KEY}}'
+    resources:
+    - name: v3-businesses-search
+      path: /v3/businesses/search
+      operations:
+      - name: searchBusinesses
+        method: GET
+        description: Search Businesses
+        inputParameters:
+        - name: location
+          in: query
+          type: string
+          required: false
+          description: Geographic area to search. Required if latitude and longitude are not provided.
+        - name: latitude
+          in: query
+          type: number
+          required: false
+          description: Latitude of the search center. Required if location is not provided.
+        - name: longitude
+          in: query
+          type: number
+          required: false
+          description: Longitude of the search center. Required if location is not provided.
+        - name: term
+          in: query
+          type: string
+          required: false
+          description: Search term, such as "food" or a business name.
+        - name: radius
+          in: query
+          type: integer
+          required: false
+          description: Search radius in meters. Maximum 40000.
+        - name: categories
+          in: query
+          type: string
+          required: false
+          description: Comma-delimited list of category aliases to filter by.
+        - name: locale
+          in: query
+          type: string
+          required: false
+          description: Locale in the form {language}_{country}, e.g. en_US.
+        - name: price
+          in: query
+          type: string
+          required: false
+          description: Comma-delimited list of price levels (1, 2, 3, 4).
+        - name: open_now
+          in: query
+          type: boolean
+          required: false
+          description: Return only businesses open at the time of the request.
+        - name: open_at
+          in: query
+          type: integer
+          required: false
+          description: Return businesses open at the given Unix timestamp.
+        - name: attributes
+          in: query
+          type: string
+          required: false
+          description: Comma-delimited list of business attributes to filter by.
+        - name: sort_by
+          in: query
+          type: string
+          required: false
+          description: Sort mode for results.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Number of results to return.
+        - name: offset
+          in: query
+          type: integer
+          required: false
+          description: Offset into the list of returned results.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v3-businesses-search-phone
+      path: /v3/businesses/search/phone
+      operations:
+      - name: searchBusinessesByPhone
+        method: GET
+        description: Search Businesses By Phone
+        inputParameters:
+        - name: phone
+          in: query
+          type: string
+          required: true
+          description: Phone number in the form +[country code][number], e.g. +14159083801.
+        - name: locale
+          in: query
+          type: string
+          required: false
+          description: Locale in the form {language}_{country}, e.g. en_US.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v3-businesses-matches
+      path: /v3/businesses/matches
+      operations:
+      - name: matchBusinesses
+        method: GET
+        description: Match Businesses
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          required: true
+          description: Business name.
+        - name: address1
+          in: query
+          type: string
+          required: true
+          description: First line of the business address.
+        - name: address2
+          in: query
+          type: string
+          required: false
+          description: Second line of the business address.
+        - name: address3
+          in: query
+          type: string
+          required: false
+          description: Third line of the business address.
+        - name: city
+          in: query
+          type: string
+          required: true
+          description: City of the business.
+        - name: state
+          in: query
+          type: string
+          required: true
+          description: ISO 3166-2 state code of the business.
+        - name: country
+          in: query
+          type: string
+          required: true
+          description: ISO 3166-1 alpha-2 country code of the business.
+        - name: postal_code
+          in: query
+          type: string
+          required: false
+          description: Postal/ZIP code of the business.
+        - name: latitude
+          in: query
+          type: number
+          required: false
+          description: Latitude of the business.
+        - name: longitude
+          in: query
+          type: number
+          required: false
+          description: Longitude of the business.
+        - name: phone
+          in: query
+          type: string
+          required: false
+          description: Phone number of the business.
+        - name: yelp_business_id
+          in: query
+          type: string
+          required: false
+          description: A Yelp business id hint to improve match accuracy.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Number of matches to return.
+        - name: match_threshold
+          in: query
+          type: string
+          required: false
+          description: How strictly candidates must match the input.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v3-businesses-business-id-or-alias
+      path: /v3/businesses/{business_id_or_alias}
+      operations:
+      - name: getBusiness
+        method: GET
+        description: Get Business Details
+        inputParameters:
+        - name: business_id_or_alias
+          in: path
+          type: string
+          required: true
+          description: A 22-character Yelp business id or a business alias.
+        - name: locale
+          in: query
+          type: string
+          required: false
+          description: Locale in the form {language}_{country}, e.g. en_US.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v3-autocomplete
+      path: /v3/autocomplete
+      operations:
+      - name: autocomplete
+        method: GET
+        description: Autocomplete
+        inputParameters:
+        - name: text
+          in: query
+          type: string
+          required: true
+          description: Text to return autocomplete suggestions for.
+        - name: latitude
+          in: query
+          type: number
+          required: false
+          description: Latitude of the location to look for suggestions in.
+        - name: longitude
+          in: query
+          type: number
+          required: false
+          description: Longitude of the location to look for suggestions in.
+        - name: locale
+          in: query
+          type: string
+          required: false
+          description: Locale in the form {language}_{country}, e.g. en_US.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: yelp-businesses-rest
+    port: 8080
+    description: "REST adapter for Yelp Fusion API \u2014 Businesses. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+    resources:
+    - path: /v1/businesses/search
+      name: v3-businesses-search
+      description: REST surface for v3-businesses-search.
+      operations:
+      - method: GET
+        name: searchBusinesses
+        description: Search Businesses
+        call: yelp-businesses.searchBusinesses
+        with:
+          location: rest.location
+          latitude: rest.latitude
+          longitude: rest.longitude
+          term: rest.term
+          radius: rest.radius
+          categories: rest.categories
+          locale: rest.locale
+          price: rest.price
+          open_now: rest.open_now
+          open_at: rest.open_at
+          attributes: rest.attributes
+          sort_by: rest.sort_by
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/businesses/search/phone
+      name: v3-businesses-search-phone
+      description: REST surface for v3-businesses-search-phone.
+      operations:
+      - method: GET
+        name: searchBusinessesByPhone
+        description: Search Businesses By Phone
+        call: yelp-businesses.searchBusinessesByPhone
+        with:
+          phone: rest.phone
+          locale: rest.locale
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/businesses/matches
+      name: v3-businesses-matches
+      description: REST surface for v3-businesses-matches.
+      operations:
+      - method: GET
+        name: matchBusinesses
+        description: Match Businesses
+        call: yelp-businesses.matchBusinesses
+        with:
+          name: rest.name
+          address1: rest.address1
+          address2: rest.address2
+          address3: rest.address3
+          city: rest.city
+          state: rest.state
+          country: rest.country
+          postal_code: rest.postal_code
+          latitude: rest.latitude
+          longitude: rest.longitude
+          phone: rest.phone
+          yelp_business_id: rest.yelp_business_id
+          limit: rest.limit
+          match_threshold: rest.match_threshold
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/businesses/{business_id_or_alias}
+      name: v3-businesses-business-id-or-alias
+      description: REST surface for v3-businesses-business-id-or-alias.
+      operations:
+      - method: GET
+        name: getBusiness
+        description: Get Business Details
+        call: yelp-businesses.getBusiness
+        with:
+          business_id_or_alias: rest.business_id_or_alias
+          locale: rest.locale
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/autocomplete
+      name: v3-autocomplete
+      description: REST surface for v3-autocomplete.
+      operations:
+      - method: GET
+        name: autocomplete
+        description: Autocomplete
+        call: yelp-businesses.autocomplete
+        with:
+          text: rest.text
+          latitude: rest.latitude
+          longitude: rest.longitude
+          locale: rest.locale
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: yelp-businesses-mcp
+    port: 9090
+    transport: http
+    description: "MCP adapter for Yelp Fusion API \u2014 Businesses. One tool per consumed operation, routed inline through this capability's consumes block."
+    tools:
+    - name: search-businesses
+      description: Search Businesses
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.searchBusinesses
+      with:
+        location: tools.location
+        latitude: tools.latitude
+        longitude: tools.longitude
+        term: tools.term
+        radius: tools.radius
+        categories: tools.categories
+        locale: tools.locale
+        price: tools.price
+        open_now: tools.open_now
+        open_at: tools.open_at
+        attributes: tools.attributes
+        sort_by: tools.sort_by
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-businesses-phone
+      description: Search Businesses By Phone
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.searchBusinessesByPhone
+      with:
+        phone: tools.phone
+        locale: tools.locale
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: match-businesses
+      description: Match Businesses
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.matchBusinesses
+      with:
+        name: tools.name
+        address1: tools.address1
+        address2: tools.address2
+        address3: tools.address3
+        city: tools.city
+        state: tools.state
+        country: tools.country
+        postal_code: tools.postal_code
+        latitude: tools.latitude
+        longitude: tools.longitude
+        phone: tools.phone
+        yelp_business_id: tools.yelp_business_id
+        limit: tools.limit
+        match_threshold: tools.match_threshold
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-business-details
+      description: Get Business Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.getBusiness
+      with:
+        business_id_or_alias: tools.business_id_or_alias
+        locale: tools.locale
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: autocomplete
+      description: Autocomplete
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: yelp-businesses.autocomplete
+      with:
+        text: tools.text
+        latitude: tools.latitude
+        longitude: tools.longitude
+        locale: tools.locale
+      outputParameters:
+      - type: object
+        mapping: $.

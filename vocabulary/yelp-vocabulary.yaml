@@ -1,0 +1,246 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Yelp"
+  description: >-
+    Unified taxonomy for the Yelp Fusion API mapping the operational dimension
+    (OpenAPI endpoints for business discovery, reviews, events, categories, and
+    conversational AI) to the capability dimension (Naftiko capabilities that
+    compose those endpoints into REST and MCP surfaces).
+  created: "2026-06-03"
+  modified: "2026-06-03"
+  tags:
+    - Yelp
+    - Restaurant
+    - Local Search
+
+operational:
+  apis:
+    - name: Yelp Fusion API
+      namespace: yelp
+      version: "3.0"
+      baseUrl: https://api.yelp.com
+      status: active
+  resources:
+    - name: businesses
+      api: Yelp Fusion API
+      description: Local business listings, search, match, and detail records.
+      actions: [search, match, get, autocomplete]
+    - name: reviews
+      api: Yelp Fusion API
+      description: Review excerpts and ratings attached to a business.
+      actions: [list]
+    - name: events
+      api: Yelp Fusion API
+      description: Local events with timing, location, and ticketing.
+      actions: [search, get]
+    - name: categories
+      api: Yelp Fusion API
+      description: Yelp business category taxonomy.
+      actions: [list, get]
+    - name: ai_chat
+      api: Yelp Fusion API
+      description: Conversational Yelp Fusion AI search and business questions.
+      actions: [chat]
+  actions:
+    - name: search
+      httpMethod: GET
+      pattern: query
+    - name: match
+      httpMethod: GET
+      pattern: query
+    - name: get
+      httpMethod: GET
+      pattern: read
+    - name: list
+      httpMethod: GET
+      pattern: read
+    - name: autocomplete
+      httpMethod: GET
+      pattern: query
+    - name: chat
+      httpMethod: POST
+      pattern: query
+  schemas:
+    core:
+      - Business
+      - BusinessDetail
+      - Location
+      - Coordinates
+      - Category
+    reviews:
+      - Review
+      - ReviewsResponse
+    events:
+      - Event
+      - EventSearchResponse
+    search:
+      - BusinessSearchResponse
+      - AutocompleteResponse
+    ai:
+      - AiChatRequest
+      - AiChatResponse
+  parameters:
+    pagination:
+      - limit
+      - offset
+    identifiers:
+      - business_id_or_alias
+      - event_id
+      - alias
+      - yelp_business_id
+    filters:
+      - term
+      - categories
+      - price
+      - open_now
+      - open_at
+      - attributes
+      - is_free
+      - sort_by
+      - sort_on
+    measurement:
+      - location
+      - latitude
+      - longitude
+      - radius
+      - locale
+  enums:
+    transactions:
+      - pickup
+      - delivery
+      - restaurant_reservation
+    sortBusinesses:
+      - best_match
+      - rating
+      - review_count
+      - distance
+    matchThreshold:
+      - none
+      - default
+      - strict
+    aiResponseTypes:
+      - business_search
+      - business_question
+      - clarification
+      - unsupported
+      - confirmation
+  authentication:
+    schemes:
+      - type: bearer
+        description: Yelp Fusion API key passed as a bearer token in the Authorization header.
+        appliesTo:
+          - Yelp Fusion API
+
+capability:
+  workflows:
+    - name: Yelp Fusion API — Business Discovery
+      file: capabilities/yelp-businesses.yaml
+      description: Search, match, autocomplete, and retrieve detailed local business data.
+      apis: [Yelp Fusion API]
+      tools: 5
+      personas: [Local Search Developer, Restaurant Concierge Agent]
+      domains: [Business Discovery]
+    - name: Yelp Fusion API — Reviews
+      file: capabilities/yelp-reviews.yaml
+      description: Retrieve review excerpts and ratings for a business.
+      apis: [Yelp Fusion API]
+      tools: 1
+      personas: [Reputation Analyst]
+      domains: [Reviews]
+    - name: Yelp Fusion API — Local Events
+      file: capabilities/yelp-events.yaml
+      description: Search and retrieve local events.
+      apis: [Yelp Fusion API]
+      tools: 2
+      personas: [Events Curator]
+      domains: [Local Events]
+    - name: Yelp Fusion API — Category Taxonomy
+      file: capabilities/yelp-categories.yaml
+      description: List and resolve Yelp business categories.
+      apis: [Yelp Fusion API]
+      tools: 2
+      personas: [Local Search Developer]
+      domains: [Category Taxonomy]
+    - name: Yelp Fusion API — Conversational AI
+      file: capabilities/yelp-ai.yaml
+      description: Natural language business search and questions via Yelp Fusion AI.
+      apis: [Yelp Fusion API]
+      tools: 1
+      personas: [Restaurant Concierge Agent]
+      domains: [Conversational AI]
+  personas:
+    - id: local-search-developer
+      name: Local Search Developer
+      description: Builds local discovery features using business search and categories.
+      workflows: [yelp-businesses.yaml, yelp-categories.yaml]
+    - id: restaurant-concierge-agent
+      name: Restaurant Concierge Agent
+      description: An AI agent that helps users find and ask questions about restaurants.
+      workflows: [yelp-businesses.yaml, yelp-ai.yaml]
+    - id: reputation-analyst
+      name: Reputation Analyst
+      description: Monitors business ratings and review excerpts.
+      workflows: [yelp-reviews.yaml]
+    - id: events-curator
+      name: Events Curator
+      description: Surfaces relevant local events to users.
+      workflows: [yelp-events.yaml]
+  domains:
+    - name: Business Discovery
+      resources: [businesses]
+    - name: Reviews
+      resources: [reviews]
+    - name: Local Events
+      resources: [events]
+    - name: Category Taxonomy
+      resources: [categories]
+    - name: Conversational AI
+      resources: [ai_chat]
+  namespaces:
+    - consumed: yelp-businesses
+      rest: yelp-businesses-rest
+      mcp: yelp-businesses-mcp
+      port: 8080/9090
+    - consumed: yelp-reviews
+      rest: yelp-reviews-rest
+      mcp: yelp-reviews-mcp
+      port: 8080/9090
+    - consumed: yelp-events
+      rest: yelp-events-rest
+      mcp: yelp-events-mcp
+      port: 8080/9090
+    - consumed: yelp-categories
+      rest: yelp-categories-rest
+      mcp: yelp-categories-mcp
+      port: 8080/9090
+    - consumed: yelp-ai
+      rest: yelp-ai-rest
+      mcp: yelp-ai-mcp
+      port: 8080/9090
+  binds:
+    - key: YELP_API_KEY
+      description: Yelp Fusion API key used as a bearer token.
+      workflows: [yelp-businesses.yaml, yelp-reviews.yaml, yelp-events.yaml, yelp-categories.yaml, yelp-ai.yaml]
+
+crossReference:
+  - resource: businesses
+    operations: [searchBusinesses, searchBusinessesByPhone, matchBusinesses, getBusiness, autocomplete]
+    workflows: [yelp-businesses.yaml]
+    personas: [Local Search Developer, Restaurant Concierge Agent]
+  - resource: reviews
+    operations: [getBusinessReviews]
+    workflows: [yelp-reviews.yaml]
+    personas: [Reputation Analyst]
+  - resource: events
+    operations: [searchEvents, getEvent]
+    workflows: [yelp-events.yaml]
+    personas: [Events Curator]
+  - resource: categories
+    operations: [getAllCategories, getCategory]
+    workflows: [yelp-categories.yaml]
+    personas: [Local Search Developer]
+  - resource: ai_chat
+    operations: [aiChat]
+    workflows: [yelp-ai.yaml]
+    personas: [Restaurant Concierge Agent]
