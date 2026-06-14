@@ -1,0 +1,677 @@
+# Yelp GraphQL Schema
+# Endpoint: https://api.yelp.com/v3/graphql
+# Reference: https://docs.developer.yelp.com/reference/v3_graphql
+
+schema {
+  query: Query
+}
+
+# ─── Root Query ───────────────────────────────────────────────────────────────
+
+type Query {
+  """Search for businesses by keyword, location, category, price, and more."""
+  search(
+    term: String
+    location: String
+    latitude: Float
+    longitude: Float
+    radius: Int
+    categories: String
+    locale: String
+    limit: Int
+    offset: Int
+    sort_by: String
+    price: String
+    open_now: Boolean
+    open_at: Int
+    attributes: String
+  ): Businesses
+
+  """Fetch full details for a single business by Yelp business ID or alias."""
+  business(id: String!): Business
+
+  """Retrieve review excerpts and ratings for a business."""
+  reviews(
+    business: String!
+    locale: String
+    limit: Int
+    offset: Int
+  ): ReviewsResponse
+
+  """Resolve a phone number to matching Yelp businesses."""
+  phone_search(phone: String!): Businesses
+
+  """Match a business by name and address to a Yelp business record."""
+  business_match(
+    name: String!
+    address1: String!
+    city: String!
+    state: String!
+    country: String!
+    address2: String
+    address3: String
+    postal_code: String
+    latitude: Float
+    longitude: Float
+    phone: String
+    zip_code: String
+    yelp_business_id: String
+    limit: Int
+    match_threshold: String
+  ): BusinessMatch
+
+  """Retrieve details for a single Yelp event by ID."""
+  event(id: String!): Event
+
+  """Search for local events by location, category, and time range."""
+  search_event(
+    locale: String
+    offset: Int
+    limit: Int
+    sort_on: String
+    sort_by: String
+    categories: [Int]
+    start_date: Int
+    end_date: Int
+    is_free: Boolean
+    location: String
+    latitude: Float
+    longitude: Float
+    radius: Int
+  ): EventSearch
+
+  """Return the featured event for a given location."""
+  featured_event(
+    locale: String
+    location: String
+    latitude: Float
+    longitude: Float
+  ): Event
+
+  """List all Yelp business categories or filter by alias and locale."""
+  categories(
+    locale: String
+    country: String
+  ): Categories
+
+  """Retrieve a single category by alias."""
+  category(alias: String!, locale: String): CategoryDetail
+
+  """Return autocomplete suggestions for a partial query string."""
+  autocomplete(
+    text: String!
+    latitude: Float
+    longitude: Float
+    locale: String
+  ): AutocompleteResponse
+
+  """Search for businesses supporting a transaction type (e.g., delivery)."""
+  transaction_search(
+    transaction_type: TransactionType!
+    term: String
+    latitude: Float
+    longitude: Float
+    location: String
+    radius: Int
+    categories: String
+    locale: String
+    limit: Int
+    offset: Int
+    sort_by: String
+    price: String
+    open_now: Boolean
+    open_at: Int
+    attributes: String
+  ): Businesses
+}
+
+# ─── Business ─────────────────────────────────────────────────────────────────
+
+"""A Yelp business record with full detail fields."""
+type Business {
+  """Yelp's unique internal business identifier."""
+  id: String
+
+  """Yelp's human-readable business alias (URL slug)."""
+  alias: String
+
+  """Business display name."""
+  name: String
+
+  """URL to the business's main Yelp profile image."""
+  image_url: String
+
+  """Whether the business has been permanently closed."""
+  is_closed: Boolean
+
+  """URL to the business's Yelp profile page."""
+  url: String
+
+  """Total number of reviews."""
+  review_count: Int
+
+  """Business categories (taxonomy aliases and titles)."""
+  categories: [Category]
+
+  """Aggregate star rating (1.0–5.0, in 0.5 increments)."""
+  rating: Float
+
+  """Physical location and mailing address."""
+  location: Location
+
+  """Geographic coordinates."""
+  coordinates: Coordinates
+
+  """List of photo URLs for the business."""
+  photos: [String]
+
+  """Price tier: $, $$, $$$, or $$$$."""
+  price: String
+
+  """Business phone number in international E.164 format."""
+  phone: String
+
+  """Business phone number formatted for display."""
+  display_phone: String
+
+  """Distance from search origin in metres (returned by search queries)."""
+  distance: Float
+
+  """Business hours across a week, including special hours."""
+  hours: [Hours]
+
+  """Transactions the business supports (e.g., pickup, delivery)."""
+  transactions: [String]
+
+  """Structured attributes describing business features."""
+  attributes: BusinessAttributes
+
+  """Whether the business is currently open."""
+  is_open_now: Boolean
+
+  """URL to the business's Yelp messaging interface."""
+  messaging_url: String
+}
+
+"""Paginated list of businesses returned by search queries."""
+type Businesses {
+  """Total number of businesses matching the search criteria."""
+  total: Int
+
+  """List of business records for this page."""
+  business: [Business]
+
+  """Pagination region used for the search."""
+  region: Region
+}
+
+"""Result of a business match operation."""
+type BusinessMatch {
+  """List of matched business records."""
+  business: [Business]
+}
+
+"""Search results for transaction-based business queries."""
+type TransactionSearch {
+  """Total number of businesses matching the transaction search."""
+  total: Int
+
+  """List of business records for this page."""
+  business: [Business]
+}
+
+# ─── Location & Coordinates ───────────────────────────────────────────────────
+
+"""Physical address and location information for a business."""
+type Location {
+  """Street address line 1."""
+  address1: String
+
+  """Street address line 2."""
+  address2: String
+
+  """Street address line 3."""
+  address3: String
+
+  """City name."""
+  city: String
+
+  """ISO 3166-2 state/province/region code."""
+  state: String
+
+  """Postal/ZIP code."""
+  zip_code: String
+
+  """ISO 3166-1 alpha-2 country code."""
+  country: String
+
+  """Display-formatted multi-line address array."""
+  formatted_address: String
+
+  """Cross-street hint, if available."""
+  cross_streets: String
+}
+
+"""Geographic latitude and longitude coordinates."""
+type Coordinates {
+  """Latitude in decimal degrees."""
+  latitude: Float
+
+  """Longitude in decimal degrees."""
+  longitude: Float
+}
+
+"""Geographic region used to centre or bound a search."""
+type Region {
+  """Centre point of the search region."""
+  center: Coordinates
+}
+
+# ─── Hours ────────────────────────────────────────────────────────────────────
+
+"""Weekly operating hours for a business."""
+type Hours {
+  """Hours type identifier (e.g., REGULAR)."""
+  hours_type: String
+
+  """Whether the business is currently open right now."""
+  is_open_now: Boolean
+
+  """Per-day open periods across the week."""
+  open: [OpenHours]
+}
+
+"""A single open period within a day's operating hours."""
+type OpenHours {
+  """Day of the week: 0 = Monday … 6 = Sunday."""
+  day: Int
+
+  """Opening time as a 4-digit string, e.g., "0900"."""
+  start: String
+
+  """Closing time as a 4-digit string, e.g., "2200"."""
+  end: String
+
+  """Whether this period spans midnight into the next day."""
+  is_overnight: Boolean
+}
+
+"""A special-hours override for a specific date."""
+type SpecialHours {
+  """The calendar date this override applies to (ISO 8601)."""
+  date: String
+
+  """Whether the business is closed on this date."""
+  is_closed: Boolean
+
+  """Opening time override as a 4-digit string."""
+  start: String
+
+  """Closing time override as a 4-digit string."""
+  end: String
+
+  """Whether this period spans midnight."""
+  is_overnight: Boolean
+}
+
+# ─── Categories ───────────────────────────────────────────────────────────────
+
+"""A Yelp business category tag."""
+type Category {
+  """Machine-readable category alias (URL slug)."""
+  alias: String
+
+  """Human-readable category title."""
+  title: String
+}
+
+"""Full detail for a single Yelp category."""
+type CategoryDetail {
+  """Machine-readable category alias."""
+  alias: String
+
+  """Human-readable category title."""
+  title: String
+
+  """Parent categories."""
+  parent_categories: [Category]
+
+  """Country codes where this category is available."""
+  country_whitelist: [String]
+
+  """Country codes where this category is not available."""
+  country_blacklist: [String]
+}
+
+"""Paginated list of Yelp categories."""
+type Categories {
+  """List of category records."""
+  category: [CategoryDetail]
+}
+
+# ─── Reviews ──────────────────────────────────────────────────────────────────
+
+"""Paginated review response for a business."""
+type ReviewsResponse {
+  """Total number of reviews for the business."""
+  total: Int
+
+  """Yelp review language and locale used for filtering."""
+  possible_languages: [String]
+
+  """List of review excerpts for this page."""
+  reviews: [Review]
+}
+
+"""An individual Yelp review excerpt."""
+type Review {
+  """Unique review identifier."""
+  id: String
+
+  """Star rating given by the reviewer (1–5)."""
+  rating: Int
+
+  """Yelp user who wrote the review."""
+  user: User
+
+  """Excerpt text of the review (up to 160 characters)."""
+  text: String
+
+  """ISO 8601 timestamp of when the review was posted."""
+  time_created: String
+
+  """URL to the full review on Yelp."""
+  url: String
+}
+
+"""A Yelp user profile (reviewer)."""
+type User {
+  """Unique user identifier."""
+  id: String
+
+  """URL to the user's Yelp profile image."""
+  image_url: String
+
+  """User's display name."""
+  name: String
+
+  """URL to the user's Yelp profile page."""
+  profile_url: String
+}
+
+# ─── Events ───────────────────────────────────────────────────────────────────
+
+"""A Yelp local event."""
+type Event {
+  """Unique event identifier."""
+  id: String
+
+  """Event display name."""
+  name: String
+
+  """HTML or plain-text event description."""
+  description: String
+
+  """URL to the event's Yelp page."""
+  event_site_url: String
+
+  """URL to the event's external ticketing or info page."""
+  tickets_url: String
+
+  """Cost in smallest currency unit (cents). 0 for free events."""
+  cost: Int
+
+  """Maximum cost for events with a price range."""
+  cost_max: Int
+
+  """Whether the event is free."""
+  is_free: Boolean
+
+  """Whether the event is family-friendly."""
+  is_official: Boolean
+
+  """Whether the event is cancelled."""
+  is_canceled: Boolean
+
+  """ISO 8601 start date-time string."""
+  time_start: String
+
+  """ISO 8601 end date-time string."""
+  time_end: String
+
+  """Physical location of the event."""
+  location: Location
+
+  """Geographic coordinates of the event venue."""
+  latitude: Float
+
+  """Geographic coordinates of the event venue."""
+  longitude: Float
+
+  """URL to the event's cover image."""
+  image_url: String
+
+  """Category IDs for the event."""
+  category: [Int]
+
+  """Yelp business record for the event venue."""
+  business_id: String
+
+  """Attending count."""
+  attending_count: Int
+
+  """Interested count."""
+  interested_count: Int
+}
+
+"""Paginated result set for an event search."""
+type EventSearch {
+  """Total number of events matching the search criteria."""
+  total: Int
+
+  """List of event records for this page."""
+  events: [Event]
+}
+
+# ─── Autocomplete ─────────────────────────────────────────────────────────────
+
+"""Autocomplete suggestions combining terms, businesses, and categories."""
+type AutocompleteResponse {
+  """Suggested search terms."""
+  terms: [AutocompleteTerm]
+
+  """Suggested business records."""
+  businesses: [AutocompleteBusiness]
+
+  """Suggested category records."""
+  categories: [AutocompleteCategory]
+}
+
+"""A suggested search term from autocomplete."""
+type AutocompleteTerm {
+  """The suggested term text."""
+  text: String
+}
+
+"""A suggested business stub from autocomplete."""
+type AutocompleteBusiness {
+  """Yelp business ID."""
+  id: String
+
+  """Business display name."""
+  name: String
+}
+
+"""A suggested category from autocomplete."""
+type AutocompleteCategory {
+  """Machine-readable category alias."""
+  alias: String
+
+  """Human-readable category title."""
+  title: String
+}
+
+# ─── Attributes & Amenities ───────────────────────────────────────────────────
+
+"""Structured business attributes and amenity flags."""
+type BusinessAttributes {
+  """Whether the business has gender-neutral restrooms."""
+  gender_neutral_restrooms: AttributeOption
+
+  """Whether the business is open to all."""
+  open_to_all: AttributeOption
+
+  """Whether the business offers outdoor seating."""
+  outdoor_seating: Boolean
+
+  """Whether the business is wheelchair accessible."""
+  wheelchair_accessible: Boolean
+
+  """Whether the business offers Wi-Fi."""
+  wifi: WifiAttribute
+
+  """Whether the business accepts reservations."""
+  accepts_credit_cards: Boolean
+
+  """Whether the business is good for groups."""
+  good_for_groups: Boolean
+
+  """Whether the business takes reservations."""
+  takes_reservations: Boolean
+
+  """Whether the business has a happy hour."""
+  happy_hour: Boolean
+
+  """Whether the business serves alcohol."""
+  alcohol: AlcoholAttribute
+
+  """Noise level descriptor."""
+  noise_level: NoiseLevelAttribute
+
+  """Whether the business is good for kids."""
+  good_for_kids: Boolean
+
+  """Whether the business has parking available."""
+  parking: ParkingAttributes
+
+  """Ambience descriptors."""
+  ambience: AmbienceAttributes
+}
+
+"""An attribute option (yes, no, or unspecified)."""
+type AttributeOption {
+  """Whether the attribute applies."""
+  value: Boolean
+}
+
+"""Wi-Fi availability attribute."""
+type WifiAttribute {
+  """Wi-Fi availability: "free", "paid", or "no"."""
+  value: String
+}
+
+"""Alcohol service attribute."""
+type AlcoholAttribute {
+  """Alcohol service type: "full_bar", "beer_and_wine", or "none"."""
+  value: String
+}
+
+"""Noise level attribute."""
+type NoiseLevelAttribute {
+  """Noise level: "quiet", "average", "loud", or "very_loud"."""
+  value: String
+}
+
+"""Parking availability by type."""
+type ParkingAttributes {
+  """Street parking available."""
+  street: Boolean
+
+  """Validated parking available."""
+  validated: Boolean
+
+  """Lot parking available."""
+  lot: Boolean
+
+  """Valet parking available."""
+  valet: Boolean
+
+  """Garage parking available."""
+  garage: Boolean
+}
+
+"""Ambience descriptors for a business."""
+type AmbienceAttributes {
+  """Romantic ambience."""
+  romantic: Boolean
+
+  """Intimate ambience."""
+  intimate: Boolean
+
+  """Trendy ambience."""
+  trendy: Boolean
+
+  """Upscale ambience."""
+  upscale: Boolean
+
+  """Classy ambience."""
+  classy: Boolean
+
+  """Hipster ambience."""
+  hipster: Boolean
+
+  """Divey ambience."""
+  divey: Boolean
+
+  """Touristy ambience."""
+  touristy: Boolean
+
+  """Casual ambience."""
+  casual: Boolean
+}
+
+# ─── Enumerations ─────────────────────────────────────────────────────────────
+
+"""Transaction types supported by Yelp businesses."""
+enum TransactionType {
+  """Online food delivery."""
+  food_delivery
+
+  """Restaurant reservations."""
+  restaurant_reservation
+
+  """Pickup orders."""
+  pickup
+}
+
+"""Price tier levels for businesses."""
+enum PriceTier {
+  ONE
+  TWO
+  THREE
+  FOUR
+}
+
+"""Sort order for business search results."""
+enum SortBy {
+  """Default sort (best match)."""
+  best_match
+
+  """Sort by star rating descending."""
+  rating
+
+  """Sort by number of reviews descending."""
+  review_count
+
+  """Sort by distance ascending."""
+  distance
+}
+
+"""Sort field for event search results."""
+enum EventSortOn {
+  """Sort events by start date."""
+  time_start
+
+  """Sort events by popularity."""
+  popularity
+}

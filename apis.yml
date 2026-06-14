@@ -1,145 +1,151 @@
 aid: yelp
 name: Yelp
-description: >-
-  Yelp connects people with great local businesses. The Yelp Fusion API gives
-  developers programmatic access to Yelp's database of millions of local
-  businesses, ratings, reviews, photos, events, and category taxonomy, plus the
-  Yelp Fusion AI conversational search endpoint. Core public capabilities include
-  business search and discovery, business details, review excerpts, autocomplete,
-  phone and address matching, and local event search. Partner-tier APIs add
-  reviews response, leads, advertising, reservations, waitlist, checkout, and
-  reporting. Authentication uses a Yelp API key passed as a bearer token.
+description: Yelp connects people with great local businesses. The Yelp Fusion API
+  gives developers programmatic access to Yelp's database of millions of local businesses,
+  ratings, reviews, photos, events, and category taxonomy, plus the Yelp Fusion AI
+  conversational search endpoint. Core public capabilities include business search
+  and discovery, business details, review excerpts, autocomplete, phone and address
+  matching, and local event search. Partner-tier APIs add reviews response, leads,
+  advertising, reservations, waitlist, checkout, and reporting. Authentication uses
+  a Yelp API key passed as a bearer token.
 type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Restaurant
-  - Local Search
-  - Reviews
-  - Business Data
-  - Location
+- Restaurant
+- Local Search
+- Reviews
+- Business Data
+- Location
 created: '2025-02-08'
 modified: '2026-06-03'
 url: https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 common:
-  - type: Documentation
-    url: https://docs.developer.yelp.com/
-  - type: GettingStarted
-    url: https://docs.developer.yelp.com/docs/getting-started
-  - type: APIReference
-    url: https://docs.developer.yelp.com/reference/v3_business_search
-  - type: Authentication
-    url: https://docs.developer.yelp.com/docs/oauth-authorization
-  - type: DeveloperPortal
-    url: https://www.yelp.com/developers
-  - type: SignUp
-    url: https://www.yelp.com/developers/v3/manage_app
-  - type: Console
-    url: https://www.yelp.com/developers/fusion-ai/chat
-  - type: Pricing
-    url: https://docs.developer.yelp.com/docs/plans
-  - type: RateLimits
-    url: https://docs.developer.yelp.com/docs/places-rate-limiting
-  - type: Errors
-    url: https://docs.developer.yelp.com/docs/api-errors
-  - type: FAQ
-    url: https://docs.developer.yelp.com/docs/places-faq
-  - type: ChangeLog
-    url: https://docs.developer.yelp.com/changelog
-  - type: TermsOfService
-    url: https://docs.developer.yelp.com/docs/policies
-  - type: GitHubOrganization
-    url: https://github.com/Yelp
-  - type: GitHubRepository
-    url: https://github.com/Yelp/yelp-fusion
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/yelp-com
-  - type: LLMsTxt
-    url: https://docs.developer.yelp.com/llms.txt
-  - type: SDK
-    title: Yelp Fusion Code Samples
-    url: https://github.com/Yelp/yelp-fusion
-  - type: SDK
-    title: Python (yelp-python)
-    url: https://github.com/Yelp/yelp-python
-  - type: SDK
-    title: Ruby (yelp-ruby)
-    url: https://github.com/Yelp/yelp-ruby
-  - type: SDK
-    title: Android (yelp-android)
-    url: https://github.com/Yelp/yelp-android
-  - type: SDK
-    title: iOS (yelp-ios)
-    url: https://github.com/Yelp/yelp-ios
-  - type: Tools
-    title: MCP Server (Fusion AI)
-    url: https://github.com/Yelp/yelp-mcp
-  - type: SpectralRules
-    url: rules/yelp-spectral-rules.yml
-  - type: Vocabulary
-    url: vocabulary/yelp-vocabulary.yaml
-  - type: JSONLD
-    url: json-ld/yelp-fusion-api-context.jsonld
-  - type: Plans
-    url: plans/yelp-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/yelp-rate-limits.yml
-  - type: FinOps
-    url: finops/yelp-finops.yml
-  - type: Features
-    data:
-      - name: Business Search
-        description: Search up to 240 businesses by location, term, category, price, and attributes.
-      - name: Business Details
-        description: Retrieve rich detail for a business by id or alias, including hours, photos, and attributes.
-      - name: Reviews
-        description: Retrieve review excerpts, ratings, and reviewer details for a business.
-      - name: Autocomplete
-        description: Return search-term, business, and category suggestions as the user types.
-      - name: Phone and Address Match
-        description: Resolve a phone number or postal address to Yelp businesses.
-      - name: Events
-        description: Search and retrieve local events with timing, location, cost, and ticketing.
-      - name: Category Taxonomy
-        description: Access the full Yelp business category list and per-category details.
-      - name: Fusion AI
-        description: Natural language, multi-turn conversational search and business questions.
-  - type: UseCases
-    data:
-      - name: Restaurant Discovery
-        description: Power restaurant and food discovery experiences with search, ratings, and photos.
-      - name: Location-Aware Recommendations
-        description: Surface nearby, open, and highly-rated businesses based on user coordinates.
-      - name: Reputation Monitoring
-        description: Track ratings and review excerpts for a portfolio of businesses.
-      - name: Conversational Concierge
-        description: Build AI agents that answer natural language questions about local businesses.
-      - name: Local Events Listings
-        description: Embed curated local event listings into apps and sites.
-  - type: Integrations
-    data:
-      - name: Zapier
-        description: Yelp Leads and Conversions APIs offer Zapier integrations for no-code workflows.
-      - name: Model Context Protocol
-        description: Official Yelp MCP server exposes Fusion AI as an agent tool over MCP.
-      - name: Webhooks
-        description: Reviews and Leads webhooks push real-time events to partner endpoints.
+- type: Documentation
+  url: https://docs.developer.yelp.com/
+- type: GettingStarted
+  url: https://docs.developer.yelp.com/docs/getting-started
+- type: APIReference
+  url: https://docs.developer.yelp.com/reference/v3_business_search
+- type: Authentication
+  url: https://docs.developer.yelp.com/docs/oauth-authorization
+- type: DeveloperPortal
+  url: https://www.yelp.com/developers
+- type: SignUp
+  url: https://www.yelp.com/developers/v3/manage_app
+- type: Console
+  url: https://www.yelp.com/developers/fusion-ai/chat
+- type: Pricing
+  url: https://docs.developer.yelp.com/docs/plans
+- type: RateLimits
+  url: https://docs.developer.yelp.com/docs/places-rate-limiting
+- type: Errors
+  url: https://docs.developer.yelp.com/docs/api-errors
+- type: FAQ
+  url: https://docs.developer.yelp.com/docs/places-faq
+- type: ChangeLog
+  url: https://docs.developer.yelp.com/changelog
+- type: TermsOfService
+  url: https://docs.developer.yelp.com/docs/policies
+- type: GitHubOrganization
+  url: https://github.com/Yelp
+- type: GitHubRepository
+  url: https://github.com/Yelp/yelp-fusion
+- type: LinkedIn
+  url: https://www.linkedin.com/company/yelp-com
+- type: LLMsTxt
+  url: https://docs.developer.yelp.com/llms.txt
+- type: SDK
+  title: Yelp Fusion Code Samples
+  url: https://github.com/Yelp/yelp-fusion
+- type: SDK
+  title: Python (yelp-python)
+  url: https://github.com/Yelp/yelp-python
+- type: SDK
+  title: Ruby (yelp-ruby)
+  url: https://github.com/Yelp/yelp-ruby
+- type: SDK
+  title: Android (yelp-android)
+  url: https://github.com/Yelp/yelp-android
+- type: SDK
+  title: iOS (yelp-ios)
+  url: https://github.com/Yelp/yelp-ios
+- type: Tools
+  title: MCP Server (Fusion AI)
+  url: https://github.com/Yelp/yelp-mcp
+- type: SpectralRules
+  url: rules/yelp-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/yelp-vocabulary.yaml
+- type: JSONLD
+  url: json-ld/yelp-fusion-api-context.jsonld
+- type: Plans
+  url: plans/yelp-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/yelp-rate-limits.yml
+- type: FinOps
+  url: finops/yelp-finops.yml
+- type: Features
+  data:
+  - name: Business Search
+    description: Search up to 240 businesses by location, term, category, price, and
+      attributes.
+  - name: Business Details
+    description: Retrieve rich detail for a business by id or alias, including hours,
+      photos, and attributes.
+  - name: Reviews
+    description: Retrieve review excerpts, ratings, and reviewer details for a business.
+  - name: Autocomplete
+    description: Return search-term, business, and category suggestions as the user
+      types.
+  - name: Phone and Address Match
+    description: Resolve a phone number or postal address to Yelp businesses.
+  - name: Events
+    description: Search and retrieve local events with timing, location, cost, and
+      ticketing.
+  - name: Category Taxonomy
+    description: Access the full Yelp business category list and per-category details.
+  - name: Fusion AI
+    description: Natural language, multi-turn conversational search and business questions.
+- type: UseCases
+  data:
+  - name: Restaurant Discovery
+    description: Power restaurant and food discovery experiences with search, ratings,
+      and photos.
+  - name: Location-Aware Recommendations
+    description: Surface nearby, open, and highly-rated businesses based on user coordinates.
+  - name: Reputation Monitoring
+    description: Track ratings and review excerpts for a portfolio of businesses.
+  - name: Conversational Concierge
+    description: Build AI agents that answer natural language questions about local
+      businesses.
+  - name: Local Events Listings
+    description: Embed curated local event listings into apps and sites.
+- type: Integrations
+  data:
+  - name: Zapier
+    description: Yelp Leads and Conversions APIs offer Zapier integrations for no-code
+      workflows.
+  - name: Model Context Protocol
+    description: Official Yelp MCP server exposes Fusion AI as an agent tool over
+      MCP.
+  - name: Webhooks
+    description: Reviews and Leads webhooks push real-time events to partner endpoints.
 apis:
 - aid: yelp:yelp-fusion
   name: Yelp Fusion API
-  description: >-
-    The public Yelp Fusion REST API for business search and discovery, business
-    details, reviews, autocomplete, phone and address matching, local events,
-    category taxonomy, and the Yelp Fusion AI conversational chat endpoint.
-    Authenticated with a Yelp API key passed as a bearer token.
+  description: The public Yelp Fusion REST API for business search and discovery,
+    business details, reviews, autocomplete, phone and address matching, local events,
+    category taxonomy, and the Yelp Fusion AI conversational chat endpoint. Authenticated
+    with a Yelp API key passed as a bearer token.
   humanURL: https://docs.developer.yelp.com/
   baseURL: https://api.yelp.com
   tags:
-    - Restaurant
-    - Local Search
-    - Reviews
+  - Restaurant
+  - Local Search
+  - Reviews
   properties:
   - type: Documentation
     url: https://docs.developer.yelp.com/
@@ -199,16 +205,8 @@ apis:
     url: examples/yelp-autocomplete-response-example.json
   - type: Example
     url: examples/yelp-ai-chat-response-example.json
-  - type: NaftikoCapability
-    url: capabilities/yelp-businesses.yaml
-  - type: NaftikoCapability
-    url: capabilities/yelp-reviews.yaml
-  - type: NaftikoCapability
-    url: capabilities/yelp-events.yaml
-  - type: NaftikoCapability
-    url: capabilities/yelp-categories.yaml
-  - type: NaftikoCapability
-    url: capabilities/yelp-ai.yaml
+  - url: graphql/yelp-graphql.md
+    type: GraphQL
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
