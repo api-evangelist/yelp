@@ -1,0 +1,561 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Yelp Fusion API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Businesses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Businesses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.yelp.com/v3/businesses/search",
+            "params": [
+              {
+                "name": "location",
+                "value": "example",
+                "type": "query",
+                "description": "Geographic area to search. Required if latitude and longitude are not provided."
+              },
+              {
+                "name": "latitude",
+                "value": "37.7867",
+                "type": "query",
+                "description": "Latitude of the search center. Required if location is not provided."
+              },
+              {
+                "name": "longitude",
+                "value": "-122.4112",
+                "type": "query",
+                "description": "Longitude of the search center. Required if location is not provided."
+              },
+              {
+                "name": "term",
+                "value": "example",
+                "type": "query",
+                "description": "Search term, such as \"food\" or a business name."
+              },
+              {
+                "name": "radius",
+                "value": "1",
+                "type": "query",
+                "description": "Search radius in meters. Maximum 40000."
+              },
+              {
+                "name": "categories",
+                "value": "example",
+                "type": "query",
+                "description": "Comma-delimited list of category aliases to filter by."
+              },
+              {
+                "name": "locale",
+                "value": "example",
+                "type": "query",
+                "description": "Locale in the form {language}_{country}, e.g. en_US."
+              },
+              {
+                "name": "price",
+                "value": "$$",
+                "type": "query",
+                "description": "Comma-delimited list of price levels (1, 2, 3, 4)."
+              },
+              {
+                "name": "open_now",
+                "value": "true",
+                "type": "query",
+                "description": "Return only businesses open at the time of the request."
+              },
+              {
+                "name": "open_at",
+                "value": "1",
+                "type": "query",
+                "description": "Return businesses open at the given Unix timestamp."
+              },
+              {
+                "name": "attributes",
+                "value": "example",
+                "type": "query",
+                "description": "Comma-delimited list of business attributes to filter by."
+              },
+              {
+                "name": "sort_by",
+                "value": "best_match",
+                "type": "query",
+                "description": "Sort mode for results."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Number of results to return."
+              },
+              {
+                "name": "offset",
+                "value": "1",
+                "type": "query",
+                "description": "Offset into the list of returned results."
+              }
+            ]
+          },
+          "docs": "Returns up to 240 businesses based on the provided search criteria. Either location or a latitude/longitude pair is required."
+        },
+        {
+          "info": {
+            "name": "Search Businesses By Phone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.yelp.com/v3/businesses/search/phone",
+            "params": [
+              {
+                "name": "phone",
+                "value": "+14159083801",
+                "type": "query",
+                "description": "Phone number in the form +[country code][number], e.g. +14159083801."
+              },
+              {
+                "name": "locale",
+                "value": "example",
+                "type": "query",
+                "description": "Locale in the form {language}_{country}, e.g. en_US."
+              }
+            ]
+          },
+          "docs": "Returns businesses associated with the given phone number."
+        },
+        {
+          "info": {
+            "name": "Match Businesses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.yelp.com/v3/businesses/matches",
+            "params": [
+              {
+                "name": "name",
+                "value": "Ricky's Tacos",
+                "type": "query",
+                "description": "Business name."
+              },
+              {
+                "name": "address1",
+                "value": "350 Mission St",
+                "type": "query",
+                "description": "First line of the business address."
+              },
+              {
+                "name": "address2",
+                "value": "",
+                "type": "query",
+                "description": "Second line of the business address."
+              },
+              {
+                "name": "address3",
+                "value": "",
+                "type": "query",
+                "description": "Third line of the business address."
+              },
+              {
+                "name": "city",
+                "value": "San Francisco",
+                "type": "query",
+                "description": "City of the business."
+              },
+              {
+                "name": "state",
+                "value": "CA",
+                "type": "query",
+                "description": "ISO 3166-2 state code of the business."
+              },
+              {
+                "name": "country",
+                "value": "US",
+                "type": "query",
+                "description": "ISO 3166-1 alpha-2 country code of the business."
+              },
+              {
+                "name": "postal_code",
+                "value": "example",
+                "type": "query",
+                "description": "Postal/ZIP code of the business."
+              },
+              {
+                "name": "latitude",
+                "value": "37.7867",
+                "type": "query",
+                "description": "Latitude of the business."
+              },
+              {
+                "name": "longitude",
+                "value": "-122.4112",
+                "type": "query",
+                "description": "Longitude of the business."
+              },
+              {
+                "name": "phone",
+                "value": "+14159083801",
+                "type": "query",
+                "description": "Phone number of the business."
+              },
+              {
+                "name": "yelp_business_id",
+                "value": "example",
+                "type": "query",
+                "description": "A Yelp business id hint to improve match accuracy."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Number of matches to return."
+              },
+              {
+                "name": "match_threshold",
+                "value": "none",
+                "type": "query",
+                "description": "How strictly candidates must match the input."
+              }
+            ]
+          },
+          "docs": "Matches the supplied business attributes against businesses on Yelp, returning the best candidate matches. Useful for resolving your own records to a Yelp business id."
+        },
+        {
+          "info": {
+            "name": "Get Business Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.yelp.com/v3/businesses/:business_id_or_alias",
+            "params": [
+              {
+                "name": "business_id_or_alias",
+                "value": "example",
+                "type": "path",
+                "description": "A 22-character Yelp business id or a business alias."
+              },
+              {
+                "name": "locale",
+                "value": "example",
+                "type": "query",
+                "description": "Locale in the form {language}_{country}, e.g. en_US."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a business by Yelp id or alias."
+        },
+        {
+          "info": {
+            "name": "Autocomplete",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.yelp.com/v3/autocomplete",
+            "params": [
+              {
+                "name": "text",
+                "value": "Best tacos in the Bay Area. The al pastor is incredible and the salsa bar is unmatched.",
+                "type": "query",
+                "description": "Text to return autocomplete suggestions for."
+              },
+              {
+                "name": "latitude",
+                "value": "37.7867",
+                "type": "query",
+                "description": "Latitude of the location to look for suggestions in."
+              },
+              {
+                "name": "longitude",
+                "value": "-122.4112",
+                "type": "query",
+                "description": "Longitude of the location to look for suggestions in."
+              },
+              {
+                "name": "locale",
+                "value": "example",
+                "type": "query",
+                "description": "Locale in the form {language}_{country}, e.g. en_US."
+              }
+            ]
+          },
+          "docs": "Returns autocomplete suggestions for search terms, businesses, and categories."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reviews",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Business Reviews",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.yelp.com/v3/businesses/:business_id_or_alias/reviews",
+            "params": [
+              {
+                "name": "business_id_or_alias",
+                "value": "example",
+                "type": "path",
+                "description": "A 22-character Yelp business id or a business alias."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Number of reviews to return."
+              },
+              {
+                "name": "offset",
+                "value": "1",
+                "type": "query",
+                "description": "Offset into the list of returned reviews."
+              },
+              {
+                "name": "sort_by",
+                "value": "yelp_sort",
+                "type": "query",
+                "description": "Sort mode for reviews."
+              },
+              {
+                "name": "locale",
+                "value": "example",
+                "type": "query",
+                "description": "Locale in the form {language}_{country}, e.g. en_US."
+              }
+            ]
+          },
+          "docs": "Returns up to three review excerpts for a business."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.yelp.com/v3/categories",
+            "params": [
+              {
+                "name": "locale",
+                "value": "example",
+                "type": "query",
+                "description": "Locale in the form {language}_{country}, e.g. en_US."
+              }
+            ]
+          },
+          "docs": "Returns the full list of Yelp business categories."
+        },
+        {
+          "info": {
+            "name": "Get Category Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.yelp.com/v3/categories/:alias",
+            "params": [
+              {
+                "name": "alias",
+                "value": "rickys-tacos-san-francisco",
+                "type": "path",
+                "description": "The category alias, e.g. \"restaurants\"."
+              },
+              {
+                "name": "locale",
+                "value": "example",
+                "type": "query",
+                "description": "Locale in the form {language}_{country}, e.g. en_US."
+              }
+            ]
+          },
+          "docs": "Returns details for a single Yelp category by alias."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.yelp.com/v3/events",
+            "params": [
+              {
+                "name": "locale",
+                "value": "example",
+                "type": "query",
+                "description": "Locale in the form {language}_{country}, e.g. en_US."
+              },
+              {
+                "name": "offset",
+                "value": "1",
+                "type": "query",
+                "description": "Offset into the list of returned events."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Number of events to return."
+              },
+              {
+                "name": "sort_by",
+                "value": "asc",
+                "type": "query",
+                "description": "Sort direction."
+              },
+              {
+                "name": "sort_on",
+                "value": "popularity",
+                "type": "query",
+                "description": "Field to sort events on."
+              },
+              {
+                "name": "start_date",
+                "value": "1",
+                "type": "query",
+                "description": "Unix timestamp lower bound for event start time."
+              },
+              {
+                "name": "end_date",
+                "value": "1",
+                "type": "query",
+                "description": "Unix timestamp upper bound for event start time."
+              },
+              {
+                "name": "categories",
+                "value": "example",
+                "type": "query",
+                "description": "Comma-delimited list of event category aliases."
+              },
+              {
+                "name": "is_free",
+                "value": "true",
+                "type": "query",
+                "description": "Filter for free events."
+              },
+              {
+                "name": "location",
+                "value": "example",
+                "type": "query",
+                "description": "Geographic area to search for events."
+              },
+              {
+                "name": "latitude",
+                "value": "37.7867",
+                "type": "query",
+                "description": "Latitude of the search center."
+              },
+              {
+                "name": "longitude",
+                "value": "-122.4112",
+                "type": "query",
+                "description": "Longitude of the search center."
+              },
+              {
+                "name": "radius",
+                "value": "1",
+                "type": "query",
+                "description": "Search radius in meters. Maximum 40000."
+              },
+              {
+                "name": "excluded_events",
+                "value": "example",
+                "type": "query",
+                "description": "Comma-delimited list of event ids to exclude."
+              }
+            ]
+          },
+          "docs": "Returns events based on the provided search criteria."
+        },
+        {
+          "info": {
+            "name": "Get Event Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.yelp.com/v3/events/:event_id",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "example",
+                "type": "path",
+                "description": "The id of the event to retrieve."
+              },
+              {
+                "name": "locale",
+                "value": "example",
+                "type": "query",
+                "description": "Locale in the form {language}_{country}, e.g. en_US."
+              }
+            ]
+          },
+          "docs": "Returns details for a single event by id."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "AI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Yelp AI Chat",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.yelp.com/ai/chat/v2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a natural language query to the Yelp Fusion AI and returns a conversational response plus structured business entities. Supports multi-turn conversations via chat_id."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

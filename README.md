@@ -1,17 +1,22 @@
 # Yelp (yelp)
+
 Yelp connects people with great local businesses. The Yelp Fusion API gives developers programmatic access to Yelp's database of millions of local businesses, ratings, reviews, photos, events, and category taxonomy, plus the Yelp Fusion AI conversational search endpoint. Core public capabilities include business search and discovery, business details, review excerpts, autocomplete, phone and address matching, and local event search. Partner-tier APIs add reviews response, leads, advertising, reservations, waitlist, checkout, and reporting. Authentication uses a Yelp API key passed as a bearer token.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/apis.yml)
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Scope
 
-## Tags:
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
 
- - Restaurant
- - Local Search
- - Reviews
- - Business Data
- - Location
+## Tags
+
+- Restaurant
+- Local Search
+- Reviews
+- Business Data
+- Location
 
 ## Timestamps
 
@@ -21,143 +26,88 @@ Yelp connects people with great local businesses. The Yelp Fusion API gives deve
 ## APIs
 
 ### Yelp Fusion API
+
 The public Yelp Fusion REST API for business search and discovery, business details, reviews, autocomplete, phone and address matching, local events, category taxonomy, and the Yelp Fusion AI conversational chat endpoint. Authenticated with a Yelp API key passed as a bearer token.
 
-**Human URL:** [https://docs.developer.yelp.com/](https://docs.developer.yelp.com/)
+- **Human URL:** [https://docs.developer.yelp.com/](https://docs.developer.yelp.com/)
+- **Base URL:** `https://api.yelp.com`
 
-**Base URL:** `https://api.yelp.com`
+#### Tags
 
-#### Tags:
-
- - Restaurant
- - Local Search
- - Reviews
+- Restaurant
+- Local Search
+- Reviews
 
 #### Properties
 
 - [Documentation](https://docs.developer.yelp.com/)
-- [APIReference](https://docs.developer.yelp.com/reference/v3_business_search)
-- [OpenAPI](openapi/yelp-openapi.yml)
-- 14 [JSONSchema](json-schema/) files
-- 6 [JSONStructure](json-structure/) files
-- 6 [Example](examples/) files
-- 5 [NaftikoCapability](capabilities/) files
+- [API Reference](https://docs.developer.yelp.com/reference/v3_business_search)
+- [OpenAPI](openapi/yelp-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/yelp.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/yelp.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/yelp-business-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/yelp-business-detail-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/yelp-business-search-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/yelp-location-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/yelp-coordinates-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/yelp-category-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/yelp-review-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/yelp-reviews-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/yelp-autocomplete-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/yelp-business-hours-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/yelp-event-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/yelp-event-search-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/yelp-ai-chat-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/yelp-ai-chat-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Structure](json-structure/yelp-business-structure.json)
+- [JSON Structure](json-structure/yelp-business-detail-structure.json)
+- [JSON Structure](json-structure/yelp-business-search-response-structure.json)
+- [JSON Structure](json-structure/yelp-review-structure.json)
+- [JSON Structure](json-structure/yelp-event-structure.json)
+- [JSON Structure](json-structure/yelp-category-structure.json)
+- [Example](examples/yelp-business-search-response-example.json)
+- [Example](examples/yelp-business-detail-example.json)
+- [Example](examples/yelp-reviews-response-example.json)
+- [Example](examples/yelp-event-search-response-example.json)
+- [Example](examples/yelp-autocomplete-response-example.json)
+- [Example](examples/yelp-ai-chat-response-example.json)
 
 ## Common Properties
 
 - [Documentation](https://docs.developer.yelp.com/)
-- [GettingStarted](https://docs.developer.yelp.com/docs/getting-started)
-- [APIReference](https://docs.developer.yelp.com/reference/v3_business_search)
+- [Getting Started](https://docs.developer.yelp.com/docs/getting-started)
+- [API Reference](https://docs.developer.yelp.com/reference/v3_business_search)
 - [Authentication](https://docs.developer.yelp.com/docs/oauth-authorization)
-- [DeveloperPortal](https://www.yelp.com/developers)
-- [SignUp](https://www.yelp.com/developers/v3/manage_app)
+- [Developer Portal](https://www.yelp.com/developers)
+- [Sign Up](https://www.yelp.com/developers/v3/manage_app)
 - [Console](https://www.yelp.com/developers/fusion-ai/chat)
 - [Pricing](https://docs.developer.yelp.com/docs/plans)
-- [RateLimits](https://docs.developer.yelp.com/docs/places-rate-limiting)
+- [Rate Limits](https://docs.developer.yelp.com/docs/places-rate-limiting)
 - [Errors](https://docs.developer.yelp.com/docs/api-errors)
-- [FAQ](https://docs.developer.yelp.com/docs/places-faq)
-- [ChangeLog](https://docs.developer.yelp.com/changelog)
-- [TermsOfService](https://docs.developer.yelp.com/docs/policies)
-- [GitHubOrganization](https://github.com/Yelp)
-- [GitHubRepository](https://github.com/Yelp/yelp-fusion)
+- [F A Q](https://docs.developer.yelp.com/docs/places-faq)
+- [Changelog](https://docs.developer.yelp.com/changelog)
+- [Terms of Service](https://docs.developer.yelp.com/docs/policies)
+- [GitHub Organization](https://github.com/Yelp)
+- [GitHub Repository](https://github.com/Yelp/yelp-fusion)
 - [LinkedIn](https://www.linkedin.com/company/yelp-com)
-- [LLMsTxt](https://docs.developer.yelp.com/llms.txt)
-- [SDK — Yelp Fusion Code Samples](https://github.com/Yelp/yelp-fusion)
-- [SDK — Python (yelp-python)](https://github.com/Yelp/yelp-python)
-- [SDK — Ruby (yelp-ruby)](https://github.com/Yelp/yelp-ruby)
-- [SDK — Android (yelp-android)](https://github.com/Yelp/yelp-android)
-- [SDK — iOS (yelp-ios)](https://github.com/Yelp/yelp-ios)
-- [Tools — MCP Server (Fusion AI)](https://github.com/Yelp/yelp-mcp)
-- [SpectralRules](rules/yelp-spectral-rules.yml)
+- [L L Ms Txt](https://docs.developer.yelp.com/llms.txt)
+- [SDK](https://github.com/Yelp/yelp-fusion)
+- [SDK](https://github.com/Yelp/yelp-python)
+- [SDK](https://github.com/Yelp/yelp-ruby)
+- [SDK](https://github.com/Yelp/yelp-android)
+- [SDK](https://github.com/Yelp/yelp-ios)
+- [Tools](https://github.com/Yelp/yelp-mcp)
+- [Spectral Rules](rules/yelp-spectral-rules.yml)
 - [Vocabulary](vocabulary/yelp-vocabulary.yaml)
-- [JSONLD](json-ld/yelp-fusion-api-context.jsonld)
+- [JSON-LD](json-ld/yelp-fusion-api-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
 - [Plans](plans/yelp-plans-pricing.yml)
-- [RateLimits](rate-limits/yelp-rate-limits.yml)
-- [FinOps](finops/yelp-finops.yml)
-
-## Features
-
-| Name | Description |
-|------|-------------|
-| Business Search | Search up to 240 businesses by location, term, category, price, and attributes. |
-| Business Details | Retrieve rich detail for a business by id or alias, including hours, photos, and attributes. |
-| Reviews | Retrieve review excerpts, ratings, and reviewer details for a business. |
-| Autocomplete | Return search-term, business, and category suggestions as the user types. |
-| Phone and Address Match | Resolve a phone number or postal address to Yelp businesses. |
-| Events | Search and retrieve local events with timing, location, cost, and ticketing. |
-| Category Taxonomy | Access the full Yelp business category list and per-category details. |
-| Fusion AI | Natural language, multi-turn conversational search and business questions. |
-
-## Use Cases
-
-| Name | Description |
-|------|-------------|
-| Restaurant Discovery | Power restaurant and food discovery experiences with search, ratings, and photos. |
-| Location-Aware Recommendations | Surface nearby, open, and highly-rated businesses based on user coordinates. |
-| Reputation Monitoring | Track ratings and review excerpts for a portfolio of businesses. |
-| Conversational Concierge | Build AI agents that answer natural language questions about local businesses. |
-| Local Events Listings | Embed curated local event listings into apps and sites. |
-
-## Integrations
-
-| Name | Description |
-|------|-------------|
-| Zapier | Yelp Leads and Conversions APIs offer Zapier integrations for no-code workflows. |
-| Model Context Protocol | Official Yelp MCP server exposes Fusion AI as an agent tool over MCP. |
-| Webhooks | Reviews and Leads webhooks push real-time events to partner endpoints. |
-
-## Artifacts
-
-Machine-readable API specifications organized by format.
-
-### OpenAPI
-
-- [Yelp Fusion API](openapi/yelp-openapi.yml) — 11 operations across Businesses, Reviews, Events, Categories, and AI
-
-### JSON Schema
-
-14 JSON Schema files extracted from the Yelp Fusion API components in [json-schema/](json-schema/).
-
-### JSON Structure
-
-14 JSON Structure files in [json-structure/](json-structure/).
-
-### JSON-LD
-
-- [Yelp Fusion API Context](json-ld/yelp-fusion-api-context.jsonld) — 98 terms with schema.org alignments
-
-### Examples
-
-14 example payloads in [examples/](examples/).
-
-## Capabilities
-
-Naftiko capabilities, one self-contained file per Yelp Fusion business surface. Each declares an inline `consumes` block plus REST and MCP exposers.
-
-| Capability | API | Tools | Persona |
-|------------|-----|-------|---------|
-| [Business Discovery](capabilities/yelp-businesses.yaml) | Yelp Fusion API | 5 | Local Search Developer / Restaurant Concierge Agent |
-| [Reviews](capabilities/yelp-reviews.yaml) | Yelp Fusion API | 1 | Reputation Analyst |
-| [Local Events](capabilities/yelp-events.yaml) | Yelp Fusion API | 2 | Events Curator |
-| [Category Taxonomy](capabilities/yelp-categories.yaml) | Yelp Fusion API | 2 | Local Search Developer |
-| [Conversational AI](capabilities/yelp-ai.yaml) | Yelp Fusion API | 1 | Restaurant Concierge Agent |
-
-## Vocabulary
-
-- [Yelp Vocabulary](vocabulary/yelp-vocabulary.yaml) — Unified taxonomy mapping 5 resources, 6 actions, 5 workflows, and 4 personas across operational (OpenAPI) and capability (Naftiko) dimensions
-
-## Rules
-
-- [Yelp Spectral Rules](rules/yelp-spectral-rules.yml) — 32 rules across info, paths, operations, tags, parameters, responses, schemas, security, and HTTP method categories enforcing Yelp Fusion API conventions
-
-## Plans, Rate Limits & FinOps
-
-- [Plans & Pricing](plans/yelp-plans-pricing.yml) — Starter, Base, Enhanced, Premium, and Enterprise tiers
-- [Rate Limits](rate-limits/yelp-rate-limits.yml) — Daily call cap, QPS throttling, and RateLimit headers
-- [FinOps](finops/yelp-finops.yml) — FOCUS-aligned cost and usage mapping
+- [Rate Limits](rate-limits/yelp-rate-limits.yml)
+- [Fin Ops](finops/yelp-finops.yml)
+- [Features](undefined)
+- [Use Cases](undefined)
+- [Integrations](undefined)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com
