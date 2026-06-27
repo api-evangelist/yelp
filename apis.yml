@@ -33,7 +33,7 @@ common:
   url: https://docs.developer.yelp.com/docs/oauth-authorization
 - type: DeveloperPortal
   url: https://www.yelp.com/developers
-- type: SignUp
+- type: Signup
   url: https://www.yelp.com/developers/v3/manage_app
 - type: Console
   url: https://www.yelp.com/developers/fusion-ai/chat
@@ -41,7 +41,7 @@ common:
   url: https://docs.developer.yelp.com/docs/plans
 - type: RateLimits
   url: https://docs.developer.yelp.com/docs/places-rate-limiting
-- type: Errors
+- type: ErrorCodes
   url: https://docs.developer.yelp.com/docs/api-errors
 - type: FAQ
   url: https://docs.developer.yelp.com/docs/places-faq
@@ -55,21 +55,21 @@ common:
   url: https://github.com/Yelp/yelp-fusion
 - type: LinkedIn
   url: https://www.linkedin.com/company/yelp-com
-- type: LLMsTxt
+- type: LlmsText
   url: https://docs.developer.yelp.com/llms.txt
-- type: SDK
+- type: SDKs
   title: Yelp Fusion Code Samples
   url: https://github.com/Yelp/yelp-fusion
-- type: SDK
+- type: SDKs
   title: Python (yelp-python)
   url: https://github.com/Yelp/yelp-python
-- type: SDK
+- type: SDKs
   title: Ruby (yelp-ruby)
   url: https://github.com/Yelp/yelp-ruby
-- type: SDK
+- type: SDKs
   title: Android (yelp-android)
   url: https://github.com/Yelp/yelp-android
-- type: SDK
+- type: SDKs
   title: iOS (yelp-ios)
   url: https://github.com/Yelp/yelp-ios
 - type: Tools
@@ -193,17 +193,17 @@ apis:
     url: json-structure/yelp-event-structure.json
   - type: JSONStructure
     url: json-structure/yelp-category-structure.json
-  - type: Example
+  - type: Examples
     url: examples/yelp-business-search-response-example.json
-  - type: Example
+  - type: Examples
     url: examples/yelp-business-detail-example.json
-  - type: Example
+  - type: Examples
     url: examples/yelp-reviews-response-example.json
-  - type: Example
+  - type: Examples
     url: examples/yelp-event-search-response-example.json
-  - type: Example
+  - type: Examples
     url: examples/yelp-autocomplete-response-example.json
-  - type: Example
+  - type: Examples
     url: examples/yelp-ai-chat-response-example.json
   - url: graphql/yelp-graphql.md
     type: GraphQL
