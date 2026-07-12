@@ -23,6 +23,14 @@ modified: '2026-06-03'
 url: https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 common:
+- type: VulnerabilityDisclosure
+  url: security/yelp-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/yelp-domain-security.yml
+- type: Authentication
+  url: authentication/yelp-authentication.yml
+- type: Blog
+  url: https://blog.yelp.com/feed/
 - type: Documentation
   url: https://docs.developer.yelp.com/
 - type: GettingStarted
