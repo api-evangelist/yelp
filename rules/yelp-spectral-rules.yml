@@ -1,11 +1,26 @@
-# Spectral ruleset for the Yelp Fusion API
-# Enforces the conventions observed across the Yelp Fusion OpenAPI definition:
-# snake_case query parameters, /v3 (and /ai) versioned paths, Title Case tags,
-# bearer authentication, camelCase operationIds with verb prefixes, and
-# snake_case schema properties.
+# yelp — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - servers-expected-domain: 1/1 servers on yelp.com
+#   - path-params-casing: snake @ 100% (n=4)
+#   - query-params-casing: snake @ 100% (n=56)
+#   - operationid-casing: camel @ 91% (n=11)
+#   - schema-names-casing: pascal @ 100% (n=15)
+#   - schema-properties-casing: snake @ 100% (n=83)
+#   - security: global (root) — NOT emitting operation-security-required
+#   - error-schema-defined: Error
+#   - operation-documents-401: 100% adherence
+#   - operation-documents-429: 100% adherence
+#   - pagination params observed: ['limit', 'offset']
+#   - merge: kept 32 existing, added 7 measured, upgraded 0
+#   - added: path-params-casing, query-params-casing, operationid-casing, schema-names-casing, schema-properties-casing, error-schema-defined, no-empty-descriptions
+extends:
+  - spectral:oas
 rules:
-
-  # ── INFO / METADATA ──────────────────────────────────────────────
   info-title-yelp:
     description: API title should identify Yelp.
     severity: warn
@@ -14,7 +29,7 @@ rules:
       field: title
       function: pattern
       functionOptions:
-        match: "^Yelp"
+        match: ^Yelp
   info-description-required:
     description: API must have a description of reasonable length.
     severity: warn
@@ -36,8 +51,6 @@ rules:
     then:
       field: version
       function: truthy
-
-  # ── OPENAPI VERSION ──────────────────────────────────────────────
   openapi-3-1:
     description: Specs should target OpenAPI 3.1.x.
     severity: warn
@@ -46,9 +59,7 @@ rules:
       field: openapi
       function: pattern
       functionOptions:
-        match: "^3\\.1\\."
-
-  # ── SERVERS ──────────────────────────────────────────────────────
+        match: ^3\.1\.
   servers-defined:
     description: At least one server must be defined.
     severity: error
@@ -64,7 +75,7 @@ rules:
       field: url
       function: pattern
       functionOptions:
-        match: "^https://"
+        match: ^https://
   server-is-yelp-host:
     description: Production server should be api.yelp.com.
     severity: info
@@ -73,9 +84,7 @@ rules:
       field: url
       function: pattern
       functionOptions:
-        match: "api\\.yelp\\.com"
-
-  # ── PATHS ────────────────────────────────────────────────────────
+        match: api\.yelp\.com
   paths-versioned:
     description: Paths should be versioned under /v3 or /ai.
     severity: warn
@@ -83,7 +92,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^/(v3|ai)/"
+        match: ^/(v3|ai)/
   paths-no-trailing-slash:
     description: Paths must not end with a trailing slash.
     severity: error
@@ -91,7 +100,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        notMatch: ".+/$"
+        notMatch: .+/$
   paths-snake-or-kebab-segments:
     description: Static path segments use lowercase letters, digits, underscores or hyphens.
     severity: warn
@@ -99,9 +108,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^(/(\\{[a-z_]+\\}|[a-z0-9_-]+))+$"
-
-  # ── OPERATIONS ───────────────────────────────────────────────────
+        match: ^(/(\{[a-z_]+\}|[a-z0-9_-]+))+$
   operation-operationId-required:
     description: Every operation must have an operationId.
     severity: error
@@ -110,14 +117,15 @@ rules:
       field: operationId
       function: truthy
   operation-operationId-camelcase-verb:
-    description: operationId should be camelCase starting with a verb (get, list, search, create, update, delete, match, autocomplete, ai).
+    description: operationId should be camelCase starting with a verb (get, list, search, create, update,
+      delete, match, autocomplete, ai).
     severity: warn
     given: $.paths[*][get,post,put,patch,delete]
     then:
       field: operationId
       function: pattern
       functionOptions:
-        match: "^(get|list|search|create|update|delete|match|autocomplete|ai)[A-Za-z0-9]*$"
+        match: ^(get|list|search|create|update|delete|match|autocomplete|ai)[A-Za-z0-9]*$
   operation-summary-required:
     description: Every operation must have a summary.
     severity: warn
@@ -133,7 +141,7 @@ rules:
       field: summary
       function: pattern
       functionOptions:
-        match: "^[A-Z][A-Za-z0-9]*( [A-Za-z0-9/+-]+)*$"
+        match: ^[A-Z][A-Za-z0-9]*( [A-Za-z0-9/+-]+)*$
   operation-description-required:
     description: Every operation should have a description.
     severity: info
@@ -148,8 +156,6 @@ rules:
     then:
       field: tags
       function: truthy
-
-  # ── TAGS ─────────────────────────────────────────────────────────
   global-tags-defined:
     description: A global tags array should be present.
     severity: info
@@ -165,9 +171,7 @@ rules:
       field: name
       function: pattern
       functionOptions:
-        match: "^[A-Z][A-Za-z0-9]*( [A-Z][A-Za-z0-9]*)*$"
-
-  # ── PARAMETERS ───────────────────────────────────────────────────
+        match: ^[A-Z][A-Za-z0-9]*( [A-Z][A-Za-z0-9]*)*$
   parameter-description-required:
     description: Parameters should have a description.
     severity: warn
@@ -183,7 +187,7 @@ rules:
       field: name
       function: pattern
       functionOptions:
-        match: "^[a-z][a-z0-9_]*$"
+        match: ^[a-z][a-z0-9_]*$
   parameter-pagination-offset-limit:
     description: Pagination should use offset and limit (Yelp convention), not page/size.
     severity: info
@@ -192,9 +196,7 @@ rules:
       field: name
       function: pattern
       functionOptions:
-        notMatch: "^(page|page_size|per_page)$"
-
-  # ── REQUEST BODIES ───────────────────────────────────────────────
+        notMatch: ^(page|page_size|per_page)$
   request-body-json:
     description: Request bodies should offer application/json content.
     severity: warn
@@ -202,28 +204,26 @@ rules:
     then:
       field: application/json
       function: truthy
-
-  # ── RESPONSES ────────────────────────────────────────────────────
   response-200-present:
     description: Read operations should define a 200 response.
     severity: warn
     given: $.paths[*][get].responses
     then:
-      field: "200"
+      field: '200'
       function: truthy
   response-401-present:
     description: Operations should document a 401 unauthorized response.
     severity: info
     given: $.paths[*][get,post,put,patch,delete].responses
     then:
-      field: "401"
+      field: '401'
       function: truthy
   response-429-present:
     description: Operations should document a 429 rate-limit response.
     severity: info
     given: $.paths[*][get,post,put,patch,delete].responses
     then:
-      field: "429"
+      field: '429'
       function: truthy
   response-description-required:
     description: Every response must have a description.
@@ -232,8 +232,6 @@ rules:
     then:
       field: description
       function: truthy
-
-  # ── SCHEMAS ──────────────────────────────────────────────────────
   schema-property-snake-case:
     description: Schema properties should be snake_case (Yelp convention).
     severity: warn
@@ -241,7 +239,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^[a-z][a-z0-9_]*$"
+        match: ^[a-z][a-z0-9_]*$
   schema-error-has-code:
     description: The Error schema should expose an error object with a code/description.
     severity: info
@@ -249,8 +247,6 @@ rules:
     then:
       field: error
       function: truthy
-
-  # ── SECURITY ─────────────────────────────────────────────────────
   global-security-defined:
     description: A global security requirement should be declared.
     severity: warn
@@ -266,9 +262,7 @@ rules:
       field: scheme
       function: pattern
       functionOptions:
-        match: "^bearer$"
-
-  # ── HTTP METHOD CONVENTIONS ──────────────────────────────────────
+        match: ^bearer$
   get-no-request-body:
     description: GET operations must not declare a request body.
     severity: error
@@ -276,3 +270,59 @@ rules:
     then:
       field: requestBody
       function: falsy
+  path-params-casing:
+    description: Path parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*].parameters[?(@.in=='path')].name
+    then:
+      function: casing
+      functionOptions:
+        type: snake
+  query-params-casing:
+    description: Query parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: snake
+  operationid-casing:
+    description: Operation IDs should be camelCase (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: pascal
+  schema-properties-casing:
+    description: Schema properties should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: snake
+  error-schema-defined:
+    description: A shared error schema (Error) should be defined for error payloads.
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: Error
+      function: truthy
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings.
+    severity: warn
+    given: $..description
+    then:
+      function: truthy
