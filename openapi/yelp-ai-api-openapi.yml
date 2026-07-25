@@ -1,0 +1,179 @@
+openapi: 3.1.0
+info:
+  title: Yelp Fusion AI API
+  description: 'The Yelp Fusion API provides programmatic access to Yelp''s database of local businesses, reviews, events, categories, and conversational AI search. This definition documents the public Fusion REST endpoints: business search and discovery, business details, reviews, autocomplete, phone search, business match, events, categories, and the Yelp Fusion AI chat endpoint. Authentication is via a bearer API key passed in the Authorization header.'
+  version: '3.0'
+  contact:
+    name: Yelp Developer
+    url: https://docs.developer.yelp.com/
+  termsOfService: https://docs.developer.yelp.com/docs/policies
+servers:
+- url: https://api.yelp.com
+  description: Yelp Fusion API base URL
+security:
+- bearerAuth: []
+tags:
+- name: AI
+  description: Conversational Yelp Fusion AI search and chat
+paths:
+  /ai/chat/v2:
+    post:
+      tags:
+      - AI
+      operationId: aiChat
+      summary: Yelp AI Chat
+      description: Sends a natural language query to the Yelp Fusion AI and returns a conversational response plus structured business entities. Supports multi-turn conversations via chat_id.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AiChatRequest'
+            examples:
+              AiChatRequestExample:
+                summary: Default aiChat request
+                x-microcks-default: true
+                value:
+                  query: find the best tacos in the Bay Area
+                  chat_id: f47ac10b-58cc-4372-a567-0e02b2c3d479
+                  user_context:
+                    latitude: 37.7867
+                    longitude: -122.4112
+                  request_context: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiChatResponse'
+              examples:
+                AiChat200Example:
+                  summary: Default aiChat 200 response
+                  x-microcks-default: true
+                  value:
+                    chat_id: f47ac10b-58cc-4372-a567-0e02b2c3d479
+                    response:
+                      text: Best tacos in the Bay Area. The al pastor is incredible and the salsa bar is unmatched.
+                      tags: {}
+                    types:
+                    - business_search
+                    entities:
+                    - {}
+                    request_a_quote_survey: {}
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    AiChatRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          maxLength: 1000
+          description: Natural language query.
+          example: find the best tacos in the Bay Area
+        chat_id:
+          type: string
+          description: Conversation id to continue a multi-turn session.
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+        user_context:
+          type: object
+          description: Location context for geo-specific results.
+          properties:
+            latitude:
+              type: number
+              format: double
+            longitude:
+              type: number
+              format: double
+        request_context:
+          type: object
+          additionalProperties: true
+          description: Processing settings such as skip_text_generation.
+    AiChatResponse:
+      type: object
+      properties:
+        chat_id:
+          type: string
+          description: Conversation id
+          persists across turns.: null
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+        response:
+          type: object
+          properties:
+            text:
+              type: string
+              description: AI-generated natural language answer.
+            tags:
+              type: object
+              additionalProperties: true
+        types:
+          type: array
+          items:
+            type: string
+            enum:
+            - business_search
+            - business_question
+            - clarification
+            - unsupported
+            - confirmation
+        entities:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        request_a_quote_survey:
+          type:
+          - object
+          - 'null'
+          additionalProperties: true
+          example: {}
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+              e.g. VALIDATION_ERROR.: null
+            description:
+              type: string
+              description: Human-readable error description.
+  responses:
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or missing required parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Yelp Fusion API key passed as a bearer token in the Authorization header.
+x-generated-from: https://docs.developer.yelp.com/reference
+x-generated-by: api-evangelist-pipeline-2026-06

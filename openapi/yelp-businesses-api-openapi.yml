@@ -1,0 +1,910 @@
+openapi: 3.1.0
+info:
+  title: Yelp Fusion AI Businesses API
+  description: 'The Yelp Fusion API provides programmatic access to Yelp''s database of local businesses, reviews, events, categories, and conversational AI search. This definition documents the public Fusion REST endpoints: business search and discovery, business details, reviews, autocomplete, phone search, business match, events, categories, and the Yelp Fusion AI chat endpoint. Authentication is via a bearer API key passed in the Authorization header.'
+  version: '3.0'
+  contact:
+    name: Yelp Developer
+    url: https://docs.developer.yelp.com/
+  termsOfService: https://docs.developer.yelp.com/docs/policies
+servers:
+- url: https://api.yelp.com
+  description: Yelp Fusion API base URL
+security:
+- bearerAuth: []
+tags:
+- name: Businesses
+  description: Search, match, and retrieve local business data
+paths:
+  /v3/businesses/search:
+    get:
+      tags:
+      - Businesses
+      operationId: searchBusinesses
+      summary: Search Businesses
+      description: Returns up to 240 businesses based on the provided search criteria. Either location or a latitude/longitude pair is required.
+      parameters:
+      - name: location
+        in: query
+        description: Geographic area to search. Required if latitude and longitude are not provided.
+        schema:
+          type: string
+          maxLength: 250
+        example: example
+      - name: latitude
+        in: query
+        description: Latitude of the search center. Required if location is not provided.
+        schema:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+        example: 37.7867
+      - name: longitude
+        in: query
+        description: Longitude of the search center. Required if location is not provided.
+        schema:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+        example: -122.4112
+      - name: term
+        in: query
+        description: Search term, such as "food" or a business name.
+        schema:
+          type: string
+          maxLength: 300
+        example: example
+      - name: radius
+        in: query
+        description: Search radius in meters. Maximum 40000.
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 40000
+        example: 1
+      - name: categories
+        in: query
+        description: Comma-delimited list of category aliases to filter by.
+        schema:
+          type: string
+        example: example
+      - name: locale
+        in: query
+        description: Locale in the form {language}_{country}, e.g. en_US.
+        schema:
+          type: string
+          pattern: ^[a-z]{2,3}_[A-Z]{2}$
+        example: example
+      - name: price
+        in: query
+        description: Comma-delimited list of price levels (1, 2, 3, 4).
+        schema:
+          type: string
+        example: $$
+      - name: open_now
+        in: query
+        description: Return only businesses open at the time of the request.
+        schema:
+          type: boolean
+        example: true
+      - name: open_at
+        in: query
+        description: Return businesses open at the given Unix timestamp.
+        schema:
+          type: integer
+        example: 1
+      - name: attributes
+        in: query
+        description: Comma-delimited list of business attributes to filter by.
+        schema:
+          type: string
+        example: example
+      - name: sort_by
+        in: query
+        description: Sort mode for results.
+        schema:
+          type: string
+          enum:
+          - best_match
+          - rating
+          - review_count
+          - distance
+          default: best_match
+        example: best_match
+      - name: limit
+        in: query
+        description: Number of results to return.
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 50
+          default: 20
+        example: 1
+      - name: offset
+        in: query
+        description: Offset into the list of returned results.
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 1000
+        example: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessSearchResponse'
+              examples:
+                SearchBusinesses200Example:
+                  summary: Default searchBusinesses 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 240
+                    businesses:
+                    - id: gR9DTbKCON2g1Z23bWcEpQ
+                      alias: rickys-tacos-san-francisco
+                      name: Ricky's Tacos
+                      image_url: https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg
+                      is_closed: false
+                      url: https://www.yelp.com/biz/rickys-tacos-san-francisco
+                      review_count: 1289
+                      categories:
+                      - {}
+                      rating: 4.5
+                      coordinates:
+                        latitude: 37.7867
+                        longitude: -122.4112
+                      transactions:
+                      - pickup
+                      price: $$
+                      location:
+                        address1: 350 Mission St
+                        address2: ''
+                        address3: ''
+                        city: San Francisco
+                        state: CA
+                        zip_code: '94105'
+                        country: US
+                        display_address: {}
+                        cross_streets: example
+                      phone: '+14159083801'
+                      display_phone: (415) 908-3801
+                      distance: 1503.4
+                      attributes: {}
+                    region:
+                      center:
+                        latitude: 37.7867
+                        longitude: -122.4112
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v3/businesses/search/phone:
+    get:
+      tags:
+      - Businesses
+      operationId: searchBusinessesByPhone
+      summary: Search Businesses By Phone
+      description: Returns businesses associated with the given phone number.
+      parameters:
+      - name: phone
+        in: query
+        required: true
+        description: Phone number in the form +[country code][number], e.g. +14159083801.
+        schema:
+          type: string
+          pattern: ^[0-9 +()-.x/]+$
+          minLength: 1
+          maxLength: 32
+        example: '+14159083801'
+      - name: locale
+        in: query
+        description: Locale in the form {language}_{country}, e.g. en_US.
+        schema:
+          type: string
+          pattern: ^[a-z]{2,3}_[A-Z]{2}$
+        example: example
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessSearchResponse'
+              examples:
+                SearchBusinessesByPhone200Example:
+                  summary: Default searchBusinessesByPhone 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 240
+                    businesses:
+                    - id: gR9DTbKCON2g1Z23bWcEpQ
+                      alias: rickys-tacos-san-francisco
+                      name: Ricky's Tacos
+                      image_url: https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg
+                      is_closed: false
+                      url: https://www.yelp.com/biz/rickys-tacos-san-francisco
+                      review_count: 1289
+                      categories:
+                      - {}
+                      rating: 4.5
+                      coordinates:
+                        latitude: 37.7867
+                        longitude: -122.4112
+                      transactions:
+                      - pickup
+                      price: $$
+                      location:
+                        address1: 350 Mission St
+                        address2: ''
+                        address3: ''
+                        city: San Francisco
+                        state: CA
+                        zip_code: '94105'
+                        country: US
+                        display_address: {}
+                        cross_streets: example
+                      phone: '+14159083801'
+                      display_phone: (415) 908-3801
+                      distance: 1503.4
+                      attributes: {}
+                    region:
+                      center:
+                        latitude: 37.7867
+                        longitude: -122.4112
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v3/businesses/matches:
+    get:
+      tags:
+      - Businesses
+      operationId: matchBusinesses
+      summary: Match Businesses
+      description: Matches the supplied business attributes against businesses on Yelp, returning the best candidate matches. Useful for resolving your own records to a Yelp business id.
+      parameters:
+      - name: name
+        in: query
+        required: true
+        description: Business name.
+        schema:
+          type: string
+          maxLength: 64
+        example: Ricky's Tacos
+      - name: address1
+        in: query
+        required: true
+        description: First line of the business address.
+        schema:
+          type: string
+          maxLength: 64
+        example: 350 Mission St
+      - name: address2
+        in: query
+        description: Second line of the business address.
+        schema:
+          type: string
+          maxLength: 64
+        example: ''
+      - name: address3
+        in: query
+        description: Third line of the business address.
+        schema:
+          type: string
+          maxLength: 64
+        example: ''
+      - name: city
+        in: query
+        required: true
+        description: City of the business.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 64
+        example: San Francisco
+      - name: state
+        in: query
+        required: true
+        description: ISO 3166-2 state code of the business.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 3
+        example: CA
+      - name: country
+        in: query
+        required: true
+        description: ISO 3166-1 alpha-2 country code of the business.
+        schema:
+          type: string
+          minLength: 2
+          maxLength: 2
+        example: US
+      - name: postal_code
+        in: query
+        description: Postal/ZIP code of the business.
+        schema:
+          type: string
+          maxLength: 12
+        example: example
+      - name: latitude
+        in: query
+        description: Latitude of the business.
+        schema:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+        example: 37.7867
+      - name: longitude
+        in: query
+        description: Longitude of the business.
+        schema:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+        example: -122.4112
+      - name: phone
+        in: query
+        description: Phone number of the business.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 32
+        example: '+14159083801'
+      - name: yelp_business_id
+        in: query
+        description: A Yelp business id hint to improve match accuracy.
+        schema:
+          type: string
+          minLength: 22
+          maxLength: 22
+        example: example
+      - name: limit
+        in: query
+        description: Number of matches to return.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 10
+          default: 3
+        example: 1
+      - name: match_threshold
+        in: query
+        description: How strictly candidates must match the input.
+        schema:
+          type: string
+          enum:
+          - none
+          - default
+          - strict
+          default: default
+        example: none
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  businesses:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Business'
+              examples:
+                MatchBusinesses200Example:
+                  summary: Default matchBusinesses 200 response
+                  x-microcks-default: true
+                  value:
+                    businesses:
+                    - id: gR9DTbKCON2g1Z23bWcEpQ
+                      alias: rickys-tacos-san-francisco
+                      name: Ricky's Tacos
+                      image_url: https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg
+                      is_closed: false
+                      url: https://www.yelp.com/biz/rickys-tacos-san-francisco
+                      review_count: 1289
+                      categories:
+                      - alias: rickys-tacos-san-francisco
+                        title: Tacos
+                        parent_aliases: {}
+                        country_whitelist: {}
+                        country_blacklist: {}
+                      rating: 4.5
+                      coordinates:
+                        latitude: 37.7867
+                        longitude: -122.4112
+                      transactions:
+                      - pickup
+                      price: $$
+                      location:
+                        address1: 350 Mission St
+                        address2: ''
+                        address3: ''
+                        city: San Francisco
+                        state: CA
+                        zip_code: '94105'
+                        country: US
+                        display_address:
+                        - example
+                        cross_streets: example
+                      phone: '+14159083801'
+                      display_phone: (415) 908-3801
+                      distance: 1503.4
+                      attributes: {}
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v3/businesses/{business_id_or_alias}:
+    get:
+      tags:
+      - Businesses
+      operationId: getBusiness
+      summary: Get Business Details
+      description: Returns detailed information about a business by Yelp id or alias.
+      parameters:
+      - name: business_id_or_alias
+        in: path
+        required: true
+        description: A 22-character Yelp business id or a business alias.
+        schema:
+          type: string
+        example: example
+      - name: locale
+        in: query
+        description: Locale in the form {language}_{country}, e.g. en_US.
+        schema:
+          type: string
+          pattern: ^[a-z]{2,3}_[A-Z]{2}$
+        example: example
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessDetail'
+              examples:
+                GetBusiness200Example:
+                  summary: Default getBusiness 200 response
+                  x-microcks-default: true
+                  value:
+                    id: gR9DTbKCON2g1Z23bWcEpQ
+                    alias: rickys-tacos-san-francisco
+                    name: Ricky's Tacos
+                    image_url: https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg
+                    is_closed: false
+                    url: https://www.yelp.com/biz/rickys-tacos-san-francisco
+                    review_count: 1289
+                    categories:
+                    - alias: rickys-tacos-san-francisco
+                      title: Tacos
+                      parent_aliases:
+                      - example
+                      country_whitelist:
+                      - example
+                      country_blacklist:
+                      - example
+                    rating: 4.5
+                    coordinates:
+                      latitude: 37.7867
+                      longitude: -122.4112
+                    transactions:
+                    - pickup
+                    price: $$
+                    location:
+                      address1: 350 Mission St
+                      address2: ''
+                      address3: ''
+                      city: San Francisco
+                      state: CA
+                      zip_code: '94105'
+                      country: US
+                      display_address:
+                      - example
+                      cross_streets: example
+                    phone: '+14159083801'
+                    display_phone: (415) 908-3801
+                    distance: 1503.4
+                    attributes: {}
+                    is_claimed: true
+                    photos:
+                    - example
+                    hours:
+                    - hour_type: REGULAR
+                      open:
+                      - day: 1
+                        start: '1100'
+                        end: '2200'
+                        is_overnight: false
+                      is_open_now: true
+                    special_hours:
+                    - {}
+                    messaging: {}
+                    yelp_menu_url: https://www.yelp.com/menu/rickys-tacos-san-francisco
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v3/autocomplete:
+    get:
+      tags:
+      - Businesses
+      operationId: autocomplete
+      summary: Autocomplete
+      description: Returns autocomplete suggestions for search terms, businesses, and categories.
+      parameters:
+      - name: text
+        in: query
+        required: true
+        description: Text to return autocomplete suggestions for.
+        schema:
+          type: string
+          minLength: 1
+        example: Best tacos in the Bay Area. The al pastor is incredible and the salsa bar is unmatched.
+      - name: latitude
+        in: query
+        description: Latitude of the location to look for suggestions in.
+        schema:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+        example: 37.7867
+      - name: longitude
+        in: query
+        description: Longitude of the location to look for suggestions in.
+        schema:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+        example: -122.4112
+      - name: locale
+        in: query
+        description: Locale in the form {language}_{country}, e.g. en_US.
+        schema:
+          type: string
+          pattern: ^[a-z]{2,3}_[A-Z]{2}$
+        example: example
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteResponse'
+              examples:
+                Autocomplete200Example:
+                  summary: Default autocomplete 200 response
+                  x-microcks-default: true
+                  value:
+                    terms:
+                    - text: Best tacos in the Bay Area. The al pastor is incredible and the salsa bar is unmatched.
+                    businesses:
+                    - id: gR9DTbKCON2g1Z23bWcEpQ
+                      name: Ricky's Tacos
+                    categories:
+                    - alias: rickys-tacos-san-francisco
+                      title: Tacos
+                      parent_aliases:
+                      - example
+                      country_whitelist:
+                      - example
+                      country_blacklist:
+                      - example
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        alias:
+          type: string
+          description: Unique category identifier.
+          example: rickys-tacos-san-francisco
+        title:
+          type: string
+          description: Localized category title.
+          example: Tacos
+        parent_aliases:
+          type: array
+          items:
+            type: string
+          description: Aliases of parent categories.
+        country_whitelist:
+          type: array
+          items:
+            type: string
+          description: Countries where this category is available.
+        country_blacklist:
+          type: array
+          items:
+            type: string
+          description: Countries where this category is restricted.
+    Location:
+      type: object
+      properties:
+        address1:
+          type: string
+          example: 350 Mission St
+        address2:
+          type:
+          - string
+          - 'null'
+          example: ''
+        address3:
+          type:
+          - string
+          - 'null'
+          example: ''
+        city:
+          type: string
+          example: San Francisco
+        state:
+          type: string
+          example: CA
+        zip_code:
+          type: string
+          example: '94105'
+        country:
+          type: string
+          example: US
+        display_address:
+          type: array
+          items:
+            type: string
+        cross_streets:
+          type: string
+          example: example
+    Coordinates:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+          example: 37.7867
+        longitude:
+          type: number
+          format: double
+          example: -122.4112
+    Business:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique Yelp business id.
+          example: gR9DTbKCON2g1Z23bWcEpQ
+        alias:
+          type: string
+          description: Unique Yelp business alias.
+          example: rickys-tacos-san-francisco
+        name:
+          type: string
+          example: Ricky's Tacos
+        image_url:
+          type: string
+          format: uri
+          example: https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg
+        is_closed:
+          type: boolean
+          description: Whether the business is permanently closed.
+          example: false
+        url:
+          type: string
+          format: uri
+          description: Yelp page URL for the business.
+          example: https://www.yelp.com/biz/rickys-tacos-san-francisco
+        review_count:
+          type: integer
+          example: 1289
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+        rating:
+          type: number
+          format: float
+          description: Average star rating
+          1.0 to 5.0.: null
+          example: 4.5
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        transactions:
+          type: array
+          items:
+            type: string
+            enum:
+            - pickup
+            - delivery
+            - restaurant_reservation
+        price:
+          type: string
+          description: Price level from $ to $$$$.
+          example: $$
+        location:
+          $ref: '#/components/schemas/Location'
+        phone:
+          type: string
+          example: '+14159083801'
+        display_phone:
+          type: string
+          example: (415) 908-3801
+        distance:
+          type: number
+          format: double
+          description: Distance from the search center in meters.
+          example: 1503.4
+        attributes:
+          type: object
+          additionalProperties: true
+    AutocompleteResponse:
+      type: object
+      properties:
+        terms:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+        businesses:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+    BusinessHours:
+      type: object
+      properties:
+        hour_type:
+          type: string
+          example: REGULAR
+        open:
+          type: array
+          items:
+            type: object
+            properties:
+              day:
+                type: integer
+                description: Day of week
+                0 (Monday) to 6 (Sunday).: null
+              start:
+                type: string
+              end:
+                type: string
+              is_overnight:
+                type: boolean
+        is_open_now:
+          type: boolean
+          example: true
+    BusinessDetail:
+      allOf:
+      - $ref: '#/components/schemas/Business'
+      - type: object
+        properties:
+          is_claimed:
+            type: boolean
+          photos:
+            type: array
+            items:
+              type: string
+              format: uri
+          hours:
+            type: array
+            items:
+              $ref: '#/components/schemas/BusinessHours'
+          special_hours:
+            type: array
+            items:
+              type: object
+              additionalProperties: true
+          messaging:
+            type: object
+            additionalProperties: true
+          yelp_menu_url:
+            type: string
+            format: uri
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+              e.g. VALIDATION_ERROR.: null
+            description:
+              type: string
+              description: Human-readable error description.
+    BusinessSearchResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of businesses Yelp found.
+          example: 240
+        businesses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Business'
+        region:
+          type: object
+          properties:
+            center:
+              $ref: '#/components/schemas/Coordinates'
+  responses:
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or missing required parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Yelp Fusion API key passed as a bearer token in the Authorization header.
+x-generated-from: https://docs.developer.yelp.com/reference
+x-generated-by: api-evangelist-pipeline-2026-06

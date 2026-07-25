@@ -1,0 +1,426 @@
+openapi: 3.1.0
+info:
+  title: Yelp Fusion AI Events API
+  description: 'The Yelp Fusion API provides programmatic access to Yelp''s database of local businesses, reviews, events, categories, and conversational AI search. This definition documents the public Fusion REST endpoints: business search and discovery, business details, reviews, autocomplete, phone search, business match, events, categories, and the Yelp Fusion AI chat endpoint. Authentication is via a bearer API key passed in the Authorization header.'
+  version: '3.0'
+  contact:
+    name: Yelp Developer
+    url: https://docs.developer.yelp.com/
+  termsOfService: https://docs.developer.yelp.com/docs/policies
+servers:
+- url: https://api.yelp.com
+  description: Yelp Fusion API base URL
+security:
+- bearerAuth: []
+tags:
+- name: Events
+  description: Local event search and details
+paths:
+  /v3/events:
+    get:
+      tags:
+      - Events
+      operationId: searchEvents
+      summary: Search Events
+      description: Returns events based on the provided search criteria.
+      parameters:
+      - name: locale
+        in: query
+        description: Locale in the form {language}_{country}, e.g. en_US.
+        schema:
+          type: string
+          pattern: ^[a-z]{2,3}_[A-Z]{2}$
+        example: example
+      - name: offset
+        in: query
+        description: Offset into the list of returned events.
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 1000
+        example: 1
+      - name: limit
+        in: query
+        description: Number of events to return.
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 50
+          default: 3
+        example: 1
+      - name: sort_by
+        in: query
+        description: Sort direction.
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+        example: asc
+      - name: sort_on
+        in: query
+        description: Field to sort events on.
+        schema:
+          type: string
+          enum:
+          - popularity
+          - time_start
+          default: popularity
+        example: popularity
+      - name: start_date
+        in: query
+        description: Unix timestamp lower bound for event start time.
+        schema:
+          type: integer
+        example: 1
+      - name: end_date
+        in: query
+        description: Unix timestamp upper bound for event start time.
+        schema:
+          type: integer
+        example: 1
+      - name: categories
+        in: query
+        description: Comma-delimited list of event category aliases.
+        schema:
+          type: string
+        example: example
+      - name: is_free
+        in: query
+        description: Filter for free events.
+        schema:
+          type: boolean
+        example: true
+      - name: location
+        in: query
+        description: Geographic area to search for events.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 250
+        example: example
+      - name: latitude
+        in: query
+        description: Latitude of the search center.
+        schema:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+        example: 37.7867
+      - name: longitude
+        in: query
+        description: Longitude of the search center.
+        schema:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+        example: -122.4112
+      - name: radius
+        in: query
+        description: Search radius in meters. Maximum 40000.
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 40000
+        example: 1
+      - name: excluded_events
+        in: query
+        description: Comma-delimited list of event ids to exclude.
+        schema:
+          type: string
+        example: example
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSearchResponse'
+              examples:
+                SearchEvents200Example:
+                  summary: Default searchEvents 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 240
+                    events:
+                    - id: gR9DTbKCON2g1Z23bWcEpQ
+                      name: Ricky's Tacos
+                      category: music
+                      description: Live music in the heart of the Mission District.
+                      time_start: '2026-07-04T19:00:00-07:00'
+                      time_end: '2026-07-04T23:00:00-07:00'
+                      location:
+                        address1: 350 Mission St
+                        address2: ''
+                        address3: ''
+                        city: San Francisco
+                        state: CA
+                        zip_code: '94105'
+                        country: US
+                        display_address: {}
+                        cross_streets: example
+                      latitude: 37.7867
+                      longitude: -122.4112
+                      image_url: https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg
+                      event_site_url: https://www.yelp.com/events/san-francisco-summer-music-festival
+                      is_free: true
+                      is_canceled: false
+                      is_official: true
+                      attending_count: 312
+                      interested_count: 1024
+                      cost: 0
+                      cost_max: 0
+                      tickets_url: https://www.yelp.com/events/tickets/abc123
+                      business_id: gR9DTbKCON2g1Z23bWcEpQ
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v3/events/{event_id}:
+    get:
+      tags:
+      - Events
+      operationId: getEvent
+      summary: Get Event Details
+      description: Returns details for a single event by id.
+      parameters:
+      - name: event_id
+        in: path
+        required: true
+        description: The id of the event to retrieve.
+        schema:
+          type: string
+        example: example
+      - name: locale
+        in: query
+        description: Locale in the form {language}_{country}, e.g. en_US.
+        schema:
+          type: string
+          pattern: ^[a-z]{2,3}_[A-Z]{2}$
+        example: example
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+              examples:
+                GetEvent200Example:
+                  summary: Default getEvent 200 response
+                  x-microcks-default: true
+                  value:
+                    id: gR9DTbKCON2g1Z23bWcEpQ
+                    name: Ricky's Tacos
+                    category: music
+                    description: Live music in the heart of the Mission District.
+                    time_start: '2026-07-04T19:00:00-07:00'
+                    time_end: '2026-07-04T23:00:00-07:00'
+                    location:
+                      address1: 350 Mission St
+                      address2: ''
+                      address3: ''
+                      city: San Francisco
+                      state: CA
+                      zip_code: '94105'
+                      country: US
+                      display_address:
+                      - example
+                      cross_streets: example
+                    latitude: 37.7867
+                    longitude: -122.4112
+                    image_url: https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg
+                    event_site_url: https://www.yelp.com/events/san-francisco-summer-music-festival
+                    is_free: true
+                    is_canceled: false
+                    is_official: true
+                    attending_count: 312
+                    interested_count: 1024
+                    cost: 0
+                    cost_max: 0
+                    tickets_url: https://www.yelp.com/events/tickets/abc123
+                    business_id: gR9DTbKCON2g1Z23bWcEpQ
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Location:
+      type: object
+      properties:
+        address1:
+          type: string
+          example: 350 Mission St
+        address2:
+          type:
+          - string
+          - 'null'
+          example: ''
+        address3:
+          type:
+          - string
+          - 'null'
+          example: ''
+        city:
+          type: string
+          example: San Francisco
+        state:
+          type: string
+          example: CA
+        zip_code:
+          type: string
+          example: '94105'
+        country:
+          type: string
+          example: US
+        display_address:
+          type: array
+          items:
+            type: string
+        cross_streets:
+          type: string
+          example: example
+    EventSearchResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          example: 240
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          example: gR9DTbKCON2g1Z23bWcEpQ
+        name:
+          type: string
+          example: Ricky's Tacos
+        category:
+          type: string
+          example: music
+        description:
+          type: string
+          example: Live music in the heart of the Mission District.
+        time_start:
+          type: string
+          example: '2026-07-04T19:00:00-07:00'
+        time_end:
+          type: string
+          example: '2026-07-04T23:00:00-07:00'
+        location:
+          $ref: '#/components/schemas/Location'
+        latitude:
+          type: number
+          format: double
+          example: 37.7867
+        longitude:
+          type: number
+          format: double
+          example: -122.4112
+        image_url:
+          type: string
+          format: uri
+          example: https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg
+        event_site_url:
+          type: string
+          format: uri
+          example: https://www.yelp.com/events/san-francisco-summer-music-festival
+        is_free:
+          type: boolean
+          example: true
+        is_canceled:
+          type: boolean
+          example: false
+        is_official:
+          type: boolean
+          example: true
+        attending_count:
+          type: integer
+          example: 312
+        interested_count:
+          type: integer
+          example: 1024
+        cost:
+          type:
+          - number
+          - 'null'
+          format: float
+          example: 0
+        cost_max:
+          type:
+          - number
+          - 'null'
+          format: float
+          example: 0
+        tickets_url:
+          type: string
+          format: uri
+          example: https://www.yelp.com/events/tickets/abc123
+        business_id:
+          type:
+          - string
+          - 'null'
+          example: gR9DTbKCON2g1Z23bWcEpQ
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+              e.g. VALIDATION_ERROR.: null
+            description:
+              type: string
+              description: Human-readable error description.
+  responses:
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or missing required parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Yelp Fusion API key passed as a bearer token in the Authorization header.
+x-generated-from: https://docs.developer.yelp.com/reference
+x-generated-by: api-evangelist-pipeline-2026-06

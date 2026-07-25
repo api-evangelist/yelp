@@ -1,0 +1,193 @@
+openapi: 3.1.0
+info:
+  title: Yelp Fusion AI Reviews API
+  description: 'The Yelp Fusion API provides programmatic access to Yelp''s database of local businesses, reviews, events, categories, and conversational AI search. This definition documents the public Fusion REST endpoints: business search and discovery, business details, reviews, autocomplete, phone search, business match, events, categories, and the Yelp Fusion AI chat endpoint. Authentication is via a bearer API key passed in the Authorization header.'
+  version: '3.0'
+  contact:
+    name: Yelp Developer
+    url: https://docs.developer.yelp.com/
+  termsOfService: https://docs.developer.yelp.com/docs/policies
+servers:
+- url: https://api.yelp.com
+  description: Yelp Fusion API base URL
+security:
+- bearerAuth: []
+tags:
+- name: Reviews
+  description: Business review excerpts and ratings
+paths:
+  /v3/businesses/{business_id_or_alias}/reviews:
+    get:
+      tags:
+      - Reviews
+      operationId: getBusinessReviews
+      summary: Get Business Reviews
+      description: Returns up to three review excerpts for a business.
+      parameters:
+      - name: business_id_or_alias
+        in: path
+        required: true
+        description: A 22-character Yelp business id or a business alias.
+        schema:
+          type: string
+        example: example
+      - name: limit
+        in: query
+        description: Number of reviews to return.
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 50
+          default: 20
+        example: 1
+      - name: offset
+        in: query
+        description: Offset into the list of returned reviews.
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 1000
+        example: 1
+      - name: sort_by
+        in: query
+        description: Sort mode for reviews.
+        schema:
+          type: string
+          enum:
+          - yelp_sort
+          default: yelp_sort
+        example: yelp_sort
+      - name: locale
+        in: query
+        description: Locale in the form {language}_{country}, e.g. en_US.
+        schema:
+          type: string
+          pattern: ^[a-z]{2,3}_[A-Z]{2}$
+        example: example
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewsResponse'
+              examples:
+                GetBusinessReviews200Example:
+                  summary: Default getBusinessReviews 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 240
+                    possible_languages:
+                    - example
+                    reviews:
+                    - id: gR9DTbKCON2g1Z23bWcEpQ
+                      url: https://www.yelp.com/biz/rickys-tacos-san-francisco
+                      text: Best tacos in the Bay Area. The al pastor is incredible and the salsa bar is unmatched.
+                      rating: 4.5
+                      time_created: '2026-04-18 19:32:11'
+                      user:
+                        id: gR9DTbKCON2g1Z23bWcEpQ
+                        profile_url: https://www.yelp.com/user_details?userid=abc123
+                        image_url: https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg
+                        name: Ricky's Tacos
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Review:
+      type: object
+      properties:
+        id:
+          type: string
+          example: gR9DTbKCON2g1Z23bWcEpQ
+        url:
+          type: string
+          format: uri
+          example: https://www.yelp.com/biz/rickys-tacos-san-francisco
+        text:
+          type: string
+          description: Review excerpt.
+          example: Best tacos in the Bay Area. The al pastor is incredible and the salsa bar is unmatched.
+        rating:
+          type: number
+          format: float
+          example: 4.5
+        time_created:
+          type: string
+          description: Review creation time in PST.
+          example: '2026-04-18 19:32:11'
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+            profile_url:
+              type: string
+              format: uri
+            image_url:
+              type:
+              - string
+              - 'null'
+              format: uri
+            name:
+              type: string
+    ReviewsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          example: 240
+        possible_languages:
+          type: array
+          items:
+            type: string
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+              e.g. VALIDATION_ERROR.: null
+            description:
+              type: string
+              description: Human-readable error description.
+  responses:
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Yelp Fusion API key passed as a bearer token in the Authorization header.
+x-generated-from: https://docs.developer.yelp.com/reference
+x-generated-by: api-evangelist-pipeline-2026-06

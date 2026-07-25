@@ -1,0 +1,188 @@
+openapi: 3.1.0
+info:
+  title: Yelp Fusion AI Categories API
+  description: 'The Yelp Fusion API provides programmatic access to Yelp''s database of local businesses, reviews, events, categories, and conversational AI search. This definition documents the public Fusion REST endpoints: business search and discovery, business details, reviews, autocomplete, phone search, business match, events, categories, and the Yelp Fusion AI chat endpoint. Authentication is via a bearer API key passed in the Authorization header.'
+  version: '3.0'
+  contact:
+    name: Yelp Developer
+    url: https://docs.developer.yelp.com/
+  termsOfService: https://docs.developer.yelp.com/docs/policies
+servers:
+- url: https://api.yelp.com
+  description: Yelp Fusion API base URL
+security:
+- bearerAuth: []
+tags:
+- name: Categories
+  description: Yelp business category taxonomy
+paths:
+  /v3/categories:
+    get:
+      tags:
+      - Categories
+      operationId: getAllCategories
+      summary: Get All Categories
+      description: Returns the full list of Yelp business categories.
+      parameters:
+      - name: locale
+        in: query
+        description: Locale in the form {language}_{country}, e.g. en_US.
+        schema:
+          type: string
+          pattern: ^[a-z]{2,3}_[A-Z]{2}$
+        example: example
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  categories:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Category'
+              examples:
+                GetAllCategories200Example:
+                  summary: Default getAllCategories 200 response
+                  x-microcks-default: true
+                  value:
+                    categories:
+                    - alias: rickys-tacos-san-francisco
+                      title: Tacos
+                      parent_aliases:
+                      - example
+                      country_whitelist:
+                      - example
+                      country_blacklist:
+                      - example
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v3/categories/{alias}:
+    get:
+      tags:
+      - Categories
+      operationId: getCategory
+      summary: Get Category Details
+      description: Returns details for a single Yelp category by alias.
+      parameters:
+      - name: alias
+        in: path
+        required: true
+        description: The category alias, e.g. "restaurants".
+        schema:
+          type: string
+        example: rickys-tacos-san-francisco
+      - name: locale
+        in: query
+        description: Locale in the form {language}_{country}, e.g. en_US.
+        schema:
+          type: string
+          pattern: ^[a-z]{2,3}_[A-Z]{2}$
+        example: example
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  category:
+                    $ref: '#/components/schemas/Category'
+              examples:
+                GetCategory200Example:
+                  summary: Default getCategory 200 response
+                  x-microcks-default: true
+                  value:
+                    category:
+                      alias: rickys-tacos-san-francisco
+                      title: Tacos
+                      parent_aliases:
+                      - example
+                      country_whitelist:
+                      - example
+                      country_blacklist:
+                      - example
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        alias:
+          type: string
+          description: Unique category identifier.
+          example: rickys-tacos-san-francisco
+        title:
+          type: string
+          description: Localized category title.
+          example: Tacos
+        parent_aliases:
+          type: array
+          items:
+            type: string
+          description: Aliases of parent categories.
+        country_whitelist:
+          type: array
+          items:
+            type: string
+          description: Countries where this category is available.
+        country_blacklist:
+          type: array
+          items:
+            type: string
+          description: Countries where this category is restricted.
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+              e.g. VALIDATION_ERROR.: null
+            description:
+              type: string
+              description: Human-readable error description.
+  responses:
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Yelp Fusion API key passed as a bearer token in the Authorization header.
+x-generated-from: https://docs.developer.yelp.com/reference
+x-generated-by: api-evangelist-pipeline-2026-06
