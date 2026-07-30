@@ -9,9 +9,22 @@ description: Yelp connects people with great local businesses. The Yelp Fusion A
   advertising, reservations, waitlist, checkout, and reporting. Authentication uses
   a Yelp API key passed as a bearer token.
 type: Index
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/yelp.png
 tags:
 - Restaurant
 - Local Search
@@ -23,6 +36,8 @@ modified: '2026-06-03'
 url: https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/yelp/overview
 - type: AgenticAccess
   url: agentic-access/yelp-agentic-access.yml
 - type: VulnerabilityDisclosure
@@ -144,25 +159,20 @@ common:
   - name: Webhooks
     description: Reviews and Leads webhooks push real-time events to partner endpoints.
 apis:
-- aid: yelp:yelp-fusion
-  name: Yelp Fusion API
-  description: The public Yelp Fusion REST API for business search and discovery,
-    business details, reviews, autocomplete, phone and address matching, local events,
-    category taxonomy, and the Yelp Fusion AI conversational chat endpoint. Authenticated
-    with a Yelp API key passed as a bearer token.
+- aid: yelp:yelp-ai-api
+  name: Yelp AI API
+  description: Conversational Yelp Fusion AI search and chat
   humanURL: https://docs.developer.yelp.com/
   baseURL: https://api.yelp.com
   tags:
-  - Restaurant
-  - Local Search
-  - Reviews
+  - AI
   properties:
+  - type: OpenAPI
+    url: openapi/yelp-ai-api-openapi.yml
   - type: Documentation
     url: https://docs.developer.yelp.com/
   - type: APIReference
     url: https://docs.developer.yelp.com/reference/v3_business_search
-  - type: OpenAPI
-    url: openapi/yelp-openapi.yml
   - type: JSONSchema
     url: json-schema/yelp-business-schema.json
   - type: JSONSchema
@@ -215,8 +225,280 @@ apis:
     url: examples/yelp-autocomplete-response-example.json
   - type: Examples
     url: examples/yelp-ai-chat-response-example.json
-  - url: graphql/yelp-graphql.md
-    type: GraphQL
+  - type: GraphQL
+    url: graphql/yelp-graphql.md
+- aid: yelp:yelp-businesses-api
+  name: Yelp Businesses API
+  description: Search, match, and retrieve local business data
+  humanURL: https://docs.developer.yelp.com/
+  baseURL: https://api.yelp.com
+  tags:
+  - Businesses
+  properties:
+  - type: OpenAPI
+    url: openapi/yelp-businesses-api-openapi.yml
+  - type: Documentation
+    url: https://docs.developer.yelp.com/
+  - type: APIReference
+    url: https://docs.developer.yelp.com/reference/v3_business_search
+  - type: JSONSchema
+    url: json-schema/yelp-business-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-business-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-business-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-location-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-coordinates-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-category-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-review-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-reviews-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-autocomplete-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-business-hours-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-event-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-event-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-ai-chat-request-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-ai-chat-response-schema.json
+  - type: JSONStructure
+    url: json-structure/yelp-business-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-business-detail-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-business-search-response-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-review-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-event-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-category-structure.json
+  - type: Examples
+    url: examples/yelp-business-search-response-example.json
+  - type: Examples
+    url: examples/yelp-business-detail-example.json
+  - type: Examples
+    url: examples/yelp-reviews-response-example.json
+  - type: Examples
+    url: examples/yelp-event-search-response-example.json
+  - type: Examples
+    url: examples/yelp-autocomplete-response-example.json
+  - type: Examples
+    url: examples/yelp-ai-chat-response-example.json
+  - type: GraphQL
+    url: graphql/yelp-graphql.md
+- aid: yelp:yelp-categories-api
+  name: Yelp Categories API
+  description: Yelp business category taxonomy
+  humanURL: https://docs.developer.yelp.com/
+  baseURL: https://api.yelp.com
+  tags:
+  - Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/yelp-categories-api-openapi.yml
+  - type: Documentation
+    url: https://docs.developer.yelp.com/
+  - type: APIReference
+    url: https://docs.developer.yelp.com/reference/v3_business_search
+  - type: JSONSchema
+    url: json-schema/yelp-business-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-business-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-business-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-location-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-coordinates-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-category-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-review-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-reviews-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-autocomplete-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-business-hours-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-event-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-event-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-ai-chat-request-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-ai-chat-response-schema.json
+  - type: JSONStructure
+    url: json-structure/yelp-business-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-business-detail-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-business-search-response-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-review-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-event-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-category-structure.json
+  - type: Examples
+    url: examples/yelp-business-search-response-example.json
+  - type: Examples
+    url: examples/yelp-business-detail-example.json
+  - type: Examples
+    url: examples/yelp-reviews-response-example.json
+  - type: Examples
+    url: examples/yelp-event-search-response-example.json
+  - type: Examples
+    url: examples/yelp-autocomplete-response-example.json
+  - type: Examples
+    url: examples/yelp-ai-chat-response-example.json
+  - type: GraphQL
+    url: graphql/yelp-graphql.md
+- aid: yelp:yelp-events-api
+  name: Yelp Events API
+  description: Local event search and details
+  humanURL: https://docs.developer.yelp.com/
+  baseURL: https://api.yelp.com
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/yelp-events-api-openapi.yml
+  - type: Documentation
+    url: https://docs.developer.yelp.com/
+  - type: APIReference
+    url: https://docs.developer.yelp.com/reference/v3_business_search
+  - type: JSONSchema
+    url: json-schema/yelp-business-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-business-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-business-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-location-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-coordinates-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-category-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-review-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-reviews-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-autocomplete-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-business-hours-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-event-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-event-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-ai-chat-request-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-ai-chat-response-schema.json
+  - type: JSONStructure
+    url: json-structure/yelp-business-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-business-detail-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-business-search-response-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-review-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-event-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-category-structure.json
+  - type: Examples
+    url: examples/yelp-business-search-response-example.json
+  - type: Examples
+    url: examples/yelp-business-detail-example.json
+  - type: Examples
+    url: examples/yelp-reviews-response-example.json
+  - type: Examples
+    url: examples/yelp-event-search-response-example.json
+  - type: Examples
+    url: examples/yelp-autocomplete-response-example.json
+  - type: Examples
+    url: examples/yelp-ai-chat-response-example.json
+  - type: GraphQL
+    url: graphql/yelp-graphql.md
+- aid: yelp:yelp-reviews-api
+  name: Yelp Reviews API
+  description: Business review excerpts and ratings
+  humanURL: https://docs.developer.yelp.com/
+  baseURL: https://api.yelp.com
+  tags:
+  - Reviews
+  properties:
+  - type: OpenAPI
+    url: openapi/yelp-reviews-api-openapi.yml
+  - type: Documentation
+    url: https://docs.developer.yelp.com/
+  - type: APIReference
+    url: https://docs.developer.yelp.com/reference/v3_business_search
+  - type: JSONSchema
+    url: json-schema/yelp-business-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-business-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-business-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-location-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-coordinates-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-category-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-review-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-reviews-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-autocomplete-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-business-hours-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-event-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-event-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-ai-chat-request-schema.json
+  - type: JSONSchema
+    url: json-schema/yelp-ai-chat-response-schema.json
+  - type: JSONStructure
+    url: json-structure/yelp-business-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-business-detail-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-business-search-response-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-review-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-event-structure.json
+  - type: JSONStructure
+    url: json-structure/yelp-category-structure.json
+  - type: Examples
+    url: examples/yelp-business-search-response-example.json
+  - type: Examples
+    url: examples/yelp-business-detail-example.json
+  - type: Examples
+    url: examples/yelp-reviews-response-example.json
+  - type: Examples
+    url: examples/yelp-event-search-response-example.json
+  - type: Examples
+    url: examples/yelp-autocomplete-response-example.json
+  - type: Examples
+    url: examples/yelp-ai-chat-response-example.json
+  - type: GraphQL
+    url: graphql/yelp-graphql.md
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
