@@ -1,0 +1,418 @@
+{
+  "info": {
+    "_postman_id": "0f977ffb-5e38-44a4-a337-03e8e3c6a630",
+    "name": "Yelp Fusion AI Reviews API",
+    "description": "The Yelp Fusion API provides programmatic access to Yelp's database of local businesses, reviews, events, categories, and conversational AI search. This definition documents the public Fusion REST endpoints: business search and discovery, business details, reviews, autocomplete, phone search, business match, events, categories, and the Yelp Fusion AI chat endpoint. Authentication is via a bearer API key passed in the Authorization header.\n\nContact Support:\n Name: Yelp Developer",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:36:43.000Z",
+    "updatedAt": "2026-07-28T03:36:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0f977ffb-5e38-44a4-a337-03e8e3c6a630"
+  },
+  "item": [
+    {
+      "name": "v3",
+      "item": [
+        {
+          "name": "businesses",
+          "item": [
+            {
+              "name": "{business_id_or_alias}",
+              "item": [
+                {
+                  "name": "reviews",
+                  "item": [
+                    {
+                      "name": "Get Business Reviews",
+                      "id": "145f4930-eacc-45d5-bbd5-8ba53df7e765",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/businesses/:business_id_or_alias/reviews?limit=20&offset=<integer>&sort_by=yelp_sort&locale=zj_RB",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "businesses",
+                            ":business_id_or_alias",
+                            "reviews"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of reviews to return.",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Offset into the list of returned reviews.",
+                              "key": "offset",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Sort mode for reviews.",
+                              "key": "sort_by",
+                              "value": "yelp_sort"
+                            },
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "zj_RB"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "b300f4a4-6778-4f69-9cae-aeaa1b40b0f1",
+                              "key": "business_id_or_alias",
+                              "value": "<string>",
+                              "description": "(Required) A 22-character Yelp business id or a business alias."
+                            }
+                          ]
+                        },
+                        "description": "Returns up to three review excerpts for a business."
+                      },
+                      "response": [
+                        {
+                          "id": "c96c4bc7-c05f-43f3-965d-4d0204114274",
+                          "name": "Successful response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/businesses/:business_id_or_alias/reviews?limit=20&offset=<integer>&sort_by=yelp_sort&locale=zj_RB",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "businesses",
+                                ":business_id_or_alias",
+                                "reviews"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of reviews to return.",
+                                  "key": "limit",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Offset into the list of returned reviews.",
+                                  "key": "offset",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Sort mode for reviews.",
+                                  "key": "sort_by",
+                                  "value": "yelp_sort"
+                                },
+                                {
+                                  "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                                  "key": "locale",
+                                  "value": "zj_RB"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "business_id_or_alias"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"total\": \"<integer>\",\n  \"possible_languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reviews\": [\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"text\": \"<string>\",\n      \"rating\": \"<float>\",\n      \"time_created\": \"<string>\",\n      \"user\": {\n        \"id\": \"<string>\",\n        \"profile_url\": \"<uri>\",\n        \"image_url\": \"<string,null-uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"text\": \"<string>\",\n      \"rating\": \"<float>\",\n      \"time_created\": \"<string>\",\n      \"user\": {\n        \"id\": \"<string>\",\n        \"profile_url\": \"<uri>\",\n        \"image_url\": \"<string,null-uri>\",\n        \"name\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T03:36:44.000Z",
+                          "updatedAt": "2026-07-28T03:36:44.000Z",
+                          "uid": "35240-c96c4bc7-c05f-43f3-965d-4d0204114274"
+                        },
+                        {
+                          "id": "f785e5b7-b88d-4cb1-a973-2d492e2640ac",
+                          "name": "The API key is missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/businesses/:business_id_or_alias/reviews?limit=20&offset=<integer>&sort_by=yelp_sort&locale=zj_RB",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "businesses",
+                                ":business_id_or_alias",
+                                "reviews"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of reviews to return.",
+                                  "key": "limit",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Offset into the list of returned reviews.",
+                                  "key": "offset",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Sort mode for reviews.",
+                                  "key": "sort_by",
+                                  "value": "yelp_sort"
+                                },
+                                {
+                                  "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                                  "key": "locale",
+                                  "value": "zj_RB"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "business_id_or_alias"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:36:44.000Z",
+                          "updatedAt": "2026-07-28T03:36:44.000Z",
+                          "uid": "35240-f785e5b7-b88d-4cb1-a973-2d492e2640ac"
+                        },
+                        {
+                          "id": "93ec4173-9aa6-4db4-ba4b-403359705a6e",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/businesses/:business_id_or_alias/reviews?limit=20&offset=<integer>&sort_by=yelp_sort&locale=zj_RB",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "businesses",
+                                ":business_id_or_alias",
+                                "reviews"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of reviews to return.",
+                                  "key": "limit",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Offset into the list of returned reviews.",
+                                  "key": "offset",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Sort mode for reviews.",
+                                  "key": "sort_by",
+                                  "value": "yelp_sort"
+                                },
+                                {
+                                  "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                                  "key": "locale",
+                                  "value": "zj_RB"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "business_id_or_alias"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:36:44.000Z",
+                          "updatedAt": "2026-07-28T03:36:44.000Z",
+                          "uid": "35240-93ec4173-9aa6-4db4-ba4b-403359705a6e"
+                        },
+                        {
+                          "id": "6cde3e12-c134-4a42-9ce5-4aa206f47e77",
+                          "name": "Rate limit exceeded.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/businesses/:business_id_or_alias/reviews?limit=20&offset=<integer>&sort_by=yelp_sort&locale=zj_RB",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "businesses",
+                                ":business_id_or_alias",
+                                "reviews"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of reviews to return.",
+                                  "key": "limit",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Offset into the list of returned reviews.",
+                                  "key": "offset",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Sort mode for reviews.",
+                                  "key": "sort_by",
+                                  "value": "yelp_sort"
+                                },
+                                {
+                                  "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                                  "key": "locale",
+                                  "value": "zj_RB"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "business_id_or_alias"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:36:44.000Z",
+                          "updatedAt": "2026-07-28T03:36:44.000Z",
+                          "uid": "35240-6cde3e12-c134-4a42-9ce5-4aa206f47e77"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:36:44.000Z",
+                      "updatedAt": "2026-07-28T03:36:44.000Z",
+                      "uid": "35240-145f4930-eacc-45d5-bbd5-8ba53df7e765"
+                    }
+                  ],
+                  "id": "555bff36-f543-42ad-8da4-662a38814f2a",
+                  "createdAt": "2026-07-28T03:36:44.000Z",
+                  "updatedAt": "2026-07-28T03:36:44.000Z",
+                  "uid": "35240-555bff36-f543-42ad-8da4-662a38814f2a"
+                }
+              ],
+              "id": "dc0d07f7-9858-465a-867d-308b80f6e2a1",
+              "createdAt": "2026-07-28T03:36:44.000Z",
+              "updatedAt": "2026-07-28T03:36:44.000Z",
+              "uid": "35240-dc0d07f7-9858-465a-867d-308b80f6e2a1"
+            }
+          ],
+          "id": "fe84b8f8-25df-4b8d-ac92-b0e801e3b645",
+          "createdAt": "2026-07-28T03:36:44.000Z",
+          "updatedAt": "2026-07-28T03:36:44.000Z",
+          "uid": "35240-fe84b8f8-25df-4b8d-ac92-b0e801e3b645"
+        }
+      ],
+      "id": "bf27e6be-cfd9-48c5-84e0-2c216cbc0eb1",
+      "createdAt": "2026-07-28T03:36:44.000Z",
+      "updatedAt": "2026-07-28T03:36:44.000Z",
+      "uid": "35240-bf27e6be-cfd9-48c5-84e0-2c216cbc0eb1"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.yelp.com"
+    }
+  ]
+}

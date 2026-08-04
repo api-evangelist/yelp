@@ -1,0 +1,518 @@
+{
+  "info": {
+    "_postman_id": "7d967554-8b7b-4d41-8281-ec8a9da2082d",
+    "name": "Yelp Fusion AI Categories API",
+    "description": "The Yelp Fusion API provides programmatic access to Yelp's database of local businesses, reviews, events, categories, and conversational AI search. This definition documents the public Fusion REST endpoints: business search and discovery, business details, reviews, autocomplete, phone search, business match, events, categories, and the Yelp Fusion AI chat endpoint. Authentication is via a bearer API key passed in the Authorization header.\n\nContact Support:\n Name: Yelp Developer",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:36:35.000Z",
+    "updatedAt": "2026-07-28T03:36:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7d967554-8b7b-4d41-8281-ec8a9da2082d"
+  },
+  "item": [
+    {
+      "name": "v3",
+      "item": [
+        {
+          "name": "categories",
+          "item": [
+            {
+              "name": "{alias}",
+              "item": [
+                {
+                  "name": "Get Category Details",
+                  "id": "ac3b8f63-ec8c-423c-ab67-8bdef17807e1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/categories/:alias?locale=yrj_SE",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "categories",
+                        ":alias"
+                      ],
+                      "query": [
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "yrj_SE"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "759e1c10-c638-4403-bf75-b8c7d446e3d4",
+                          "key": "alias",
+                          "value": "<string>",
+                          "description": "(Required) The category alias, e.g. \"restaurants\"."
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a single Yelp category by alias."
+                  },
+                  "response": [
+                    {
+                      "id": "3588475c-1e49-4447-b905-37333a0097c5",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/categories/:alias?locale=yrj_SE",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "categories",
+                            ":alias"
+                          ],
+                          "query": [
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "yrj_SE"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "alias"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"category\": {\n    \"alias\": \"<string>\",\n    \"title\": \"<string>\",\n    \"parent_aliases\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"country_whitelist\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"country_blacklist\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:35.000Z",
+                      "updatedAt": "2026-07-28T03:36:35.000Z",
+                      "uid": "35240-3588475c-1e49-4447-b905-37333a0097c5"
+                    },
+                    {
+                      "id": "2c443b84-ff25-4c5d-9890-048f587ddcca",
+                      "name": "The API key is missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/categories/:alias?locale=yrj_SE",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "categories",
+                            ":alias"
+                          ],
+                          "query": [
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "yrj_SE"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "alias"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:35.000Z",
+                      "updatedAt": "2026-07-28T03:36:35.000Z",
+                      "uid": "35240-2c443b84-ff25-4c5d-9890-048f587ddcca"
+                    },
+                    {
+                      "id": "83817449-4149-4570-b99d-cd0a22456026",
+                      "name": "The requested resource was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/categories/:alias?locale=yrj_SE",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "categories",
+                            ":alias"
+                          ],
+                          "query": [
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "yrj_SE"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "alias"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:35.000Z",
+                      "updatedAt": "2026-07-28T03:36:35.000Z",
+                      "uid": "35240-83817449-4149-4570-b99d-cd0a22456026"
+                    },
+                    {
+                      "id": "a2373253-ee13-4987-ba67-ab46a9637bae",
+                      "name": "Rate limit exceeded.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/categories/:alias?locale=yrj_SE",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "categories",
+                            ":alias"
+                          ],
+                          "query": [
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "yrj_SE"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "alias"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:35.000Z",
+                      "updatedAt": "2026-07-28T03:36:35.000Z",
+                      "uid": "35240-a2373253-ee13-4987-ba67-ab46a9637bae"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:36:35.000Z",
+                  "updatedAt": "2026-07-28T03:36:35.000Z",
+                  "uid": "35240-ac3b8f63-ec8c-423c-ab67-8bdef17807e1"
+                }
+              ],
+              "id": "14d0805b-703b-40de-9943-6d701bbec4a1",
+              "createdAt": "2026-07-28T03:36:35.000Z",
+              "updatedAt": "2026-07-28T03:36:35.000Z",
+              "uid": "35240-14d0805b-703b-40de-9943-6d701bbec4a1"
+            },
+            {
+              "name": "Get All Categories",
+              "id": "5c6cb74a-591c-4235-89e7-f63393644518",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v3/categories?locale=yrj_SE",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v3",
+                    "categories"
+                  ],
+                  "query": [
+                    {
+                      "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                      "key": "locale",
+                      "value": "yrj_SE"
+                    }
+                  ]
+                },
+                "description": "Returns the full list of Yelp business categories."
+              },
+              "response": [
+                {
+                  "id": "defd9ffb-c9e7-4a83-aee8-c559fc97d6fa",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/categories?locale=yrj_SE",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "categories"
+                      ],
+                      "query": [
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "yrj_SE"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"categories\": [\n    {\n      \"alias\": \"<string>\",\n      \"title\": \"<string>\",\n      \"parent_aliases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"country_whitelist\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"country_blacklist\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"alias\": \"<string>\",\n      \"title\": \"<string>\",\n      \"parent_aliases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"country_whitelist\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"country_blacklist\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:36:35.000Z",
+                  "updatedAt": "2026-07-28T03:36:35.000Z",
+                  "uid": "35240-defd9ffb-c9e7-4a83-aee8-c559fc97d6fa"
+                },
+                {
+                  "id": "1717a1ac-2e42-4a2d-b4de-5b5f80ccaa94",
+                  "name": "The API key is missing or invalid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/categories?locale=yrj_SE",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "categories"
+                      ],
+                      "query": [
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "yrj_SE"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:36:35.000Z",
+                  "updatedAt": "2026-07-28T03:36:35.000Z",
+                  "uid": "35240-1717a1ac-2e42-4a2d-b4de-5b5f80ccaa94"
+                },
+                {
+                  "id": "bdfd05b4-3a3c-49a0-a281-2b417c115618",
+                  "name": "Rate limit exceeded.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/categories?locale=yrj_SE",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "categories"
+                      ],
+                      "query": [
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "yrj_SE"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:36:35.000Z",
+                  "updatedAt": "2026-07-28T03:36:35.000Z",
+                  "uid": "35240-bdfd05b4-3a3c-49a0-a281-2b417c115618"
+                }
+              ],
+              "createdAt": "2026-07-28T03:36:35.000Z",
+              "updatedAt": "2026-07-28T03:36:35.000Z",
+              "uid": "35240-5c6cb74a-591c-4235-89e7-f63393644518"
+            }
+          ],
+          "id": "7fcba0c4-07b2-4f59-a4a6-e1e3f8f8d04e",
+          "createdAt": "2026-07-28T03:36:35.000Z",
+          "updatedAt": "2026-07-28T03:36:35.000Z",
+          "uid": "35240-7fcba0c4-07b2-4f59-a4a6-e1e3f8f8d04e"
+        }
+      ],
+      "id": "b61eb8fb-c3cd-4e2f-b02c-e4c4678e14c0",
+      "createdAt": "2026-07-28T03:36:35.000Z",
+      "updatedAt": "2026-07-28T03:36:35.000Z",
+      "uid": "35240-b61eb8fb-c3cd-4e2f-b02c-e4c4678e14c0"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.yelp.com"
+    }
+  ]
+}

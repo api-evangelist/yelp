@@ -1,0 +1,336 @@
+{
+  "info": {
+    "_postman_id": "64eaa4c7-3bf7-400a-b4c0-8bb17b232479",
+    "name": "Yelp Fusion AI API",
+    "description": "The Yelp Fusion API provides programmatic access to Yelp's database of local businesses, reviews, events, categories, and conversational AI search. This definition documents the public Fusion REST endpoints: business search and discovery, business details, reviews, autocomplete, phone search, business match, events, categories, and the Yelp Fusion AI chat endpoint. Authentication is via a bearer API key passed in the Authorization header.\n\nContact Support:\n Name: Yelp Developer",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:36:17.000Z",
+    "updatedAt": "2026-07-28T03:36:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-64eaa4c7-3bf7-400a-b4c0-8bb17b232479"
+  },
+  "item": [
+    {
+      "name": "ai",
+      "item": [
+        {
+          "name": "chat",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "Yelp AI Chat",
+                  "id": "5a653ba8-39b4-4975-a75b-b8115462355f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"query\": \"<string>\",\n  \"chat_id\": \"<string>\",\n  \"user_context\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"request_context\": {\n    \"et5e8\": \"in\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/ai/chat/v2",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ai",
+                        "chat",
+                        "v2"
+                      ]
+                    },
+                    "description": "Sends a natural language query to the Yelp Fusion AI and returns a conversational response plus structured business entities. Supports multi-turn conversations via chat_id."
+                  },
+                  "response": [
+                    {
+                      "id": "dd139e41-9cc4-43b9-b2a8-310366dff8e0",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"chat_id\": \"<string>\",\n  \"user_context\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"request_context\": {\n    \"et5e8\": \"in\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ai/chat/v2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ai",
+                            "chat",
+                            "v2"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"chat_id\": \"<string>\",\n  \"response\": {\n    \"text\": \"<string>\",\n    \"tags\": {\n      \"esse_e_\": -20074566,\n      \"consequatab9\": \"Ut et\",\n      \"labore_76\": true,\n      \"Ut3f\": \"elit\"\n    }\n  },\n  \"types\": [\n    \"confirmation\",\n    \"confirmation\"\n  ],\n  \"entities\": [\n    {\n      \"aute_6\": \"aute qui\",\n      \"qui_d3\": 74995017.89831945,\n      \"pariatur_86\": false\n    },\n    {\n      \"voluptate_5d1\": \"eu ea aute\",\n      \"sit_9fe\": \"dolor eu voluptate\",\n      \"fugiat_fb\": \"amet elit eu proident\"\n    }\n  ],\n  \"request_a_quote_survey\": null\n}",
+                      "createdAt": "2026-07-28T03:36:18.000Z",
+                      "updatedAt": "2026-07-28T03:36:18.000Z",
+                      "uid": "35240-dd139e41-9cc4-43b9-b2a8-310366dff8e0"
+                    },
+                    {
+                      "id": "47d6123d-e060-4e39-9ffb-3e04ed5fbec7",
+                      "name": "The request was malformed or missing required parameters.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"chat_id\": \"<string>\",\n  \"user_context\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"request_context\": {\n    \"et5e8\": \"in\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ai/chat/v2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ai",
+                            "chat",
+                            "v2"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:18.000Z",
+                      "updatedAt": "2026-07-28T03:36:18.000Z",
+                      "uid": "35240-47d6123d-e060-4e39-9ffb-3e04ed5fbec7"
+                    },
+                    {
+                      "id": "e11eb548-1a76-4761-8f89-21e1f4d602b4",
+                      "name": "The API key is missing or invalid.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"chat_id\": \"<string>\",\n  \"user_context\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"request_context\": {\n    \"et5e8\": \"in\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ai/chat/v2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ai",
+                            "chat",
+                            "v2"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:18.000Z",
+                      "updatedAt": "2026-07-28T03:36:18.000Z",
+                      "uid": "35240-e11eb548-1a76-4761-8f89-21e1f4d602b4"
+                    },
+                    {
+                      "id": "d3fd24a2-8d87-42be-9906-04ebd017ca93",
+                      "name": "Rate limit exceeded.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"chat_id\": \"<string>\",\n  \"user_context\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"request_context\": {\n    \"et5e8\": \"in\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ai/chat/v2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ai",
+                            "chat",
+                            "v2"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:18.000Z",
+                      "updatedAt": "2026-07-28T03:36:18.000Z",
+                      "uid": "35240-d3fd24a2-8d87-42be-9906-04ebd017ca93"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:36:18.000Z",
+                  "updatedAt": "2026-07-28T03:36:18.000Z",
+                  "uid": "35240-5a653ba8-39b4-4975-a75b-b8115462355f"
+                }
+              ],
+              "id": "2ff98283-766e-47cb-a629-1658af08fcfb",
+              "createdAt": "2026-07-28T03:36:18.000Z",
+              "updatedAt": "2026-07-28T03:36:18.000Z",
+              "uid": "35240-2ff98283-766e-47cb-a629-1658af08fcfb"
+            }
+          ],
+          "id": "01bd5971-69d0-4ead-bf83-f746ef09bcf5",
+          "createdAt": "2026-07-28T03:36:18.000Z",
+          "updatedAt": "2026-07-28T03:36:18.000Z",
+          "uid": "35240-01bd5971-69d0-4ead-bf83-f746ef09bcf5"
+        }
+      ],
+      "id": "79c6f554-e1c9-4eb8-ba71-cd844aa3f7a7",
+      "createdAt": "2026-07-28T03:36:18.000Z",
+      "updatedAt": "2026-07-28T03:36:18.000Z",
+      "uid": "35240-79c6f554-e1c9-4eb8-ba71-cd844aa3f7a7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.yelp.com"
+    }
+  ]
+}

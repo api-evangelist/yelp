@@ -1,0 +1,893 @@
+{
+  "info": {
+    "_postman_id": "dfbf6e58-29cf-4c85-8801-d17d36e09cb0",
+    "name": "Yelp Fusion AI Events API",
+    "description": "The Yelp Fusion API provides programmatic access to Yelp's database of local businesses, reviews, events, categories, and conversational AI search. This definition documents the public Fusion REST endpoints: business search and discovery, business details, reviews, autocomplete, phone search, business match, events, categories, and the Yelp Fusion AI chat endpoint. Authentication is via a bearer API key passed in the Authorization header.\n\nContact Support:\n Name: Yelp Developer",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:36:42.000Z",
+    "updatedAt": "2026-07-28T03:36:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-dfbf6e58-29cf-4c85-8801-d17d36e09cb0"
+  },
+  "item": [
+    {
+      "name": "v3",
+      "item": [
+        {
+          "name": "events",
+          "item": [
+            {
+              "name": "{event_id}",
+              "item": [
+                {
+                  "name": "Get Event Details",
+                  "id": "9527a194-a269-4976-905f-cc6aa83aff0f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/events/:event_id?locale=nag_LK",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "events",
+                        ":event_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "nag_LK"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "39e9ed09-84f1-4fa2-bbad-faa9aac0b3f7",
+                          "key": "event_id",
+                          "value": "<string>",
+                          "description": "(Required) The id of the event to retrieve."
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a single event by id."
+                  },
+                  "response": [
+                    {
+                      "id": "145419da-9722-4e5f-8130-52c135cf8c68",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/events/:event_id?locale=nag_LK",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "events",
+                            ":event_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "nag_LK"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"category\": \"<string>\",\n  \"description\": \"<string>\",\n  \"time_start\": \"<string>\",\n  \"time_end\": \"<string>\",\n  \"location\": {\n    \"address1\": \"<string>\",\n    \"address2\": \"<string,null>\",\n    \"address3\": \"<string,null>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"display_address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"cross_streets\": \"<string>\"\n  },\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"image_url\": \"<uri>\",\n  \"event_site_url\": \"<uri>\",\n  \"is_free\": \"<boolean>\",\n  \"is_canceled\": \"<boolean>\",\n  \"is_official\": \"<boolean>\",\n  \"attending_count\": \"<integer>\",\n  \"interested_count\": \"<integer>\",\n  \"cost\": \"<number,null-float>\",\n  \"cost_max\": \"<number,null-float>\",\n  \"tickets_url\": \"<uri>\",\n  \"business_id\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T03:36:43.000Z",
+                      "updatedAt": "2026-07-28T03:36:43.000Z",
+                      "uid": "35240-145419da-9722-4e5f-8130-52c135cf8c68"
+                    },
+                    {
+                      "id": "dc3d217a-6fba-4464-8193-09826fc76c0c",
+                      "name": "The API key is missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/events/:event_id?locale=nag_LK",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "events",
+                            ":event_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "nag_LK"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:43.000Z",
+                      "updatedAt": "2026-07-28T03:36:43.000Z",
+                      "uid": "35240-dc3d217a-6fba-4464-8193-09826fc76c0c"
+                    },
+                    {
+                      "id": "e22735df-c92f-4ea5-bf1e-183324112281",
+                      "name": "The requested resource was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/events/:event_id?locale=nag_LK",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "events",
+                            ":event_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "nag_LK"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:43.000Z",
+                      "updatedAt": "2026-07-28T03:36:43.000Z",
+                      "uid": "35240-e22735df-c92f-4ea5-bf1e-183324112281"
+                    },
+                    {
+                      "id": "043ac467-8e34-4087-97e2-d9a0ae95aee1",
+                      "name": "Rate limit exceeded.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/events/:event_id?locale=nag_LK",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "events",
+                            ":event_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "nag_LK"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:43.000Z",
+                      "updatedAt": "2026-07-28T03:36:43.000Z",
+                      "uid": "35240-043ac467-8e34-4087-97e2-d9a0ae95aee1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:36:43.000Z",
+                  "updatedAt": "2026-07-28T03:36:43.000Z",
+                  "uid": "35240-9527a194-a269-4976-905f-cc6aa83aff0f"
+                }
+              ],
+              "id": "18cd5a43-6ee5-4d31-9e9c-c7f36fed29ea",
+              "createdAt": "2026-07-28T03:36:43.000Z",
+              "updatedAt": "2026-07-28T03:36:43.000Z",
+              "uid": "35240-18cd5a43-6ee5-4d31-9e9c-c7f36fed29ea"
+            },
+            {
+              "name": "Search Events",
+              "id": "d487b441-e799-4949-bb8a-cf56d2450077",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v3/events?locale=nag_LK&offset=<integer>&limit=3&sort_by=desc&sort_on=popularity&start_date=<integer>&end_date=<integer>&categories=<string>&is_free=<boolean>&location=<string>&latitude=<double>&longitude=<double>&radius=<integer>&excluded_events=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v3",
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                      "key": "locale",
+                      "value": "nag_LK"
+                    },
+                    {
+                      "description": "Offset into the list of returned events.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of events to return.",
+                      "key": "limit",
+                      "value": "3"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "sort_by",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Field to sort events on.",
+                      "key": "sort_on",
+                      "value": "popularity"
+                    },
+                    {
+                      "description": "Unix timestamp lower bound for event start time.",
+                      "key": "start_date",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Unix timestamp upper bound for event start time.",
+                      "key": "end_date",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-delimited list of event category aliases.",
+                      "key": "categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter for free events.",
+                      "key": "is_free",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Geographic area to search for events.",
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Latitude of the search center.",
+                      "key": "latitude",
+                      "value": "<double>"
+                    },
+                    {
+                      "description": "Longitude of the search center.",
+                      "key": "longitude",
+                      "value": "<double>"
+                    },
+                    {
+                      "description": "Search radius in meters. Maximum 40000.",
+                      "key": "radius",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-delimited list of event ids to exclude.",
+                      "key": "excluded_events",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns events based on the provided search criteria."
+              },
+              "response": [
+                {
+                  "id": "b1bc1798-c747-42cb-9a50-a5abeab61a0a",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/events?locale=nag_LK&offset=<integer>&limit=3&sort_by=desc&sort_on=popularity&start_date=<integer>&end_date=<integer>&categories=<string>&is_free=<boolean>&location=<string>&latitude=<double>&longitude=<double>&radius=<integer>&excluded_events=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "events"
+                      ],
+                      "query": [
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "nag_LK"
+                        },
+                        {
+                          "description": "Offset into the list of returned events.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of events to return.",
+                          "key": "limit",
+                          "value": "3"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "sort_by",
+                          "value": "desc"
+                        },
+                        {
+                          "description": "Field to sort events on.",
+                          "key": "sort_on",
+                          "value": "popularity"
+                        },
+                        {
+                          "description": "Unix timestamp lower bound for event start time.",
+                          "key": "start_date",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Unix timestamp upper bound for event start time.",
+                          "key": "end_date",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-delimited list of event category aliases.",
+                          "key": "categories",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter for free events.",
+                          "key": "is_free",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Geographic area to search for events.",
+                          "key": "location",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Latitude of the search center.",
+                          "key": "latitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Longitude of the search center.",
+                          "key": "longitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Search radius in meters. Maximum 40000.",
+                          "key": "radius",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-delimited list of event ids to exclude.",
+                          "key": "excluded_events",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"total\": \"<integer>\",\n  \"events\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"category\": \"<string>\",\n      \"description\": \"<string>\",\n      \"time_start\": \"<string>\",\n      \"time_end\": \"<string>\",\n      \"location\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string,null>\",\n        \"address3\": \"<string,null>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"display_address\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"cross_streets\": \"<string>\"\n      },\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\",\n      \"image_url\": \"<uri>\",\n      \"event_site_url\": \"<uri>\",\n      \"is_free\": \"<boolean>\",\n      \"is_canceled\": \"<boolean>\",\n      \"is_official\": \"<boolean>\",\n      \"attending_count\": \"<integer>\",\n      \"interested_count\": \"<integer>\",\n      \"cost\": \"<number,null-float>\",\n      \"cost_max\": \"<number,null-float>\",\n      \"tickets_url\": \"<uri>\",\n      \"business_id\": \"<string,null>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"category\": \"<string>\",\n      \"description\": \"<string>\",\n      \"time_start\": \"<string>\",\n      \"time_end\": \"<string>\",\n      \"location\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string,null>\",\n        \"address3\": \"<string,null>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"display_address\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"cross_streets\": \"<string>\"\n      },\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\",\n      \"image_url\": \"<uri>\",\n      \"event_site_url\": \"<uri>\",\n      \"is_free\": \"<boolean>\",\n      \"is_canceled\": \"<boolean>\",\n      \"is_official\": \"<boolean>\",\n      \"attending_count\": \"<integer>\",\n      \"interested_count\": \"<integer>\",\n      \"cost\": \"<number,null-float>\",\n      \"cost_max\": \"<number,null-float>\",\n      \"tickets_url\": \"<uri>\",\n      \"business_id\": \"<string,null>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:36:43.000Z",
+                  "updatedAt": "2026-07-28T03:36:43.000Z",
+                  "uid": "35240-b1bc1798-c747-42cb-9a50-a5abeab61a0a"
+                },
+                {
+                  "id": "4c7d5b80-674d-4129-bbf5-4ebd4ac94078",
+                  "name": "The request was malformed or missing required parameters.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/events?locale=nag_LK&offset=<integer>&limit=3&sort_by=desc&sort_on=popularity&start_date=<integer>&end_date=<integer>&categories=<string>&is_free=<boolean>&location=<string>&latitude=<double>&longitude=<double>&radius=<integer>&excluded_events=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "events"
+                      ],
+                      "query": [
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "nag_LK"
+                        },
+                        {
+                          "description": "Offset into the list of returned events.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of events to return.",
+                          "key": "limit",
+                          "value": "3"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "sort_by",
+                          "value": "desc"
+                        },
+                        {
+                          "description": "Field to sort events on.",
+                          "key": "sort_on",
+                          "value": "popularity"
+                        },
+                        {
+                          "description": "Unix timestamp lower bound for event start time.",
+                          "key": "start_date",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Unix timestamp upper bound for event start time.",
+                          "key": "end_date",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-delimited list of event category aliases.",
+                          "key": "categories",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter for free events.",
+                          "key": "is_free",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Geographic area to search for events.",
+                          "key": "location",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Latitude of the search center.",
+                          "key": "latitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Longitude of the search center.",
+                          "key": "longitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Search radius in meters. Maximum 40000.",
+                          "key": "radius",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-delimited list of event ids to exclude.",
+                          "key": "excluded_events",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:36:43.000Z",
+                  "updatedAt": "2026-07-28T03:36:43.000Z",
+                  "uid": "35240-4c7d5b80-674d-4129-bbf5-4ebd4ac94078"
+                },
+                {
+                  "id": "de0e86e7-cff1-4197-8c5d-21a1dbec7a32",
+                  "name": "The API key is missing or invalid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/events?locale=nag_LK&offset=<integer>&limit=3&sort_by=desc&sort_on=popularity&start_date=<integer>&end_date=<integer>&categories=<string>&is_free=<boolean>&location=<string>&latitude=<double>&longitude=<double>&radius=<integer>&excluded_events=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "events"
+                      ],
+                      "query": [
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "nag_LK"
+                        },
+                        {
+                          "description": "Offset into the list of returned events.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of events to return.",
+                          "key": "limit",
+                          "value": "3"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "sort_by",
+                          "value": "desc"
+                        },
+                        {
+                          "description": "Field to sort events on.",
+                          "key": "sort_on",
+                          "value": "popularity"
+                        },
+                        {
+                          "description": "Unix timestamp lower bound for event start time.",
+                          "key": "start_date",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Unix timestamp upper bound for event start time.",
+                          "key": "end_date",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-delimited list of event category aliases.",
+                          "key": "categories",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter for free events.",
+                          "key": "is_free",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Geographic area to search for events.",
+                          "key": "location",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Latitude of the search center.",
+                          "key": "latitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Longitude of the search center.",
+                          "key": "longitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Search radius in meters. Maximum 40000.",
+                          "key": "radius",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-delimited list of event ids to exclude.",
+                          "key": "excluded_events",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:36:43.000Z",
+                  "updatedAt": "2026-07-28T03:36:43.000Z",
+                  "uid": "35240-de0e86e7-cff1-4197-8c5d-21a1dbec7a32"
+                },
+                {
+                  "id": "49a5d882-a919-4e58-b08f-8c63bd27c0be",
+                  "name": "Rate limit exceeded.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/events?locale=nag_LK&offset=<integer>&limit=3&sort_by=desc&sort_on=popularity&start_date=<integer>&end_date=<integer>&categories=<string>&is_free=<boolean>&location=<string>&latitude=<double>&longitude=<double>&radius=<integer>&excluded_events=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "events"
+                      ],
+                      "query": [
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "nag_LK"
+                        },
+                        {
+                          "description": "Offset into the list of returned events.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of events to return.",
+                          "key": "limit",
+                          "value": "3"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "sort_by",
+                          "value": "desc"
+                        },
+                        {
+                          "description": "Field to sort events on.",
+                          "key": "sort_on",
+                          "value": "popularity"
+                        },
+                        {
+                          "description": "Unix timestamp lower bound for event start time.",
+                          "key": "start_date",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Unix timestamp upper bound for event start time.",
+                          "key": "end_date",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-delimited list of event category aliases.",
+                          "key": "categories",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter for free events.",
+                          "key": "is_free",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Geographic area to search for events.",
+                          "key": "location",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Latitude of the search center.",
+                          "key": "latitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Longitude of the search center.",
+                          "key": "longitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Search radius in meters. Maximum 40000.",
+                          "key": "radius",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-delimited list of event ids to exclude.",
+                          "key": "excluded_events",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:36:43.000Z",
+                  "updatedAt": "2026-07-28T03:36:43.000Z",
+                  "uid": "35240-49a5d882-a919-4e58-b08f-8c63bd27c0be"
+                }
+              ],
+              "createdAt": "2026-07-28T03:36:43.000Z",
+              "updatedAt": "2026-07-28T03:36:43.000Z",
+              "uid": "35240-d487b441-e799-4949-bb8a-cf56d2450077"
+            }
+          ],
+          "id": "e70589bd-241a-4ab5-b080-bcab1479e10d",
+          "createdAt": "2026-07-28T03:36:43.000Z",
+          "updatedAt": "2026-07-28T03:36:43.000Z",
+          "uid": "35240-e70589bd-241a-4ab5-b080-bcab1479e10d"
+        }
+      ],
+      "id": "63bc32b4-5b01-437d-a324-066d5efb627c",
+      "createdAt": "2026-07-28T03:36:43.000Z",
+      "updatedAt": "2026-07-28T03:36:43.000Z",
+      "uid": "35240-63bc32b4-5b01-437d-a324-066d5efb627c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.yelp.com"
+    }
+  ]
+}

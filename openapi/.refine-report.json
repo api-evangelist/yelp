@@ -1,0 +1,22 @@
+{
+  "provider": "yelp",
+  "sources": [
+    "yelp-ai-api-openapi.yml",
+    "yelp-businesses-api-openapi.yml",
+    "yelp-categories-api-openapi.yml",
+    "yelp-events-api-openapi.yml",
+    "yelp-reviews-api-openapi.yml"
+  ],
+  "outputs": [
+    "yelp-ai-api-openapi.yml",
+    "yelp-businesses-api-openapi.yml",
+    "yelp-categories-api-openapi.yml",
+    "yelp-events-api-openapi.yml",
+    "yelp-reviews-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

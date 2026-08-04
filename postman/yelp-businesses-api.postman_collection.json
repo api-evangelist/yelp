@@ -1,0 +1,2091 @@
+{
+  "info": {
+    "_postman_id": "97326dd2-ed87-4411-adb1-34a79f636f32",
+    "name": "Yelp Fusion AI Businesses API",
+    "description": "The Yelp Fusion API provides programmatic access to Yelp's database of local businesses, reviews, events, categories, and conversational AI search. This definition documents the public Fusion REST endpoints: business search and discovery, business details, reviews, autocomplete, phone search, business match, events, categories, and the Yelp Fusion AI chat endpoint. Authentication is via a bearer API key passed in the Authorization header.\n\nContact Support:\n Name: Yelp Developer",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:36:34.000Z",
+    "updatedAt": "2026-07-28T03:36:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-97326dd2-ed87-4411-adb1-34a79f636f32"
+  },
+  "item": [
+    {
+      "name": "v3",
+      "item": [
+        {
+          "name": "businesses",
+          "item": [
+            {
+              "name": "search",
+              "item": [
+                {
+                  "name": "phone",
+                  "item": [
+                    {
+                      "name": "Search Businesses By Phone",
+                      "id": "9f7ffbdd-b272-4a83-aec4-cc6ae6870bd7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/businesses/search/phone?phone=95&locale=wll_ZK",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "businesses",
+                            "search",
+                            "phone"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Phone number in the form +[country code][number], e.g. +14159083801.",
+                              "key": "phone",
+                              "value": "95"
+                            },
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "wll_ZK"
+                            }
+                          ]
+                        },
+                        "description": "Returns businesses associated with the given phone number."
+                      },
+                      "response": [
+                        {
+                          "id": "021ebd9d-f0a8-4293-bea1-38f68c20ec79",
+                          "name": "Successful response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/businesses/search/phone?phone=95&locale=wll_ZK",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "businesses",
+                                "search",
+                                "phone"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Phone number in the form +[country code][number], e.g. +14159083801.",
+                                  "key": "phone",
+                                  "value": "95"
+                                },
+                                {
+                                  "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                                  "key": "locale",
+                                  "value": "wll_ZK"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"total\": \"<integer>\",\n  \"businesses\": [\n    {\n      \"id\": \"<string>\",\n      \"alias\": \"<string>\",\n      \"name\": \"<string>\",\n      \"image_url\": \"<uri>\",\n      \"is_closed\": \"<boolean>\",\n      \"url\": \"<uri>\",\n      \"review_count\": \"<integer>\",\n      \"categories\": [\n        {\n          \"alias\": \"<string>\",\n          \"title\": \"<string>\",\n          \"parent_aliases\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_whitelist\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_blacklist\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"alias\": \"<string>\",\n          \"title\": \"<string>\",\n          \"parent_aliases\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_whitelist\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_blacklist\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"rating\": \"<float>\",\n      \"coordinates\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"transactions\": [\n        \"delivery\",\n        \"pickup\"\n      ],\n      \"price\": \"<string>\",\n      \"location\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string,null>\",\n        \"address3\": \"<string,null>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"display_address\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"cross_streets\": \"<string>\"\n      },\n      \"phone\": \"<string>\",\n      \"display_phone\": \"<string>\",\n      \"distance\": \"<double>\",\n      \"attributes\": {\n        \"ut_3c1\": true,\n        \"fugiatf\": 68564012\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"alias\": \"<string>\",\n      \"name\": \"<string>\",\n      \"image_url\": \"<uri>\",\n      \"is_closed\": \"<boolean>\",\n      \"url\": \"<uri>\",\n      \"review_count\": \"<integer>\",\n      \"categories\": [\n        {\n          \"alias\": \"<string>\",\n          \"title\": \"<string>\",\n          \"parent_aliases\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_whitelist\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_blacklist\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"alias\": \"<string>\",\n          \"title\": \"<string>\",\n          \"parent_aliases\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_whitelist\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_blacklist\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"rating\": \"<float>\",\n      \"coordinates\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"transactions\": [\n        \"delivery\",\n        \"delivery\"\n      ],\n      \"price\": \"<string>\",\n      \"location\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string,null>\",\n        \"address3\": \"<string,null>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"display_address\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"cross_streets\": \"<string>\"\n      },\n      \"phone\": \"<string>\",\n      \"display_phone\": \"<string>\",\n      \"distance\": \"<double>\",\n      \"attributes\": {\n        \"irure_86\": \"et non\",\n        \"veniam2\": \"dolore ea\"\n      }\n    }\n  ],\n  \"region\": {\n    \"center\": {\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T03:36:34.000Z",
+                          "updatedAt": "2026-07-28T03:36:34.000Z",
+                          "uid": "35240-021ebd9d-f0a8-4293-bea1-38f68c20ec79"
+                        },
+                        {
+                          "id": "1b38f4fc-bf00-4af0-8cdd-c061a099d022",
+                          "name": "The request was malformed or missing required parameters.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/businesses/search/phone?phone=95&locale=wll_ZK",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "businesses",
+                                "search",
+                                "phone"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Phone number in the form +[country code][number], e.g. +14159083801.",
+                                  "key": "phone",
+                                  "value": "95"
+                                },
+                                {
+                                  "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                                  "key": "locale",
+                                  "value": "wll_ZK"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:36:34.000Z",
+                          "updatedAt": "2026-07-28T03:36:34.000Z",
+                          "uid": "35240-1b38f4fc-bf00-4af0-8cdd-c061a099d022"
+                        },
+                        {
+                          "id": "df1e1571-0334-4639-9431-09f1f0dae342",
+                          "name": "The API key is missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/businesses/search/phone?phone=95&locale=wll_ZK",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "businesses",
+                                "search",
+                                "phone"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Phone number in the form +[country code][number], e.g. +14159083801.",
+                                  "key": "phone",
+                                  "value": "95"
+                                },
+                                {
+                                  "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                                  "key": "locale",
+                                  "value": "wll_ZK"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:36:34.000Z",
+                          "updatedAt": "2026-07-28T03:36:34.000Z",
+                          "uid": "35240-df1e1571-0334-4639-9431-09f1f0dae342"
+                        },
+                        {
+                          "id": "1e833d99-4753-45f4-b63d-bc3257c2a393",
+                          "name": "Rate limit exceeded.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/businesses/search/phone?phone=95&locale=wll_ZK",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "businesses",
+                                "search",
+                                "phone"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Phone number in the form +[country code][number], e.g. +14159083801.",
+                                  "key": "phone",
+                                  "value": "95"
+                                },
+                                {
+                                  "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                                  "key": "locale",
+                                  "value": "wll_ZK"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:36:34.000Z",
+                          "updatedAt": "2026-07-28T03:36:34.000Z",
+                          "uid": "35240-1e833d99-4753-45f4-b63d-bc3257c2a393"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:36:34.000Z",
+                      "updatedAt": "2026-07-28T03:36:34.000Z",
+                      "uid": "35240-9f7ffbdd-b272-4a83-aec4-cc6ae6870bd7"
+                    }
+                  ],
+                  "id": "17c33c82-278b-4853-9567-5fe97f5ff80a",
+                  "createdAt": "2026-07-28T03:36:34.000Z",
+                  "updatedAt": "2026-07-28T03:36:34.000Z",
+                  "uid": "35240-17c33c82-278b-4853-9567-5fe97f5ff80a"
+                },
+                {
+                  "name": "Search Businesses",
+                  "id": "a82f1a69-3fda-4c9b-9ff4-28bac9b4f93d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/businesses/search?location=<string>&latitude=<double>&longitude=<double>&term=<string>&radius=<integer>&categories=<string>&locale=wll_ZK&price=<string>&open_now=<boolean>&open_at=<integer>&attributes=<string>&sort_by=best_match&limit=20&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "businesses",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "description": "Geographic area to search. Required if latitude and longitude are not provided.",
+                          "key": "location",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Latitude of the search center. Required if location is not provided.",
+                          "key": "latitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Longitude of the search center. Required if location is not provided.",
+                          "key": "longitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Search term, such as \"food\" or a business name.",
+                          "key": "term",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Search radius in meters. Maximum 40000.",
+                          "key": "radius",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-delimited list of category aliases to filter by.",
+                          "key": "categories",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "wll_ZK"
+                        },
+                        {
+                          "description": "Comma-delimited list of price levels (1, 2, 3, 4).",
+                          "key": "price",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Return only businesses open at the time of the request.",
+                          "key": "open_now",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Return businesses open at the given Unix timestamp.",
+                          "key": "open_at",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-delimited list of business attributes to filter by.",
+                          "key": "attributes",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort mode for results.",
+                          "key": "sort_by",
+                          "value": "best_match"
+                        },
+                        {
+                          "description": "Number of results to return.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Offset into the list of returned results.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "Returns up to 240 businesses based on the provided search criteria. Either location or a latitude/longitude pair is required."
+                  },
+                  "response": [
+                    {
+                      "id": "1f5611de-5a5c-4de1-b99c-868acb4418f2",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/businesses/search?location=<string>&latitude=<double>&longitude=<double>&term=<string>&radius=<integer>&categories=<string>&locale=wll_ZK&price=<string>&open_now=<boolean>&open_at=<integer>&attributes=<string>&sort_by=best_match&limit=20&offset=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "businesses",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "Geographic area to search. Required if latitude and longitude are not provided.",
+                              "key": "location",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Latitude of the search center. Required if location is not provided.",
+                              "key": "latitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Longitude of the search center. Required if location is not provided.",
+                              "key": "longitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Search term, such as \"food\" or a business name.",
+                              "key": "term",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Search radius in meters. Maximum 40000.",
+                              "key": "radius",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Comma-delimited list of category aliases to filter by.",
+                              "key": "categories",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "wll_ZK"
+                            },
+                            {
+                              "description": "Comma-delimited list of price levels (1, 2, 3, 4).",
+                              "key": "price",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Return only businesses open at the time of the request.",
+                              "key": "open_now",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Return businesses open at the given Unix timestamp.",
+                              "key": "open_at",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Comma-delimited list of business attributes to filter by.",
+                              "key": "attributes",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort mode for results.",
+                              "key": "sort_by",
+                              "value": "best_match"
+                            },
+                            {
+                              "description": "Number of results to return.",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Offset into the list of returned results.",
+                              "key": "offset",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total\": \"<integer>\",\n  \"businesses\": [\n    {\n      \"id\": \"<string>\",\n      \"alias\": \"<string>\",\n      \"name\": \"<string>\",\n      \"image_url\": \"<uri>\",\n      \"is_closed\": \"<boolean>\",\n      \"url\": \"<uri>\",\n      \"review_count\": \"<integer>\",\n      \"categories\": [\n        {\n          \"alias\": \"<string>\",\n          \"title\": \"<string>\",\n          \"parent_aliases\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_whitelist\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_blacklist\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"alias\": \"<string>\",\n          \"title\": \"<string>\",\n          \"parent_aliases\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_whitelist\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_blacklist\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"rating\": \"<float>\",\n      \"coordinates\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"transactions\": [\n        \"delivery\",\n        \"pickup\"\n      ],\n      \"price\": \"<string>\",\n      \"location\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string,null>\",\n        \"address3\": \"<string,null>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"display_address\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"cross_streets\": \"<string>\"\n      },\n      \"phone\": \"<string>\",\n      \"display_phone\": \"<string>\",\n      \"distance\": \"<double>\",\n      \"attributes\": {\n        \"ut_3c1\": true,\n        \"fugiatf\": 68564012\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"alias\": \"<string>\",\n      \"name\": \"<string>\",\n      \"image_url\": \"<uri>\",\n      \"is_closed\": \"<boolean>\",\n      \"url\": \"<uri>\",\n      \"review_count\": \"<integer>\",\n      \"categories\": [\n        {\n          \"alias\": \"<string>\",\n          \"title\": \"<string>\",\n          \"parent_aliases\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_whitelist\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_blacklist\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"alias\": \"<string>\",\n          \"title\": \"<string>\",\n          \"parent_aliases\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_whitelist\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_blacklist\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"rating\": \"<float>\",\n      \"coordinates\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"transactions\": [\n        \"delivery\",\n        \"delivery\"\n      ],\n      \"price\": \"<string>\",\n      \"location\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string,null>\",\n        \"address3\": \"<string,null>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"display_address\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"cross_streets\": \"<string>\"\n      },\n      \"phone\": \"<string>\",\n      \"display_phone\": \"<string>\",\n      \"distance\": \"<double>\",\n      \"attributes\": {\n        \"irure_86\": \"et non\",\n        \"veniam2\": \"dolore ea\"\n      }\n    }\n  ],\n  \"region\": {\n    \"center\": {\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:34.000Z",
+                      "updatedAt": "2026-07-28T03:36:34.000Z",
+                      "uid": "35240-1f5611de-5a5c-4de1-b99c-868acb4418f2"
+                    },
+                    {
+                      "id": "a99cae01-bfd3-4ccd-91e7-bab3b4464bba",
+                      "name": "The request was malformed or missing required parameters.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/businesses/search?location=<string>&latitude=<double>&longitude=<double>&term=<string>&radius=<integer>&categories=<string>&locale=wll_ZK&price=<string>&open_now=<boolean>&open_at=<integer>&attributes=<string>&sort_by=best_match&limit=20&offset=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "businesses",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "Geographic area to search. Required if latitude and longitude are not provided.",
+                              "key": "location",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Latitude of the search center. Required if location is not provided.",
+                              "key": "latitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Longitude of the search center. Required if location is not provided.",
+                              "key": "longitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Search term, such as \"food\" or a business name.",
+                              "key": "term",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Search radius in meters. Maximum 40000.",
+                              "key": "radius",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Comma-delimited list of category aliases to filter by.",
+                              "key": "categories",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "wll_ZK"
+                            },
+                            {
+                              "description": "Comma-delimited list of price levels (1, 2, 3, 4).",
+                              "key": "price",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Return only businesses open at the time of the request.",
+                              "key": "open_now",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Return businesses open at the given Unix timestamp.",
+                              "key": "open_at",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Comma-delimited list of business attributes to filter by.",
+                              "key": "attributes",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort mode for results.",
+                              "key": "sort_by",
+                              "value": "best_match"
+                            },
+                            {
+                              "description": "Number of results to return.",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Offset into the list of returned results.",
+                              "key": "offset",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:34.000Z",
+                      "updatedAt": "2026-07-28T03:36:34.000Z",
+                      "uid": "35240-a99cae01-bfd3-4ccd-91e7-bab3b4464bba"
+                    },
+                    {
+                      "id": "5e539603-0fe7-4cd3-bbf0-9ec2e7b519dd",
+                      "name": "The API key is missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/businesses/search?location=<string>&latitude=<double>&longitude=<double>&term=<string>&radius=<integer>&categories=<string>&locale=wll_ZK&price=<string>&open_now=<boolean>&open_at=<integer>&attributes=<string>&sort_by=best_match&limit=20&offset=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "businesses",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "Geographic area to search. Required if latitude and longitude are not provided.",
+                              "key": "location",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Latitude of the search center. Required if location is not provided.",
+                              "key": "latitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Longitude of the search center. Required if location is not provided.",
+                              "key": "longitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Search term, such as \"food\" or a business name.",
+                              "key": "term",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Search radius in meters. Maximum 40000.",
+                              "key": "radius",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Comma-delimited list of category aliases to filter by.",
+                              "key": "categories",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "wll_ZK"
+                            },
+                            {
+                              "description": "Comma-delimited list of price levels (1, 2, 3, 4).",
+                              "key": "price",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Return only businesses open at the time of the request.",
+                              "key": "open_now",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Return businesses open at the given Unix timestamp.",
+                              "key": "open_at",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Comma-delimited list of business attributes to filter by.",
+                              "key": "attributes",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort mode for results.",
+                              "key": "sort_by",
+                              "value": "best_match"
+                            },
+                            {
+                              "description": "Number of results to return.",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Offset into the list of returned results.",
+                              "key": "offset",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:34.000Z",
+                      "updatedAt": "2026-07-28T03:36:34.000Z",
+                      "uid": "35240-5e539603-0fe7-4cd3-bbf0-9ec2e7b519dd"
+                    },
+                    {
+                      "id": "17a18762-cd13-4e76-808a-e4aa0d579b2f",
+                      "name": "Rate limit exceeded.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/businesses/search?location=<string>&latitude=<double>&longitude=<double>&term=<string>&radius=<integer>&categories=<string>&locale=wll_ZK&price=<string>&open_now=<boolean>&open_at=<integer>&attributes=<string>&sort_by=best_match&limit=20&offset=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "businesses",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "Geographic area to search. Required if latitude and longitude are not provided.",
+                              "key": "location",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Latitude of the search center. Required if location is not provided.",
+                              "key": "latitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Longitude of the search center. Required if location is not provided.",
+                              "key": "longitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Search term, such as \"food\" or a business name.",
+                              "key": "term",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Search radius in meters. Maximum 40000.",
+                              "key": "radius",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Comma-delimited list of category aliases to filter by.",
+                              "key": "categories",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "wll_ZK"
+                            },
+                            {
+                              "description": "Comma-delimited list of price levels (1, 2, 3, 4).",
+                              "key": "price",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Return only businesses open at the time of the request.",
+                              "key": "open_now",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Return businesses open at the given Unix timestamp.",
+                              "key": "open_at",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Comma-delimited list of business attributes to filter by.",
+                              "key": "attributes",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort mode for results.",
+                              "key": "sort_by",
+                              "value": "best_match"
+                            },
+                            {
+                              "description": "Number of results to return.",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Offset into the list of returned results.",
+                              "key": "offset",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:34.000Z",
+                      "updatedAt": "2026-07-28T03:36:34.000Z",
+                      "uid": "35240-17a18762-cd13-4e76-808a-e4aa0d579b2f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:36:34.000Z",
+                  "updatedAt": "2026-07-28T03:36:34.000Z",
+                  "uid": "35240-a82f1a69-3fda-4c9b-9ff4-28bac9b4f93d"
+                }
+              ],
+              "id": "3407a7bc-bf18-4124-8d9e-067d731e3e3a",
+              "createdAt": "2026-07-28T03:36:34.000Z",
+              "updatedAt": "2026-07-28T03:36:34.000Z",
+              "uid": "35240-3407a7bc-bf18-4124-8d9e-067d731e3e3a"
+            },
+            {
+              "name": "matches",
+              "item": [
+                {
+                  "name": "Match Businesses",
+                  "id": "99203cba-1e66-4f56-8995-1210a7b5f49b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/businesses/matches?name=<string>&address1=<string>&address2=<string>&address3=<string>&city=<string>&state=<string>&country=<string>&postal_code=<string>&latitude=<double>&longitude=<double>&phone=<string>&yelp_business_id=<string>&limit=3&match_threshold=default",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "businesses",
+                        "matches"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Business name.",
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) First line of the business address.",
+                          "key": "address1",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Second line of the business address.",
+                          "key": "address2",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Third line of the business address.",
+                          "key": "address3",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) City of the business.",
+                          "key": "city",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ISO 3166-2 state code of the business.",
+                          "key": "state",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ISO 3166-1 alpha-2 country code of the business.",
+                          "key": "country",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Postal/ZIP code of the business.",
+                          "key": "postal_code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Latitude of the business.",
+                          "key": "latitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Longitude of the business.",
+                          "key": "longitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Phone number of the business.",
+                          "key": "phone",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A Yelp business id hint to improve match accuracy.",
+                          "key": "yelp_business_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of matches to return.",
+                          "key": "limit",
+                          "value": "3"
+                        },
+                        {
+                          "description": "How strictly candidates must match the input.",
+                          "key": "match_threshold",
+                          "value": "default"
+                        }
+                      ]
+                    },
+                    "description": "Matches the supplied business attributes against businesses on Yelp, returning the best candidate matches. Useful for resolving your own records to a Yelp business id."
+                  },
+                  "response": [
+                    {
+                      "id": "38b806bc-8338-4d5b-a585-c612d8fa757c",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/businesses/matches?name=<string>&address1=<string>&address2=<string>&address3=<string>&city=<string>&state=<string>&country=<string>&postal_code=<string>&latitude=<double>&longitude=<double>&phone=<string>&yelp_business_id=<string>&limit=3&match_threshold=default",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "businesses",
+                            "matches"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Business name.",
+                              "key": "name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) First line of the business address.",
+                              "key": "address1",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Second line of the business address.",
+                              "key": "address2",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Third line of the business address.",
+                              "key": "address3",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) City of the business.",
+                              "key": "city",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ISO 3166-2 state code of the business.",
+                              "key": "state",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ISO 3166-1 alpha-2 country code of the business.",
+                              "key": "country",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Postal/ZIP code of the business.",
+                              "key": "postal_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Latitude of the business.",
+                              "key": "latitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Longitude of the business.",
+                              "key": "longitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Phone number of the business.",
+                              "key": "phone",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A Yelp business id hint to improve match accuracy.",
+                              "key": "yelp_business_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of matches to return.",
+                              "key": "limit",
+                              "value": "3"
+                            },
+                            {
+                              "description": "How strictly candidates must match the input.",
+                              "key": "match_threshold",
+                              "value": "default"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"businesses\": [\n    {\n      \"id\": \"<string>\",\n      \"alias\": \"<string>\",\n      \"name\": \"<string>\",\n      \"image_url\": \"<uri>\",\n      \"is_closed\": \"<boolean>\",\n      \"url\": \"<uri>\",\n      \"review_count\": \"<integer>\",\n      \"categories\": [\n        {\n          \"alias\": \"<string>\",\n          \"title\": \"<string>\",\n          \"parent_aliases\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_whitelist\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_blacklist\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"alias\": \"<string>\",\n          \"title\": \"<string>\",\n          \"parent_aliases\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_whitelist\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_blacklist\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"rating\": \"<float>\",\n      \"coordinates\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"transactions\": [\n        \"restaurant_reservation\",\n        \"delivery\"\n      ],\n      \"price\": \"<string>\",\n      \"location\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string,null>\",\n        \"address3\": \"<string,null>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"display_address\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"cross_streets\": \"<string>\"\n      },\n      \"phone\": \"<string>\",\n      \"display_phone\": \"<string>\",\n      \"distance\": \"<double>\",\n      \"attributes\": {\n        \"aliqua7\": \"dolor fugiat amet voluptate laboris\",\n        \"veniam7d7\": true,\n        \"aliquae\": -57578936.02949786,\n        \"sint_0\": 16367781\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"alias\": \"<string>\",\n      \"name\": \"<string>\",\n      \"image_url\": \"<uri>\",\n      \"is_closed\": \"<boolean>\",\n      \"url\": \"<uri>\",\n      \"review_count\": \"<integer>\",\n      \"categories\": [\n        {\n          \"alias\": \"<string>\",\n          \"title\": \"<string>\",\n          \"parent_aliases\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_whitelist\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_blacklist\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"alias\": \"<string>\",\n          \"title\": \"<string>\",\n          \"parent_aliases\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_whitelist\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"country_blacklist\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"rating\": \"<float>\",\n      \"coordinates\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"transactions\": [\n        \"pickup\",\n        \"pickup\"\n      ],\n      \"price\": \"<string>\",\n      \"location\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string,null>\",\n        \"address3\": \"<string,null>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"display_address\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"cross_streets\": \"<string>\"\n      },\n      \"phone\": \"<string>\",\n      \"display_phone\": \"<string>\",\n      \"distance\": \"<double>\",\n      \"attributes\": {\n        \"consequat_5\": 57130813.89462057\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:36:34.000Z",
+                      "updatedAt": "2026-07-28T03:36:34.000Z",
+                      "uid": "35240-38b806bc-8338-4d5b-a585-c612d8fa757c"
+                    },
+                    {
+                      "id": "5c8dc2a8-1099-4d9f-910d-3db0b526c1b6",
+                      "name": "The request was malformed or missing required parameters.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/businesses/matches?name=<string>&address1=<string>&address2=<string>&address3=<string>&city=<string>&state=<string>&country=<string>&postal_code=<string>&latitude=<double>&longitude=<double>&phone=<string>&yelp_business_id=<string>&limit=3&match_threshold=default",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "businesses",
+                            "matches"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Business name.",
+                              "key": "name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) First line of the business address.",
+                              "key": "address1",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Second line of the business address.",
+                              "key": "address2",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Third line of the business address.",
+                              "key": "address3",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) City of the business.",
+                              "key": "city",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ISO 3166-2 state code of the business.",
+                              "key": "state",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ISO 3166-1 alpha-2 country code of the business.",
+                              "key": "country",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Postal/ZIP code of the business.",
+                              "key": "postal_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Latitude of the business.",
+                              "key": "latitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Longitude of the business.",
+                              "key": "longitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Phone number of the business.",
+                              "key": "phone",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A Yelp business id hint to improve match accuracy.",
+                              "key": "yelp_business_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of matches to return.",
+                              "key": "limit",
+                              "value": "3"
+                            },
+                            {
+                              "description": "How strictly candidates must match the input.",
+                              "key": "match_threshold",
+                              "value": "default"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:34.000Z",
+                      "updatedAt": "2026-07-28T03:36:34.000Z",
+                      "uid": "35240-5c8dc2a8-1099-4d9f-910d-3db0b526c1b6"
+                    },
+                    {
+                      "id": "1c897b0a-7ce8-469a-aca7-82d6cf9a76f6",
+                      "name": "The API key is missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/businesses/matches?name=<string>&address1=<string>&address2=<string>&address3=<string>&city=<string>&state=<string>&country=<string>&postal_code=<string>&latitude=<double>&longitude=<double>&phone=<string>&yelp_business_id=<string>&limit=3&match_threshold=default",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "businesses",
+                            "matches"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Business name.",
+                              "key": "name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) First line of the business address.",
+                              "key": "address1",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Second line of the business address.",
+                              "key": "address2",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Third line of the business address.",
+                              "key": "address3",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) City of the business.",
+                              "key": "city",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ISO 3166-2 state code of the business.",
+                              "key": "state",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ISO 3166-1 alpha-2 country code of the business.",
+                              "key": "country",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Postal/ZIP code of the business.",
+                              "key": "postal_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Latitude of the business.",
+                              "key": "latitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Longitude of the business.",
+                              "key": "longitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Phone number of the business.",
+                              "key": "phone",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A Yelp business id hint to improve match accuracy.",
+                              "key": "yelp_business_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of matches to return.",
+                              "key": "limit",
+                              "value": "3"
+                            },
+                            {
+                              "description": "How strictly candidates must match the input.",
+                              "key": "match_threshold",
+                              "value": "default"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:34.000Z",
+                      "updatedAt": "2026-07-28T03:36:34.000Z",
+                      "uid": "35240-1c897b0a-7ce8-469a-aca7-82d6cf9a76f6"
+                    },
+                    {
+                      "id": "fb8b2621-3451-42a0-8278-9165858a5c2c",
+                      "name": "Rate limit exceeded.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/businesses/matches?name=<string>&address1=<string>&address2=<string>&address3=<string>&city=<string>&state=<string>&country=<string>&postal_code=<string>&latitude=<double>&longitude=<double>&phone=<string>&yelp_business_id=<string>&limit=3&match_threshold=default",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "businesses",
+                            "matches"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Business name.",
+                              "key": "name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) First line of the business address.",
+                              "key": "address1",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Second line of the business address.",
+                              "key": "address2",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Third line of the business address.",
+                              "key": "address3",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) City of the business.",
+                              "key": "city",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ISO 3166-2 state code of the business.",
+                              "key": "state",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ISO 3166-1 alpha-2 country code of the business.",
+                              "key": "country",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Postal/ZIP code of the business.",
+                              "key": "postal_code",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Latitude of the business.",
+                              "key": "latitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Longitude of the business.",
+                              "key": "longitude",
+                              "value": "<double>"
+                            },
+                            {
+                              "description": "Phone number of the business.",
+                              "key": "phone",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A Yelp business id hint to improve match accuracy.",
+                              "key": "yelp_business_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of matches to return.",
+                              "key": "limit",
+                              "value": "3"
+                            },
+                            {
+                              "description": "How strictly candidates must match the input.",
+                              "key": "match_threshold",
+                              "value": "default"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:34.000Z",
+                      "updatedAt": "2026-07-28T03:36:34.000Z",
+                      "uid": "35240-fb8b2621-3451-42a0-8278-9165858a5c2c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:36:34.000Z",
+                  "updatedAt": "2026-07-28T03:36:34.000Z",
+                  "uid": "35240-99203cba-1e66-4f56-8995-1210a7b5f49b"
+                }
+              ],
+              "id": "8b7aef16-35b9-45f9-b49b-b9455e611b7b",
+              "createdAt": "2026-07-28T03:36:34.000Z",
+              "updatedAt": "2026-07-28T03:36:34.000Z",
+              "uid": "35240-8b7aef16-35b9-45f9-b49b-b9455e611b7b"
+            },
+            {
+              "name": "{business_id_or_alias}",
+              "item": [
+                {
+                  "name": "Get Business Details",
+                  "id": "b6c40a5c-3e6f-4b3f-9edd-69f3fc59169b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/businesses/:business_id_or_alias?locale=wll_ZK",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "businesses",
+                        ":business_id_or_alias"
+                      ],
+                      "query": [
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "wll_ZK"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "092a4dbf-f78d-4522-8775-c381f7af78c6",
+                          "key": "business_id_or_alias",
+                          "value": "<string>",
+                          "description": "(Required) A 22-character Yelp business id or a business alias."
+                        }
+                      ]
+                    },
+                    "description": "Returns detailed information about a business by Yelp id or alias."
+                  },
+                  "response": [
+                    {
+                      "id": "ef802991-d721-4feb-9cad-eee5cbc611b7",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/businesses/:business_id_or_alias?locale=wll_ZK",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "businesses",
+                            ":business_id_or_alias"
+                          ],
+                          "query": [
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "wll_ZK"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "business_id_or_alias"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"name\": \"<string>\",\n  \"image_url\": \"<uri>\",\n  \"is_closed\": \"<boolean>\",\n  \"url\": \"<uri>\",\n  \"review_count\": \"<integer>\",\n  \"categories\": [\n    {\n      \"alias\": \"<string>\",\n      \"title\": \"<string>\",\n      \"parent_aliases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"country_whitelist\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"country_blacklist\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"alias\": \"<string>\",\n      \"title\": \"<string>\",\n      \"parent_aliases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"country_whitelist\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"country_blacklist\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"rating\": \"<float>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"transactions\": [\n    \"delivery\",\n    \"pickup\"\n  ],\n  \"price\": \"<string>\",\n  \"location\": {\n    \"address1\": \"<string>\",\n    \"address2\": \"<string,null>\",\n    \"address3\": \"<string,null>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"display_address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"cross_streets\": \"<string>\"\n  },\n  \"phone\": \"<string>\",\n  \"display_phone\": \"<string>\",\n  \"distance\": \"<double>\",\n  \"attributes\": {\n    \"aliqua_0\": 44427711,\n    \"Excepteur_8\": \"Lorem\",\n    \"ut_046\": 89120345.80337355\n  },\n  \"is_claimed\": \"<boolean>\",\n  \"photos\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"hours\": [\n    {\n      \"hour_type\": \"<string>\",\n      \"open\": [\n        {\n          \"day\": \"<integer>\",\n          \"start\": \"<string>\",\n          \"end\": \"<string>\",\n          \"is_overnight\": \"<boolean>\"\n        },\n        {\n          \"day\": \"<integer>\",\n          \"start\": \"<string>\",\n          \"end\": \"<string>\",\n          \"is_overnight\": \"<boolean>\"\n        }\n      ],\n      \"is_open_now\": \"<boolean>\"\n    },\n    {\n      \"hour_type\": \"<string>\",\n      \"open\": [\n        {\n          \"day\": \"<integer>\",\n          \"start\": \"<string>\",\n          \"end\": \"<string>\",\n          \"is_overnight\": \"<boolean>\"\n        },\n        {\n          \"day\": \"<integer>\",\n          \"start\": \"<string>\",\n          \"end\": \"<string>\",\n          \"is_overnight\": \"<boolean>\"\n        }\n      ],\n      \"is_open_now\": \"<boolean>\"\n    }\n  ],\n  \"special_hours\": [\n    {\n      \"nonac0\": true,\n      \"labore_88c\": true,\n      \"ipsum_72a\": \"sunt enim nulla et\",\n      \"non_93e\": -77588436\n    },\n    {\n      \"veniam_e\": -72472073,\n      \"elitb_\": true,\n      \"deserunt98\": \"velit aute Lorem sit\"\n    }\n  ],\n  \"messaging\": {\n    \"est_99f\": -16284432,\n    \"aliquipb\": -63942971.19714576,\n    \"id_f94\": 7494332\n  },\n  \"yelp_menu_url\": \"<uri>\"\n}",
+                      "createdAt": "2026-07-28T03:36:34.000Z",
+                      "updatedAt": "2026-07-28T03:36:34.000Z",
+                      "uid": "35240-ef802991-d721-4feb-9cad-eee5cbc611b7"
+                    },
+                    {
+                      "id": "81b80298-d879-4fa1-bc07-fb72f1a8ed1a",
+                      "name": "The API key is missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/businesses/:business_id_or_alias?locale=wll_ZK",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "businesses",
+                            ":business_id_or_alias"
+                          ],
+                          "query": [
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "wll_ZK"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "business_id_or_alias"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:34.000Z",
+                      "updatedAt": "2026-07-28T03:36:34.000Z",
+                      "uid": "35240-81b80298-d879-4fa1-bc07-fb72f1a8ed1a"
+                    },
+                    {
+                      "id": "6f213109-e6ed-45ae-9902-5e28363de442",
+                      "name": "The requested resource was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/businesses/:business_id_or_alias?locale=wll_ZK",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "businesses",
+                            ":business_id_or_alias"
+                          ],
+                          "query": [
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "wll_ZK"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "business_id_or_alias"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:34.000Z",
+                      "updatedAt": "2026-07-28T03:36:34.000Z",
+                      "uid": "35240-6f213109-e6ed-45ae-9902-5e28363de442"
+                    },
+                    {
+                      "id": "f031e836-e23c-4fcb-a17d-c80d32c04f17",
+                      "name": "Rate limit exceeded.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/businesses/:business_id_or_alias?locale=wll_ZK",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "businesses",
+                            ":business_id_or_alias"
+                          ],
+                          "query": [
+                            {
+                              "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                              "key": "locale",
+                              "value": "wll_ZK"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "business_id_or_alias"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:36:34.000Z",
+                      "updatedAt": "2026-07-28T03:36:34.000Z",
+                      "uid": "35240-f031e836-e23c-4fcb-a17d-c80d32c04f17"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:36:34.000Z",
+                  "updatedAt": "2026-07-28T03:36:34.000Z",
+                  "uid": "35240-b6c40a5c-3e6f-4b3f-9edd-69f3fc59169b"
+                }
+              ],
+              "id": "2bf9ff9e-9580-4be3-83fa-ee8374ae6afa",
+              "createdAt": "2026-07-28T03:36:34.000Z",
+              "updatedAt": "2026-07-28T03:36:34.000Z",
+              "uid": "35240-2bf9ff9e-9580-4be3-83fa-ee8374ae6afa"
+            }
+          ],
+          "id": "b2249a17-12bc-4649-aeb5-e1068602561e",
+          "createdAt": "2026-07-28T03:36:34.000Z",
+          "updatedAt": "2026-07-28T03:36:34.000Z",
+          "uid": "35240-b2249a17-12bc-4649-aeb5-e1068602561e"
+        },
+        {
+          "name": "autocomplete",
+          "item": [
+            {
+              "name": "Autocomplete",
+              "id": "251f77d7-a76a-4317-84ca-52ff639d32a3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v3/autocomplete?text=<string>&latitude=<double>&longitude=<double>&locale=wll_ZK",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v3",
+                    "autocomplete"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Text to return autocomplete suggestions for.",
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Latitude of the location to look for suggestions in.",
+                      "key": "latitude",
+                      "value": "<double>"
+                    },
+                    {
+                      "description": "Longitude of the location to look for suggestions in.",
+                      "key": "longitude",
+                      "value": "<double>"
+                    },
+                    {
+                      "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                      "key": "locale",
+                      "value": "wll_ZK"
+                    }
+                  ]
+                },
+                "description": "Returns autocomplete suggestions for search terms, businesses, and categories."
+              },
+              "response": [
+                {
+                  "id": "d5909b42-4ce9-42c8-b53a-7d7e8805e517",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/autocomplete?text=<string>&latitude=<double>&longitude=<double>&locale=wll_ZK",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "autocomplete"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Text to return autocomplete suggestions for.",
+                          "key": "text",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Latitude of the location to look for suggestions in.",
+                          "key": "latitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Longitude of the location to look for suggestions in.",
+                          "key": "longitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "wll_ZK"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"terms\": [\n    {\n      \"text\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\"\n    }\n  ],\n  \"businesses\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"categories\": [\n    {\n      \"alias\": \"<string>\",\n      \"title\": \"<string>\",\n      \"parent_aliases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"country_whitelist\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"country_blacklist\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"alias\": \"<string>\",\n      \"title\": \"<string>\",\n      \"parent_aliases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"country_whitelist\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"country_blacklist\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:36:34.000Z",
+                  "updatedAt": "2026-07-28T03:36:34.000Z",
+                  "uid": "35240-d5909b42-4ce9-42c8-b53a-7d7e8805e517"
+                },
+                {
+                  "id": "8ff0dd11-26cf-4acb-9b44-c7a478816f71",
+                  "name": "The request was malformed or missing required parameters.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/autocomplete?text=<string>&latitude=<double>&longitude=<double>&locale=wll_ZK",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "autocomplete"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Text to return autocomplete suggestions for.",
+                          "key": "text",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Latitude of the location to look for suggestions in.",
+                          "key": "latitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Longitude of the location to look for suggestions in.",
+                          "key": "longitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "wll_ZK"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:36:34.000Z",
+                  "updatedAt": "2026-07-28T03:36:34.000Z",
+                  "uid": "35240-8ff0dd11-26cf-4acb-9b44-c7a478816f71"
+                },
+                {
+                  "id": "d0ded2a8-7882-4126-bb77-b98924bd43fc",
+                  "name": "The API key is missing or invalid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/autocomplete?text=<string>&latitude=<double>&longitude=<double>&locale=wll_ZK",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "autocomplete"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Text to return autocomplete suggestions for.",
+                          "key": "text",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Latitude of the location to look for suggestions in.",
+                          "key": "latitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Longitude of the location to look for suggestions in.",
+                          "key": "longitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "wll_ZK"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:36:34.000Z",
+                  "updatedAt": "2026-07-28T03:36:34.000Z",
+                  "uid": "35240-d0ded2a8-7882-4126-bb77-b98924bd43fc"
+                },
+                {
+                  "id": "de39443f-50e7-42a2-bc39-edacce051344",
+                  "name": "Rate limit exceeded.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/autocomplete?text=<string>&latitude=<double>&longitude=<double>&locale=wll_ZK",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "autocomplete"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Text to return autocomplete suggestions for.",
+                          "key": "text",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Latitude of the location to look for suggestions in.",
+                          "key": "latitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Longitude of the location to look for suggestions in.",
+                          "key": "longitude",
+                          "value": "<double>"
+                        },
+                        {
+                          "description": "Locale in the form {language}_{country}, e.g. en_US.",
+                          "key": "locale",
+                          "value": "wll_ZK"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:36:34.000Z",
+                  "updatedAt": "2026-07-28T03:36:34.000Z",
+                  "uid": "35240-de39443f-50e7-42a2-bc39-edacce051344"
+                }
+              ],
+              "createdAt": "2026-07-28T03:36:34.000Z",
+              "updatedAt": "2026-07-28T03:36:34.000Z",
+              "uid": "35240-251f77d7-a76a-4317-84ca-52ff639d32a3"
+            }
+          ],
+          "id": "c1baeac8-a17c-414b-9996-c3c770641801",
+          "createdAt": "2026-07-28T03:36:34.000Z",
+          "updatedAt": "2026-07-28T03:36:34.000Z",
+          "uid": "35240-c1baeac8-a17c-414b-9996-c3c770641801"
+        }
+      ],
+      "id": "5dfe6c9b-e4c3-4128-83c1-fb0e1b87c1a5",
+      "createdAt": "2026-07-28T03:36:34.000Z",
+      "updatedAt": "2026-07-28T03:36:34.000Z",
+      "uid": "35240-5dfe6c9b-e4c3-4128-83c1-fb0e1b87c1a5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.yelp.com"
+    }
+  ]
+}
