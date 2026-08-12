@@ -36,6 +36,9 @@ modified: '2026-06-03'
 url: https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 common:
+- type: License
+  name: MIT
+  url: https://github.com/Yelp/yelp-fusion/blob/master/LICENSE
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/yelp/overview
 - type: AgenticAccess
