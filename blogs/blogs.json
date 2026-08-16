@@ -5,7 +5,7 @@
       "source": "https://blog.yelp.com/feed/",
       "feed_url": "https://blog.yelp.com/feed/",
       "title": "",
-      "saved": 0,
+      "saved": 9,
       "method": "feed"
     },
     {
@@ -17,6 +17,6 @@
       "error": "parse_failed"
     }
   ],
-  "fetched": "2026-08-06T13:56:59Z",
-  "post_count": 26
+  "fetched": "2026-08-15T12:11:08Z",
+  "post_count": 35
 }
