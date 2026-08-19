@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Yelp Fusion AI Events API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.yelp.com/v3/events",
+            "params": [
+              {
+                "name": "locale",
+                "value": "example",
+                "type": "query",
+                "description": "Locale in the form {language}_{country}, e.g. en_US."
+              },
+              {
+                "name": "offset",
+                "value": "1",
+                "type": "query",
+                "description": "Offset into the list of returned events."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Number of events to return."
+              },
+              {
+                "name": "sort_by",
+                "value": "asc",
+                "type": "query",
+                "description": "Sort direction."
+              },
+              {
+                "name": "sort_on",
+                "value": "popularity",
+                "type": "query",
+                "description": "Field to sort events on."
+              },
+              {
+                "name": "start_date",
+                "value": "1",
+                "type": "query",
+                "description": "Unix timestamp lower bound for event start time."
+              },
+              {
+                "name": "end_date",
+                "value": "1",
+                "type": "query",
+                "description": "Unix timestamp upper bound for event start time."
+              },
+              {
+                "name": "categories",
+                "value": "example",
+                "type": "query",
+                "description": "Comma-delimited list of event category aliases."
+              },
+              {
+                "name": "is_free",
+                "value": "true",
+                "type": "query",
+                "description": "Filter for free events."
+              },
+              {
+                "name": "location",
+                "value": "example",
+                "type": "query",
+                "description": "Geographic area to search for events."
+              },
+              {
+                "name": "latitude",
+                "value": "37.7867",
+                "type": "query",
+                "description": "Latitude of the search center."
+              },
+              {
+                "name": "longitude",
+                "value": "-122.4112",
+                "type": "query",
+                "description": "Longitude of the search center."
+              },
+              {
+                "name": "radius",
+                "value": "1",
+                "type": "query",
+                "description": "Search radius in meters. Maximum 40000."
+              },
+              {
+                "name": "excluded_events",
+                "value": "example",
+                "type": "query",
+                "description": "Comma-delimited list of event ids to exclude."
+              }
+            ]
+          },
+          "docs": "Returns events based on the provided search criteria."
+        },
+        {
+          "info": {
+            "name": "Get Event Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.yelp.com/v3/events/:event_id",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "example",
+                "type": "path",
+                "description": "The id of the event to retrieve."
+              },
+              {
+                "name": "locale",
+                "value": "example",
+                "type": "query",
+                "description": "Locale in the form {language}_{country}, e.g. en_US."
+              }
+            ]
+          },
+          "docs": "Returns details for a single event by id."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

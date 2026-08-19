@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Yelp Fusion AI Categories API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.yelp.com/v3/categories",
+            "params": [
+              {
+                "name": "locale",
+                "value": "example",
+                "type": "query",
+                "description": "Locale in the form {language}_{country}, e.g. en_US."
+              }
+            ]
+          },
+          "docs": "Returns the full list of Yelp business categories."
+        },
+        {
+          "info": {
+            "name": "Get Category Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.yelp.com/v3/categories/:alias",
+            "params": [
+              {
+                "name": "alias",
+                "value": "rickys-tacos-san-francisco",
+                "type": "path",
+                "description": "The category alias, e.g. \"restaurants\"."
+              },
+              {
+                "name": "locale",
+                "value": "example",
+                "type": "query",
+                "description": "Locale in the form {language}_{country}, e.g. en_US."
+              }
+            ]
+          },
+          "docs": "Returns details for a single Yelp category by alias."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

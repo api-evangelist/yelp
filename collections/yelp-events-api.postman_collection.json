@@ -1,0 +1,850 @@
+{
+  "item": [
+    {
+      "id": "43bc5d00-68a6-470f-8e9b-59f255f96d25",
+      "name": "Events",
+      "description": {
+        "content": "Local event search and details",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "683fbeb5-3176-40e1-8c5d-77020b6fefac",
+          "name": "Search Events",
+          "request": {
+            "name": "Search Events",
+            "description": {
+              "content": "Returns events based on the provided search criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale in the form {language}_{country}, e.g. en_US."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset into the list of returned events."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "3",
+                  "description": "Number of events to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "desc",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_on",
+                  "value": "popularity",
+                  "description": "Field to sort events on."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<integer>",
+                  "description": "Unix timestamp lower bound for event start time."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<integer>",
+                  "description": "Unix timestamp upper bound for event start time."
+                },
+                {
+                  "disabled": false,
+                  "key": "categories",
+                  "value": "<string>",
+                  "description": "Comma-delimited list of event category aliases."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_free",
+                  "value": "<boolean>",
+                  "description": "Filter for free events."
+                },
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "<string>",
+                  "description": "Geographic area to search for events."
+                },
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<double>",
+                  "description": "Latitude of the search center."
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<double>",
+                  "description": "Longitude of the search center."
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "<integer>",
+                  "description": "Search radius in meters. Maximum 40000."
+                },
+                {
+                  "disabled": false,
+                  "key": "excluded_events",
+                  "value": "<string>",
+                  "description": "Comma-delimited list of event ids to exclude."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b03c200-892f-49ee-9628-f807faa054f9",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort_on",
+                      "value": "popularity"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "example"
+                    },
+                    {
+                      "key": "is_free",
+                      "value": "true"
+                    },
+                    {
+                      "key": "location",
+                      "value": "example"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1"
+                    },
+                    {
+                      "key": "excluded_events",
+                      "value": "example"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 240,\n  \"events\": [\n    {\n      \"id\": \"gR9DTbKCON2g1Z23bWcEpQ\",\n      \"name\": \"Ricky's Tacos\",\n      \"category\": \"music\",\n      \"description\": \"Live music in the heart of the Mission District.\",\n      \"time_start\": \"2026-07-04T19:00:00-07:00\",\n      \"time_end\": \"2026-07-04T23:00:00-07:00\",\n      \"location\": {\n        \"address1\": \"350 Mission St\",\n        \"address2\": \"\",\n        \"address3\": \"\",\n        \"city\": \"San Francisco\",\n        \"state\": \"CA\",\n        \"zip_code\": \"94105\",\n        \"country\": \"US\",\n        \"display_address\": {},\n        \"cross_streets\": \"example\"\n      },\n      \"latitude\": 37.7867,\n      \"longitude\": -122.4112,\n      \"image_url\": \"https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg\",\n      \"event_site_url\": \"https://www.yelp.com/events/san-francisco-summer-music-festival\",\n      \"is_free\": true,\n      \"is_canceled\": false,\n      \"is_official\": true,\n      \"attending_count\": 312,\n      \"interested_count\": 1024,\n      \"cost\": 0,\n      \"cost_max\": 0,\n      \"tickets_url\": \"https://www.yelp.com/events/tickets/abc123\",\n      \"business_id\": \"gR9DTbKCON2g1Z23bWcEpQ\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c246424-9009-400e-9257-91b629e3362e",
+              "name": "The request was malformed or missing required parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort_on",
+                      "value": "popularity"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "example"
+                    },
+                    {
+                      "key": "is_free",
+                      "value": "true"
+                    },
+                    {
+                      "key": "location",
+                      "value": "example"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1"
+                    },
+                    {
+                      "key": "excluded_events",
+                      "value": "example"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d085ef09-5384-4cdf-9838-fb30586cdd6e",
+              "name": "The API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort_on",
+                      "value": "popularity"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "example"
+                    },
+                    {
+                      "key": "is_free",
+                      "value": "true"
+                    },
+                    {
+                      "key": "location",
+                      "value": "example"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1"
+                    },
+                    {
+                      "key": "excluded_events",
+                      "value": "example"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a3035fa-d4c6-4b47-b52f-9b96283ae626",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort_on",
+                      "value": "popularity"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "1"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "1"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "example"
+                    },
+                    {
+                      "key": "is_free",
+                      "value": "true"
+                    },
+                    {
+                      "key": "location",
+                      "value": "example"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1"
+                    },
+                    {
+                      "key": "excluded_events",
+                      "value": "example"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d98b0c89-0f41-42c5-bf99-be95fb90a224",
+          "name": "Get Event Details",
+          "request": {
+            "name": "Get Event Details",
+            "description": {
+              "content": "Returns details for a single event by id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "events",
+                ":event_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale in the form {language}_{country}, e.g. en_US."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "event_id",
+                  "description": "(Required) The id of the event to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80fb44db-61c2-4808-b4c8-625c1f99c42f",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "events",
+                    ":event_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event_id",
+                      "description": "(Required) The id of the event to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"gR9DTbKCON2g1Z23bWcEpQ\",\n  \"name\": \"Ricky's Tacos\",\n  \"category\": \"music\",\n  \"description\": \"Live music in the heart of the Mission District.\",\n  \"time_start\": \"2026-07-04T19:00:00-07:00\",\n  \"time_end\": \"2026-07-04T23:00:00-07:00\",\n  \"location\": {\n    \"address1\": \"350 Mission St\",\n    \"address2\": \"\",\n    \"address3\": \"\",\n    \"city\": \"San Francisco\",\n    \"state\": \"CA\",\n    \"zip_code\": \"94105\",\n    \"country\": \"US\",\n    \"display_address\": [\n      \"example\"\n    ],\n    \"cross_streets\": \"example\"\n  },\n  \"latitude\": 37.7867,\n  \"longitude\": -122.4112,\n  \"image_url\": \"https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg\",\n  \"event_site_url\": \"https://www.yelp.com/events/san-francisco-summer-music-festival\",\n  \"is_free\": true,\n  \"is_canceled\": false,\n  \"is_official\": true,\n  \"attending_count\": 312,\n  \"interested_count\": 1024,\n  \"cost\": 0,\n  \"cost_max\": 0,\n  \"tickets_url\": \"https://www.yelp.com/events/tickets/abc123\",\n  \"business_id\": \"gR9DTbKCON2g1Z23bWcEpQ\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e0218d7-46d0-4946-986a-a85bdc4686ec",
+              "name": "The API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "events",
+                    ":event_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event_id",
+                      "description": "(Required) The id of the event to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c48322a9-8fb6-4a7d-9134-ef32a3e89c53",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "events",
+                    ":event_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event_id",
+                      "description": "(Required) The id of the event to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f669ea1-dfc2-4232-a2f5-383d2d61740a",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "events",
+                    ":event_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event_id",
+                      "description": "(Required) The id of the event to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.yelp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f86a343d-e5a2-4f08-ba32-45bf014a032e",
+    "name": "Yelp Fusion AI Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Yelp Fusion API provides programmatic access to Yelp's database of local businesses, reviews, events, categories, and conversational AI search. This definition documents the public Fusion REST endpoints: business search and discovery, business details, reviews, autocomplete, phone search, business match, events, categories, and the Yelp Fusion AI chat endpoint. Authentication is via a bearer API key passed in the Authorization header.\n\nContact Support:\n Name: Yelp Developer",
+      "type": "text/plain"
+    }
+  }
+}

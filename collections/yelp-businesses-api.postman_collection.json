@@ -1,0 +1,1961 @@
+{
+  "item": [
+    {
+      "id": "076b2390-f18f-4654-b7bc-27f153397872",
+      "name": "Businesses",
+      "description": {
+        "content": "Search, match, and retrieve local business data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eb13d5b7-11da-4877-ad03-358cd876ce68",
+          "name": "Search Businesses",
+          "request": {
+            "name": "Search Businesses",
+            "description": {
+              "content": "Returns up to 240 businesses based on the provided search criteria. Either location or a latitude/longitude pair is required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "businesses",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "<string>",
+                  "description": "Geographic area to search. Required if latitude and longitude are not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<double>",
+                  "description": "Latitude of the search center. Required if location is not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<double>",
+                  "description": "Longitude of the search center. Required if location is not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "term",
+                  "value": "<string>",
+                  "description": "Search term, such as \"food\" or a business name."
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "<integer>",
+                  "description": "Search radius in meters. Maximum 40000."
+                },
+                {
+                  "disabled": false,
+                  "key": "categories",
+                  "value": "<string>",
+                  "description": "Comma-delimited list of category aliases to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale in the form {language}_{country}, e.g. en_US."
+                },
+                {
+                  "disabled": false,
+                  "key": "price",
+                  "value": "<string>",
+                  "description": "Comma-delimited list of price levels (1, 2, 3, 4)."
+                },
+                {
+                  "disabled": false,
+                  "key": "open_now",
+                  "value": "<boolean>",
+                  "description": "Return only businesses open at the time of the request."
+                },
+                {
+                  "disabled": false,
+                  "key": "open_at",
+                  "value": "<integer>",
+                  "description": "Return businesses open at the given Unix timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "attributes",
+                  "value": "<string>",
+                  "description": "Comma-delimited list of business attributes to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "best_match",
+                  "description": "Sort mode for results."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of results to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset into the list of returned results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9759b31-1f89-4767-8a80-7bcc27ed11b6",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location",
+                      "value": "example"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "term",
+                      "value": "example"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "example"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "price",
+                      "value": "$$"
+                    },
+                    {
+                      "key": "open_now",
+                      "value": "true"
+                    },
+                    {
+                      "key": "open_at",
+                      "value": "1"
+                    },
+                    {
+                      "key": "attributes",
+                      "value": "example"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "best_match"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 240,\n  \"businesses\": [\n    {\n      \"id\": \"gR9DTbKCON2g1Z23bWcEpQ\",\n      \"alias\": \"rickys-tacos-san-francisco\",\n      \"name\": \"Ricky's Tacos\",\n      \"image_url\": \"https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg\",\n      \"is_closed\": false,\n      \"url\": \"https://www.yelp.com/biz/rickys-tacos-san-francisco\",\n      \"review_count\": 1289,\n      \"categories\": [\n        {}\n      ],\n      \"rating\": 4.5,\n      \"coordinates\": {\n        \"latitude\": 37.7867,\n        \"longitude\": -122.4112\n      },\n      \"transactions\": [\n        \"pickup\"\n      ],\n      \"price\": \"$$\",\n      \"location\": {\n        \"address1\": \"350 Mission St\",\n        \"address2\": \"\",\n        \"address3\": \"\",\n        \"city\": \"San Francisco\",\n        \"state\": \"CA\",\n        \"zip_code\": \"94105\",\n        \"country\": \"US\",\n        \"display_address\": {},\n        \"cross_streets\": \"example\"\n      },\n      \"phone\": \"+14159083801\",\n      \"display_phone\": \"(415) 908-3801\",\n      \"distance\": 1503.4,\n      \"attributes\": {}\n    }\n  ],\n  \"region\": {\n    \"center\": {\n      \"latitude\": 37.7867,\n      \"longitude\": -122.4112\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "671b1c5b-0421-43ab-a902-99fdc0456852",
+              "name": "The request was malformed or missing required parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location",
+                      "value": "example"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "term",
+                      "value": "example"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "example"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "price",
+                      "value": "$$"
+                    },
+                    {
+                      "key": "open_now",
+                      "value": "true"
+                    },
+                    {
+                      "key": "open_at",
+                      "value": "1"
+                    },
+                    {
+                      "key": "attributes",
+                      "value": "example"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "best_match"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d3307bb-e0a0-4541-882d-3d9084cef392",
+              "name": "The API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location",
+                      "value": "example"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "term",
+                      "value": "example"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "example"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "price",
+                      "value": "$$"
+                    },
+                    {
+                      "key": "open_now",
+                      "value": "true"
+                    },
+                    {
+                      "key": "open_at",
+                      "value": "1"
+                    },
+                    {
+                      "key": "attributes",
+                      "value": "example"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "best_match"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ca75fd3-684a-4523-a599-767df8b8485d",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location",
+                      "value": "example"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "term",
+                      "value": "example"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "example"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "price",
+                      "value": "$$"
+                    },
+                    {
+                      "key": "open_now",
+                      "value": "true"
+                    },
+                    {
+                      "key": "open_at",
+                      "value": "1"
+                    },
+                    {
+                      "key": "attributes",
+                      "value": "example"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "best_match"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "848878fa-4417-4ebe-8f13-650c6306319e",
+          "name": "Search Businesses By Phone",
+          "request": {
+            "name": "Search Businesses By Phone",
+            "description": {
+              "content": "Returns businesses associated with the given phone number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "businesses",
+                "search",
+                "phone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "phone",
+                  "value": "<string>",
+                  "description": "(Required) Phone number in the form +[country code][number], e.g. +14159083801."
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale in the form {language}_{country}, e.g. en_US."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a87e5e34-d48c-4713-98d6-d7d2c694ecde",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    "search",
+                    "phone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "phone",
+                      "value": "+14159083801"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 240,\n  \"businesses\": [\n    {\n      \"id\": \"gR9DTbKCON2g1Z23bWcEpQ\",\n      \"alias\": \"rickys-tacos-san-francisco\",\n      \"name\": \"Ricky's Tacos\",\n      \"image_url\": \"https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg\",\n      \"is_closed\": false,\n      \"url\": \"https://www.yelp.com/biz/rickys-tacos-san-francisco\",\n      \"review_count\": 1289,\n      \"categories\": [\n        {}\n      ],\n      \"rating\": 4.5,\n      \"coordinates\": {\n        \"latitude\": 37.7867,\n        \"longitude\": -122.4112\n      },\n      \"transactions\": [\n        \"pickup\"\n      ],\n      \"price\": \"$$\",\n      \"location\": {\n        \"address1\": \"350 Mission St\",\n        \"address2\": \"\",\n        \"address3\": \"\",\n        \"city\": \"San Francisco\",\n        \"state\": \"CA\",\n        \"zip_code\": \"94105\",\n        \"country\": \"US\",\n        \"display_address\": {},\n        \"cross_streets\": \"example\"\n      },\n      \"phone\": \"+14159083801\",\n      \"display_phone\": \"(415) 908-3801\",\n      \"distance\": 1503.4,\n      \"attributes\": {}\n    }\n  ],\n  \"region\": {\n    \"center\": {\n      \"latitude\": 37.7867,\n      \"longitude\": -122.4112\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e87388fb-258f-4a1f-afb1-b7356a770521",
+              "name": "The request was malformed or missing required parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    "search",
+                    "phone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "phone",
+                      "value": "+14159083801"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "433f150f-be6e-4edf-ad36-b20235a2b87c",
+              "name": "The API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    "search",
+                    "phone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "phone",
+                      "value": "+14159083801"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b1c89d1-14de-467b-ab9e-5d7c5c3e6dd1",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    "search",
+                    "phone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "phone",
+                      "value": "+14159083801"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f56af0f-80ab-4da7-8220-05c259e10568",
+          "name": "Match Businesses",
+          "request": {
+            "name": "Match Businesses",
+            "description": {
+              "content": "Matches the supplied business attributes against businesses on Yelp, returning the best candidate matches. Useful for resolving your own records to a Yelp business id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "businesses",
+                "matches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Business name."
+                },
+                {
+                  "disabled": false,
+                  "key": "address1",
+                  "value": "<string>",
+                  "description": "(Required) First line of the business address."
+                },
+                {
+                  "disabled": false,
+                  "key": "address2",
+                  "value": "<string>",
+                  "description": "Second line of the business address."
+                },
+                {
+                  "disabled": false,
+                  "key": "address3",
+                  "value": "<string>",
+                  "description": "Third line of the business address."
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "(Required) City of the business."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "(Required) ISO 3166-2 state code of the business."
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "(Required) ISO 3166-1 alpha-2 country code of the business."
+                },
+                {
+                  "disabled": false,
+                  "key": "postal_code",
+                  "value": "<string>",
+                  "description": "Postal/ZIP code of the business."
+                },
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<double>",
+                  "description": "Latitude of the business."
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<double>",
+                  "description": "Longitude of the business."
+                },
+                {
+                  "disabled": false,
+                  "key": "phone",
+                  "value": "<string>",
+                  "description": "Phone number of the business."
+                },
+                {
+                  "disabled": false,
+                  "key": "yelp_business_id",
+                  "value": "<string>",
+                  "description": "A Yelp business id hint to improve match accuracy."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "3",
+                  "description": "Number of matches to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "match_threshold",
+                  "value": "default",
+                  "description": "How strictly candidates must match the input."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cdefee92-805c-4c13-831e-ebc394407930",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    "matches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "Ricky's Tacos"
+                    },
+                    {
+                      "key": "address1",
+                      "value": "350 Mission St"
+                    },
+                    {
+                      "key": "address2",
+                      "value": ""
+                    },
+                    {
+                      "key": "address3",
+                      "value": ""
+                    },
+                    {
+                      "key": "city",
+                      "value": "San Francisco"
+                    },
+                    {
+                      "key": "state",
+                      "value": "CA"
+                    },
+                    {
+                      "key": "country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "postal_code",
+                      "value": "example"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "phone",
+                      "value": "+14159083801"
+                    },
+                    {
+                      "key": "yelp_business_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "match_threshold",
+                      "value": "none"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"businesses\": [\n    {\n      \"id\": \"gR9DTbKCON2g1Z23bWcEpQ\",\n      \"alias\": \"rickys-tacos-san-francisco\",\n      \"name\": \"Ricky's Tacos\",\n      \"image_url\": \"https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg\",\n      \"is_closed\": false,\n      \"url\": \"https://www.yelp.com/biz/rickys-tacos-san-francisco\",\n      \"review_count\": 1289,\n      \"categories\": [\n        {\n          \"alias\": \"rickys-tacos-san-francisco\",\n          \"title\": \"Tacos\",\n          \"parent_aliases\": {},\n          \"country_whitelist\": {},\n          \"country_blacklist\": {}\n        }\n      ],\n      \"rating\": 4.5,\n      \"coordinates\": {\n        \"latitude\": 37.7867,\n        \"longitude\": -122.4112\n      },\n      \"transactions\": [\n        \"pickup\"\n      ],\n      \"price\": \"$$\",\n      \"location\": {\n        \"address1\": \"350 Mission St\",\n        \"address2\": \"\",\n        \"address3\": \"\",\n        \"city\": \"San Francisco\",\n        \"state\": \"CA\",\n        \"zip_code\": \"94105\",\n        \"country\": \"US\",\n        \"display_address\": [\n          \"example\"\n        ],\n        \"cross_streets\": \"example\"\n      },\n      \"phone\": \"+14159083801\",\n      \"display_phone\": \"(415) 908-3801\",\n      \"distance\": 1503.4,\n      \"attributes\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d87ed5a3-fdb2-4adf-b495-98e8406b387a",
+              "name": "The request was malformed or missing required parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    "matches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "Ricky's Tacos"
+                    },
+                    {
+                      "key": "address1",
+                      "value": "350 Mission St"
+                    },
+                    {
+                      "key": "address2",
+                      "value": ""
+                    },
+                    {
+                      "key": "address3",
+                      "value": ""
+                    },
+                    {
+                      "key": "city",
+                      "value": "San Francisco"
+                    },
+                    {
+                      "key": "state",
+                      "value": "CA"
+                    },
+                    {
+                      "key": "country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "postal_code",
+                      "value": "example"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "phone",
+                      "value": "+14159083801"
+                    },
+                    {
+                      "key": "yelp_business_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "match_threshold",
+                      "value": "none"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98432a12-8953-4aeb-a4b7-6761d27b10c0",
+              "name": "The API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    "matches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "Ricky's Tacos"
+                    },
+                    {
+                      "key": "address1",
+                      "value": "350 Mission St"
+                    },
+                    {
+                      "key": "address2",
+                      "value": ""
+                    },
+                    {
+                      "key": "address3",
+                      "value": ""
+                    },
+                    {
+                      "key": "city",
+                      "value": "San Francisco"
+                    },
+                    {
+                      "key": "state",
+                      "value": "CA"
+                    },
+                    {
+                      "key": "country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "postal_code",
+                      "value": "example"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "phone",
+                      "value": "+14159083801"
+                    },
+                    {
+                      "key": "yelp_business_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "match_threshold",
+                      "value": "none"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99309d72-1639-49d1-9de5-e619be436529",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    "matches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "Ricky's Tacos"
+                    },
+                    {
+                      "key": "address1",
+                      "value": "350 Mission St"
+                    },
+                    {
+                      "key": "address2",
+                      "value": ""
+                    },
+                    {
+                      "key": "address3",
+                      "value": ""
+                    },
+                    {
+                      "key": "city",
+                      "value": "San Francisco"
+                    },
+                    {
+                      "key": "state",
+                      "value": "CA"
+                    },
+                    {
+                      "key": "country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "postal_code",
+                      "value": "example"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "phone",
+                      "value": "+14159083801"
+                    },
+                    {
+                      "key": "yelp_business_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "match_threshold",
+                      "value": "none"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b36e284a-1285-4c56-aa8b-435ffb42185e",
+          "name": "Get Business Details",
+          "request": {
+            "name": "Get Business Details",
+            "description": {
+              "content": "Returns detailed information about a business by Yelp id or alias.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "businesses",
+                ":business_id_or_alias"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale in the form {language}_{country}, e.g. en_US."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "business_id_or_alias",
+                  "description": "(Required) A 22-character Yelp business id or a business alias."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24aab575-366b-479e-ab74-28c2f7897672",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    ":business_id_or_alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "business_id_or_alias",
+                      "description": "(Required) A 22-character Yelp business id or a business alias."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"gR9DTbKCON2g1Z23bWcEpQ\",\n  \"alias\": \"rickys-tacos-san-francisco\",\n  \"name\": \"Ricky's Tacos\",\n  \"image_url\": \"https://s3-media0.fl.yelpcdn.com/bphoto/abc123/o.jpg\",\n  \"is_closed\": false,\n  \"url\": \"https://www.yelp.com/biz/rickys-tacos-san-francisco\",\n  \"review_count\": 1289,\n  \"categories\": [\n    {\n      \"alias\": \"rickys-tacos-san-francisco\",\n      \"title\": \"Tacos\",\n      \"parent_aliases\": [\n        \"example\"\n      ],\n      \"country_whitelist\": [\n        \"example\"\n      ],\n      \"country_blacklist\": [\n        \"example\"\n      ]\n    }\n  ],\n  \"rating\": 4.5,\n  \"coordinates\": {\n    \"latitude\": 37.7867,\n    \"longitude\": -122.4112\n  },\n  \"transactions\": [\n    \"pickup\"\n  ],\n  \"price\": \"$$\",\n  \"location\": {\n    \"address1\": \"350 Mission St\",\n    \"address2\": \"\",\n    \"address3\": \"\",\n    \"city\": \"San Francisco\",\n    \"state\": \"CA\",\n    \"zip_code\": \"94105\",\n    \"country\": \"US\",\n    \"display_address\": [\n      \"example\"\n    ],\n    \"cross_streets\": \"example\"\n  },\n  \"phone\": \"+14159083801\",\n  \"display_phone\": \"(415) 908-3801\",\n  \"distance\": 1503.4,\n  \"attributes\": {},\n  \"is_claimed\": true,\n  \"photos\": [\n    \"example\"\n  ],\n  \"hours\": [\n    {\n      \"hour_type\": \"REGULAR\",\n      \"open\": [\n        {\n          \"day\": 1,\n          \"start\": \"1100\",\n          \"end\": \"2200\",\n          \"is_overnight\": false\n        }\n      ],\n      \"is_open_now\": true\n    }\n  ],\n  \"special_hours\": [\n    {}\n  ],\n  \"messaging\": {},\n  \"yelp_menu_url\": \"https://www.yelp.com/menu/rickys-tacos-san-francisco\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed4689d4-4d4f-456f-b578-31fd617ee32e",
+              "name": "The API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    ":business_id_or_alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "business_id_or_alias",
+                      "description": "(Required) A 22-character Yelp business id or a business alias."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2581a4b0-8b56-4188-84dc-a8c0d7642867",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    ":business_id_or_alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "business_id_or_alias",
+                      "description": "(Required) A 22-character Yelp business id or a business alias."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d94e4bf6-dfa0-4819-a65b-8e45457497b7",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "businesses",
+                    ":business_id_or_alias"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "business_id_or_alias",
+                      "description": "(Required) A 22-character Yelp business id or a business alias."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3efa8e7-0d8f-48f5-9e2b-c6745299abbe",
+          "name": "Autocomplete",
+          "request": {
+            "name": "Autocomplete",
+            "description": {
+              "content": "Returns autocomplete suggestions for search terms, businesses, and categories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "autocomplete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>",
+                  "description": "(Required) Text to return autocomplete suggestions for."
+                },
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<double>",
+                  "description": "Latitude of the location to look for suggestions in."
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<double>",
+                  "description": "Longitude of the location to look for suggestions in."
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale in the form {language}_{country}, e.g. en_US."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ee2a9ef7-b60e-439a-9f7a-edc1288a04f9",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "Best tacos in the Bay Area. The al pastor is incredible and the salsa bar is unmatched."
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"terms\": [\n    {\n      \"text\": \"Best tacos in the Bay Area. The al pastor is incredible and the salsa bar is unmatched.\"\n    }\n  ],\n  \"businesses\": [\n    {\n      \"id\": \"gR9DTbKCON2g1Z23bWcEpQ\",\n      \"name\": \"Ricky's Tacos\"\n    }\n  ],\n  \"categories\": [\n    {\n      \"alias\": \"rickys-tacos-san-francisco\",\n      \"title\": \"Tacos\",\n      \"parent_aliases\": [\n        \"example\"\n      ],\n      \"country_whitelist\": [\n        \"example\"\n      ],\n      \"country_blacklist\": [\n        \"example\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8f61ac3-eef6-4955-8488-e191691a2a38",
+              "name": "The request was malformed or missing required parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "Best tacos in the Bay Area. The al pastor is incredible and the salsa bar is unmatched."
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96441aca-532a-4350-b893-17c597444749",
+              "name": "The API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "Best tacos in the Bay Area. The al pastor is incredible and the salsa bar is unmatched."
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b8f110e-f598-4830-9472-d716d8c40250",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "Best tacos in the Bay Area. The al pastor is incredible and the salsa bar is unmatched."
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "37.7867"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "-122.4112"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.yelp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ecb2c90c-691d-43f0-b8e8-bb79b3c2f76f",
+    "name": "Yelp Fusion AI Businesses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Yelp Fusion API provides programmatic access to Yelp's database of local businesses, reviews, events, categories, and conversational AI search. This definition documents the public Fusion REST endpoints: business search and discovery, business details, reviews, autocomplete, phone search, business match, events, categories, and the Yelp Fusion AI chat endpoint. Authentication is via a bearer API key passed in the Authorization header.\n\nContact Support:\n Name: Yelp Developer",
+      "type": "text/plain"
+    }
+  }
+}
