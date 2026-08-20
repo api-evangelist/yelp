@@ -168,6 +168,8 @@ apis:
   humanURL: https://docs.developer.yelp.com/
   baseURL: https://api.yelp.com
   tags:
+  - Artificial Intelligence
+  tags_raw:
   - AI
   properties:
   - type: OpenAPI
@@ -372,6 +374,8 @@ apis:
   humanURL: https://docs.developer.yelp.com/
   baseURL: https://api.yelp.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
