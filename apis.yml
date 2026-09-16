@@ -1,13 +1,11 @@
 aid: yelp
 name: Yelp
-description: Yelp connects people with great local businesses. The Yelp Fusion API
-  gives developers programmatic access to Yelp's database of millions of local businesses,
-  ratings, reviews, photos, events, and category taxonomy, plus the Yelp Fusion AI
-  conversational search endpoint. Core public capabilities include business search
-  and discovery, business details, review excerpts, autocomplete, phone and address
-  matching, and local event search. Partner-tier APIs add reviews response, leads,
-  advertising, reservations, waitlist, checkout, and reporting. Authentication uses
-  a Yelp API key passed as a bearer token.
+description: Yelp connects people with great local businesses. The Yelp Fusion API gives developers programmatic
+  access to Yelp's database of millions of local businesses, ratings, reviews, photos, events, and category
+  taxonomy, plus the Yelp Fusion AI conversational search endpoint. Core public capabilities include business
+  search and discovery, business details, review excerpts, autocomplete, phone and address matching, and
+  local event search. Partner-tier APIs add reviews response, leads, advertising, reservations, waitlist,
+  checkout, and reporting. Authentication uses a Yelp API key passed as a bearer token.
 type: Index
 deliveryModel:
   model: open-core
@@ -47,10 +45,12 @@ tags:
 - Business Data
 - Location
 created: '2025-02-08'
-modified: '2026-06-03'
+modified: '2026-09-16'
 url: https://raw.githubusercontent.com/api-evangelist/yelp/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 common:
+- type: Website
+  url: https://yelp.com
 - type: IssueTracker
   url: https://github.com/Yelp/yelp-fusion/issues
 - type: License
@@ -135,21 +135,17 @@ common:
 - type: Features
   data:
   - name: Business Search
-    description: Search up to 240 businesses by location, term, category, price, and
-      attributes.
+    description: Search up to 240 businesses by location, term, category, price, and attributes.
   - name: Business Details
-    description: Retrieve rich detail for a business by id or alias, including hours,
-      photos, and attributes.
+    description: Retrieve rich detail for a business by id or alias, including hours, photos, and attributes.
   - name: Reviews
     description: Retrieve review excerpts, ratings, and reviewer details for a business.
   - name: Autocomplete
-    description: Return search-term, business, and category suggestions as the user
-      types.
+    description: Return search-term, business, and category suggestions as the user types.
   - name: Phone and Address Match
     description: Resolve a phone number or postal address to Yelp businesses.
   - name: Events
-    description: Search and retrieve local events with timing, location, cost, and
-      ticketing.
+    description: Search and retrieve local events with timing, location, cost, and ticketing.
   - name: Category Taxonomy
     description: Access the full Yelp business category list and per-category details.
   - name: Fusion AI
@@ -157,25 +153,21 @@ common:
 - type: UseCases
   data:
   - name: Restaurant Discovery
-    description: Power restaurant and food discovery experiences with search, ratings,
-      and photos.
+    description: Power restaurant and food discovery experiences with search, ratings, and photos.
   - name: Location-Aware Recommendations
     description: Surface nearby, open, and highly-rated businesses based on user coordinates.
   - name: Reputation Monitoring
     description: Track ratings and review excerpts for a portfolio of businesses.
   - name: Conversational Concierge
-    description: Build AI agents that answer natural language questions about local
-      businesses.
+    description: Build AI agents that answer natural language questions about local businesses.
   - name: Local Events Listings
     description: Embed curated local event listings into apps and sites.
 - type: Integrations
   data:
   - name: Zapier
-    description: Yelp Leads and Conversions APIs offer Zapier integrations for no-code
-      workflows.
+    description: Yelp Leads and Conversions APIs offer Zapier integrations for no-code workflows.
   - name: Model Context Protocol
-    description: Official Yelp MCP server exposes Fusion AI as an agent tool over
-      MCP.
+    description: Official Yelp MCP server exposes Fusion AI as an agent tool over MCP.
   - name: Webhooks
     description: Reviews and Leads webhooks push real-time events to partner endpoints.
 apis:
