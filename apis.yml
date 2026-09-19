@@ -247,6 +247,8 @@ apis:
   humanURL: https://docs.developer.yelp.com/
   baseURL: https://api.yelp.com
   tags:
+  - Business
+  tags_raw:
   - Businesses
   properties:
   - type: OpenAPI
