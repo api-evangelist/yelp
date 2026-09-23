@@ -1,11 +1,7 @@
 {
   "provider": "yelp",
   "sources": [
-    "yelp-ai-api-openapi.yml",
-    "yelp-businesses-api-openapi.yml",
-    "yelp-categories-api-openapi.yml",
-    "yelp-events-api-openapi.yml",
-    "yelp-reviews-api-openapi.yml"
+    "_ae-authored/yelp-openapi.yml"
   ],
   "outputs": [
     "yelp-ai-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "yelp-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "yelp-ai-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yelp-businesses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yelp-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yelp-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yelp-reviews-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
