@@ -71,7 +71,54 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or missing required parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    AiChatRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          maxLength: 1000
+          description: Natural language query.
+          example: find the best tacos in the Bay Area
+        chat_id:
+          type: string
+          description: Conversation id to continue a multi-turn session.
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+        user_context:
+          type: object
+          description: Location context for geo-specific results.
+          properties:
+            latitude:
+              type: number
+              format: double
+            longitude:
+              type: number
+              format: double
+        request_context:
+          type: object
+          additionalProperties: true
+          description: Processing settings such as skip_text_generation.
     Error:
       type: object
       properties:
@@ -123,53 +170,6 @@ components:
           - 'null'
           additionalProperties: true
           example: {}
-    AiChatRequest:
-      type: object
-      required:
-      - query
-      properties:
-        query:
-          type: string
-          maxLength: 1000
-          description: Natural language query.
-          example: find the best tacos in the Bay Area
-        chat_id:
-          type: string
-          description: Conversation id to continue a multi-turn session.
-          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
-        user_context:
-          type: object
-          description: Location context for geo-specific results.
-          properties:
-            latitude:
-              type: number
-              format: double
-            longitude:
-              type: number
-              format: double
-        request_context:
-          type: object
-          additionalProperties: true
-          description: Processing settings such as skip_text_generation.
-  responses:
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or missing required parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: Rate limit exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

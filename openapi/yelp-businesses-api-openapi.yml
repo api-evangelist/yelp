@@ -631,107 +631,29 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
+    AutocompleteResponse:
       type: object
       properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code
-              e.g. VALIDATION_ERROR.: null
-            description:
-              type: string
-              description: Human-readable error description.
-    BusinessDetail:
-      allOf:
-      - $ref: '#/components/schemas/Business'
-      - type: object
-        properties:
-          is_claimed:
-            type: boolean
-          photos:
-            type: array
-            items:
-              type: string
-              format: uri
-          hours:
-            type: array
-            items:
-              $ref: '#/components/schemas/BusinessHours'
-          special_hours:
-            type: array
-            items:
-              type: object
-              additionalProperties: true
-          messaging:
+        terms:
+          type: array
+          items:
             type: object
-            additionalProperties: true
-          yelp_menu_url:
-            type: string
-            format: uri
-    Location:
-      type: object
-      properties:
-        address1:
-          type: string
-          example: 350 Mission St
-        address2:
-          type:
-          - string
-          - 'null'
-          example: ''
-        address3:
-          type:
-          - string
-          - 'null'
-          example: ''
-        city:
-          type: string
-          example: San Francisco
-        state:
-          type: string
-          example: CA
-        zip_code:
-          type: string
-          example: '94105'
-        country:
-          type: string
-          example: US
-        display_address:
+            properties:
+              text:
+                type: string
+        businesses:
           type: array
           items:
-            type: string
-        cross_streets:
-          type: string
-          example: example
-    Category:
-      type: object
-      properties:
-        alias:
-          type: string
-          description: Unique category identifier.
-          example: rickys-tacos-san-francisco
-        title:
-          type: string
-          description: Localized category title.
-          example: Tacos
-        parent_aliases:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+        categories:
           type: array
           items:
-            type: string
-          description: Aliases of parent categories.
-        country_whitelist:
-          type: array
-          items:
-            type: string
-          description: Countries where this category is available.
-        country_blacklist:
-          type: array
-          items:
-            type: string
-          description: Countries where this category is restricted.
+            $ref: '#/components/schemas/Category'
     BusinessHours:
       type: object
       properties:
@@ -756,22 +678,17 @@ components:
         is_open_now:
           type: boolean
           example: true
-    BusinessSearchResponse:
+    Coordinates:
       type: object
       properties:
-        total:
-          type: integer
-          description: Total number of businesses Yelp found.
-          example: 240
-        businesses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Business'
-        region:
-          type: object
-          properties:
-            center:
-              $ref: '#/components/schemas/Coordinates'
+        latitude:
+          type: number
+          format: double
+          example: 37.7867
+        longitude:
+          type: number
+          format: double
+          example: -122.4112
     Business:
       type: object
       properties:
@@ -842,41 +759,130 @@ components:
         attributes:
           type: object
           additionalProperties: true
-    Coordinates:
+    BusinessDetail:
+      allOf:
+      - $ref: '#/components/schemas/Business'
+      - type: object
+        properties:
+          is_claimed:
+            type: boolean
+          photos:
+            type: array
+            items:
+              type: string
+              format: uri
+          hours:
+            type: array
+            items:
+              $ref: '#/components/schemas/BusinessHours'
+          special_hours:
+            type: array
+            items:
+              type: object
+              additionalProperties: true
+          messaging:
+            type: object
+            additionalProperties: true
+          yelp_menu_url:
+            type: string
+            format: uri
+    Error:
       type: object
       properties:
-        latitude:
-          type: number
-          format: double
-          example: 37.7867
-        longitude:
-          type: number
-          format: double
-          example: -122.4112
-    AutocompleteResponse:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+              e.g. VALIDATION_ERROR.: null
+            description:
+              type: string
+              description: Human-readable error description.
+    Category:
       type: object
       properties:
-        terms:
+        alias:
+          type: string
+          description: Unique category identifier.
+          example: rickys-tacos-san-francisco
+        title:
+          type: string
+          description: Localized category title.
+          example: Tacos
+        parent_aliases:
           type: array
           items:
-            type: object
-            properties:
-              text:
-                type: string
+            type: string
+          description: Aliases of parent categories.
+        country_whitelist:
+          type: array
+          items:
+            type: string
+          description: Countries where this category is available.
+        country_blacklist:
+          type: array
+          items:
+            type: string
+          description: Countries where this category is restricted.
+    Location:
+      type: object
+      properties:
+        address1:
+          type: string
+          example: 350 Mission St
+        address2:
+          type:
+          - string
+          - 'null'
+          example: ''
+        address3:
+          type:
+          - string
+          - 'null'
+          example: ''
+        city:
+          type: string
+          example: San Francisco
+        state:
+          type: string
+          example: CA
+        zip_code:
+          type: string
+          example: '94105'
+        country:
+          type: string
+          example: US
+        display_address:
+          type: array
+          items:
+            type: string
+        cross_streets:
+          type: string
+          example: example
+    BusinessSearchResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of businesses Yelp found.
+          example: 240
         businesses:
           type: array
           items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/Category'
+            $ref: '#/components/schemas/Business'
+        region:
+          type: object
+          properties:
+            center:
+              $ref: '#/components/schemas/Coordinates'
   responses:
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: The API key is missing or invalid.
       content:
@@ -891,12 +897,6 @@ components:
             $ref: '#/components/schemas/Error'
     BadRequest:
       description: The request was malformed or missing required parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: Rate limit exceeded.
       content:
         application/json:
           schema:

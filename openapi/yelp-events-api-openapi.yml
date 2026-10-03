@@ -258,6 +258,31 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or missing required parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -307,16 +332,6 @@ components:
         cross_streets:
           type: string
           example: example
-    EventSearchResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-          example: 240
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
     Event:
       type: object
       properties:
@@ -392,31 +407,16 @@ components:
           - string
           - 'null'
           example: gR9DTbKCON2g1Z23bWcEpQ
-  responses:
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or missing required parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: Rate limit exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    EventSearchResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          example: 240
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
   securitySchemes:
     bearerAuth:
       type: http
