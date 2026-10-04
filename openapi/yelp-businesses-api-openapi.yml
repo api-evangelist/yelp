@@ -630,30 +630,99 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or missing required parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    AutocompleteResponse:
+    Coordinates:
       type: object
       properties:
-        terms:
-          type: array
-          items:
+        latitude:
+          type: number
+          format: double
+          example: 37.7867
+        longitude:
+          type: number
+          format: double
+          example: -122.4112
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+              e.g. VALIDATION_ERROR.: null
+            description:
+              type: string
+              description: Human-readable error description.
+    BusinessDetail:
+      allOf:
+      - $ref: '#/components/schemas/Business'
+      - type: object
+        properties:
+          is_claimed:
+            type: boolean
+          photos:
+            type: array
+            items:
+              type: string
+              format: uri
+          hours:
+            type: array
+            items:
+              $ref: '#/components/schemas/BusinessHours'
+          special_hours:
+            type: array
+            items:
+              type: object
+              additionalProperties: true
+          messaging:
             type: object
-            properties:
-              text:
-                type: string
+            additionalProperties: true
+          yelp_menu_url:
+            type: string
+            format: uri
+    BusinessSearchResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of businesses Yelp found.
+          example: 240
         businesses:
           type: array
           items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/Category'
+            $ref: '#/components/schemas/Business'
+        region:
+          type: object
+          properties:
+            center:
+              $ref: '#/components/schemas/Coordinates'
     BusinessHours:
       type: object
       properties:
@@ -678,17 +747,6 @@ components:
         is_open_now:
           type: boolean
           example: true
-    Coordinates:
-      type: object
-      properties:
-        latitude:
-          type: number
-          format: double
-          example: 37.7867
-        longitude:
-          type: number
-          format: double
-          example: -122.4112
     Business:
       type: object
       properties:
@@ -759,46 +817,29 @@ components:
         attributes:
           type: object
           additionalProperties: true
-    BusinessDetail:
-      allOf:
-      - $ref: '#/components/schemas/Business'
-      - type: object
-        properties:
-          is_claimed:
-            type: boolean
-          photos:
-            type: array
-            items:
-              type: string
-              format: uri
-          hours:
-            type: array
-            items:
-              $ref: '#/components/schemas/BusinessHours'
-          special_hours:
-            type: array
-            items:
-              type: object
-              additionalProperties: true
-          messaging:
-            type: object
-            additionalProperties: true
-          yelp_menu_url:
-            type: string
-            format: uri
-    Error:
+    AutocompleteResponse:
       type: object
       properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code
-              e.g. VALIDATION_ERROR.: null
-            description:
-              type: string
-              description: Human-readable error description.
+        terms:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+        businesses:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
     Category:
       type: object
       properties:
@@ -860,47 +901,6 @@ components:
         cross_streets:
           type: string
           example: example
-    BusinessSearchResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of businesses Yelp found.
-          example: 240
-        businesses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Business'
-        region:
-          type: object
-          properties:
-            center:
-              $ref: '#/components/schemas/Coordinates'
-  responses:
-    TooManyRequests:
-      description: Rate limit exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or missing required parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

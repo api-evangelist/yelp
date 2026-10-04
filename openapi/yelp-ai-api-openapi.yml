@@ -91,6 +91,19 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+              e.g. VALIDATION_ERROR.: null
+            description:
+              type: string
+              description: Human-readable error description.
     AiChatRequest:
       type: object
       required:
@@ -119,19 +132,6 @@ components:
           type: object
           additionalProperties: true
           description: Processing settings such as skip_text_generation.
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code
-              e.g. VALIDATION_ERROR.: null
-            description:
-              type: string
-              description: Human-readable error description.
     AiChatResponse:
       type: object
       properties:

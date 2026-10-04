@@ -120,6 +120,33 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+              e.g. VALIDATION_ERROR.: null
+            description:
+              type: string
+              description: Human-readable error description.
+    ReviewsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          example: 240
+        possible_languages:
+          type: array
+          items:
+            type: string
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review'
     Review:
       type: object
       properties:
@@ -157,33 +184,6 @@ components:
               format: uri
             name:
               type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code
-              e.g. VALIDATION_ERROR.: null
-            description:
-              type: string
-              description: Human-readable error description.
-    ReviewsResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-          example: 240
-        possible_languages:
-          type: array
-          items:
-            type: string
-        reviews:
-          type: array
-          items:
-            $ref: '#/components/schemas/Review'
   securitySchemes:
     bearerAuth:
       type: http

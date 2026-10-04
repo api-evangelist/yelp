@@ -258,80 +258,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    TooManyRequests:
-      description: Rate limit exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or missing required parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code
-              e.g. VALIDATION_ERROR.: null
-            description:
-              type: string
-              description: Human-readable error description.
-    Location:
-      type: object
-      properties:
-        address1:
-          type: string
-          example: 350 Mission St
-        address2:
-          type:
-          - string
-          - 'null'
-          example: ''
-        address3:
-          type:
-          - string
-          - 'null'
-          example: ''
-        city:
-          type: string
-          example: San Francisco
-        state:
-          type: string
-          example: CA
-        zip_code:
-          type: string
-          example: '94105'
-        country:
-          type: string
-          example: US
-        display_address:
-          type: array
-          items:
-            type: string
-        cross_streets:
-          type: string
-          example: example
     Event:
       type: object
       properties:
@@ -407,6 +334,19 @@ components:
           - string
           - 'null'
           example: gR9DTbKCON2g1Z23bWcEpQ
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+              e.g. VALIDATION_ERROR.: null
+            description:
+              type: string
+              description: Human-readable error description.
     EventSearchResponse:
       type: object
       properties:
@@ -417,6 +357,66 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Event'
+    Location:
+      type: object
+      properties:
+        address1:
+          type: string
+          example: 350 Mission St
+        address2:
+          type:
+          - string
+          - 'null'
+          example: ''
+        address3:
+          type:
+          - string
+          - 'null'
+          example: ''
+        city:
+          type: string
+          example: San Francisco
+        state:
+          type: string
+          example: CA
+        zip_code:
+          type: string
+          example: '94105'
+        country:
+          type: string
+          example: US
+        display_address:
+          type: array
+          items:
+            type: string
+        cross_streets:
+          type: string
+          example: example
+  responses:
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or missing required parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http
