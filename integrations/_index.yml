@@ -28,6 +28,18 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: yelp-shopify-own
+  label: Shopify (own)
+  partner: shopify
+  partner_name: Shopify (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.shopify.com/yelp-conversions
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: yelp-toast-own
   label: Toast (own)
   partner: toast
