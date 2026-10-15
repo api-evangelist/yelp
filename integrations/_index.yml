@@ -112,7 +112,7 @@
     builder: unknown (not in the directory record)
     other_apps:
     - yelp-conversions
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: yelp-pipedream
   label: Pipedream
@@ -138,5 +138,5 @@
     actions: true
     sources: false
     builder: Pipedream repo (component)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
