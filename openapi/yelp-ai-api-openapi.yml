@@ -78,14 +78,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: The API key is missing or invalid.
+    BadRequest:
+      description: The request was malformed or missing required parameters.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or missing required parameters.
+    Unauthorized:
+      description: The API key is missing or invalid.
       content:
         application/json:
           schema:

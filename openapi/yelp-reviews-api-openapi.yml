@@ -120,19 +120,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code
-              e.g. VALIDATION_ERROR.: null
-            description:
-              type: string
-              description: Human-readable error description.
     ReviewsResponse:
       type: object
       properties:
@@ -147,6 +134,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Review'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+              e.g. VALIDATION_ERROR.: null
+            description:
+              type: string
+              description: Human-readable error description.
     Review:
       type: object
       properties:
