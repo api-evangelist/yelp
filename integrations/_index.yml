@@ -161,3 +161,34 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: yelp-aws-data-exchange
+  label: AWS Data Exchange
+  partner: amazon-data-exchange
+  partner_name: AWS Data Exchange
+  category: data product listing
+  type: marketplace
+  marketplace: amazon-data-exchange-marketplace
+  channel: distribution
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=c971368f-6e0a-47bb-bc0f-113e5f0f5870
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Yelp
+    matched_domain: yelp.com
+    matched_by: domain
+    listings: 13
+    sample_listings:
+    - 100 Miami Restaurants Scores and Review Sample - Sales and Risk Intel
+    - Chicago Financial Services Points of Interest (POI) Sample
+    - Local Business Attributes, Intel and Full Review Text Sample - 100 POIs
+    - Local Business Trend Analysis - 5 Years Sample of 100 Miami Restaurants
+    - Location Intelligence - Sales Intel Mid Market Restaurant Sample
+    signal_note: 'participation: the provider lists data products on this marketplace; counts are context'
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
